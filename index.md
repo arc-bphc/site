@@ -9,10 +9,9 @@ This is an attempt at sharing what we at ARC do, through blogging our individual
 
 <ul>
   {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}"><h2>{{ post.title }}</h2></a>
+    <li><a href="{{ post.url }}"><h2>{{ post.title }}</h2></a></li>
+      <h5> {{post.date  | date_to_long_string }} - Authored by {{post.author}}</h5>
         <h5>{{ post.excerpt }}</h5>
-    </li>
   {% endfor %}
 </ul>
 

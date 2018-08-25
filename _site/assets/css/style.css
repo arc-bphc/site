@@ -244,7 +244,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #222;
-  margin: 0 0 20px; }
+  margin: 0 0 10px; }
 
 p, ul, ol, table, pre, dl {
   margin: 0 0 20px; }
@@ -279,7 +279,7 @@ a:hover small {
   color: #777; }
 
 .wrapper {
-  width: 860px;
+  width: 800px;
   margin: 0 auto; }
 
 blockquote {
@@ -316,7 +316,7 @@ th {
   color: #444; }
 
 img {
-  max-width: 100%; }
+  max-width: 60%; }
 
 header {
   width: 270px;
