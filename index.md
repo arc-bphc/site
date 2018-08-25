@@ -5,12 +5,13 @@ layout: default
 This is an attempt at sharing what we at ARC do, through blogging our individual little experiments and adventures about anything and everything. 
 
 
-[Link to next page](./another-page.html)
+<!-- [Link to next page](./another-page.html) -->
 
 <ul>
   {% for post in site.posts %}
     <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
+      <a href="{{ post.url }}"><h2>{{ post.title }}</h2></a>
+        <h5>{{ post.excerpt }}</h5>
     </li>
   {% endfor %}
 </ul>
