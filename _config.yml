@@ -18,7 +18,7 @@ logo: /assets/img/arc.png
 email: bphc.arc@gmail.com 
 description: >- # this means to ignore newlines until "baseurl:"
  
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "http://arc-bphc.github.io/blog" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
 # github_username:  jekyll
