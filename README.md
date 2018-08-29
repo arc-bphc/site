@@ -4,15 +4,15 @@ To add your blogs to the repository, follow these steps.
 
 1. Just head over to the GitHub page and click the "Fork" button. Then clone your fork to your local machine using: 
 
-`git clone https://github.com/username/arc-bphc.github.io` 
+   `git clone https://github.com/username/arc-bphc.github.io` 
 
 2. Add upstream repo to list of remotes:
 
-`git remote add upstream https://github.com/arc-bphc/arc-bphc.github.io` 
+   `git remote add upstream https://github.com/arc-bphc/arc-bphc.github.io` 
 
 3. Verify the remote:
 
-`git remote -v` 
+   `git remote -v` 
 
 4. When you want to update your fork with the latest changes: 
 
@@ -33,6 +33,6 @@ To add your blogs to the repository, follow these steps.
 
 7. Push the changes. 
 
-`git push origin master` 
+   `git push origin master` 
 
 8. Go to the page of your forked repo and make a Pull Request from there.   
