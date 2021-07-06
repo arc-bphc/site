@@ -2,11 +2,11 @@ header:
   - title: Projects
     url: /projects.html
 
-  - title: Handbook
-    url: /about.html
-
+  - title: Resources
+    url: /resources.html
+  
   - title: Blog
-    url: 
+    url: /blog.html
 
   - titles:
       # @start locale config
