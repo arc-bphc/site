@@ -1,4 +1,13 @@
 header:
+  - title: Projects
+    url: /projects.html
+
+  - title: Handbook
+    url: /about.html
+
+  - title: Blog
+    url: 
+
   - titles:
       # @start locale config
       en      : &EN       Archive
@@ -47,4 +56,5 @@ header:
       fr-FR   : *FR
       fr-LU   : *FR
       # @end locale config
-    url: /about.html
+    url: https://arc-bphc.github.io
+
