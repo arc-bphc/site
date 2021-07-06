@@ -58,3 +58,40 @@ header:
       # @end locale config
     url: https://arc-bphc.github.io
 
+workshop-bar:
+  - title:      Day 0
+    children:
+      - title:   Introduction
+        url:    /resources/2021-07-06-Day2.html
+      - title:  Getting Things Ready
+        url:    /resources/2021-07-06-Day2.html
+  - title:      Day 1
+    children:
+      - title:  Electronics
+        url:    /resources/2021-07-06-Day2.html
+      - title:  CAD
+        url:    /resources/2021-07-06-Day2.html
+  - title:      Day 2 
+    children:
+      - title:  Electronics
+        url:    /resources/2021-07-06-Day3.html
+      - title:  CAD
+        url:    /resources/2021-07-06-Day2.html
+  - title:      Day 3
+    children:
+      - title:  Electronics
+        url:    /resources/2021-07-06-Day3.html
+      - title:  Electronics
+        url:    /resources/2021-07-06-Day2.html
+  - title:      Going Further 
+    children:
+      - title:  Session 1
+        url:    /resources/2021-07-06-Day3.html
+      - title:  Session 2
+        url:    /resources/2021-07-06-Day2.html
+  - title:      Troubleshooting
+    children:
+      - title:  Session 1
+        url:    /resources/2021-07-06-Day3.html
+      - title:  Session 2
+        url:    /resources/2021-07-06-Day2.html

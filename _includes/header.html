@@ -8,7 +8,17 @@
     <div class="main">
       <div class="header__title">
         <div class="header__brand">
-          {%- include svg/logo.svg -%}
+          <div class="header__brand">
+            <img src="/assets/images/logo/logo.png"/>
+            {%- assign _paths_root = site.paths.root | default:
+            site.data.variables.default.paths.root -%} {%- include
+            snippets/get-nav-url.html path=_paths_root -%} {%- if site.title -%}
+            <a
+              title="{%- if site.description -%}{{ site.description }}{%- endif -%}"
+              href="{{ __return }}">
+            </a>
+            {%- endif -%}
+        </div>
           {%- assign _paths_root = site.paths.root | default: site.data.variables.default.paths.root  -%}
           {%- include snippets/get-nav-url.html path=_paths_root -%}
           {%- if site.title -%}

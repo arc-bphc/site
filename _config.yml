@@ -63,8 +63,8 @@ repository_tree: master
 ## => Paths
 ##############################
 paths:
-  root    : # title link url, "/" (default)
-  home    : # home layout url, "/" (default)
+  root    :  # title link url, "/" (default)
+  home    : /blog.html # home layout url, "/" (default)
   archive : # "/archive.html" (default)
   rss     : # "/feed.xml" (default)
 
@@ -205,6 +205,8 @@ exclude:
 collections:
   projects:
     output: true
+  resources:
+    output: true
 
 defaults:
   - scope:
@@ -235,6 +237,17 @@ defaults:
       path: "_posts"
     values:
       layout: articles
+      license: true
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_date: false
+      # lightbox: true
+  #Posts
+  - scope:
+      path: "_resources"
+    values:
+      layout: article
       license: true
       aside:
         toc: true
