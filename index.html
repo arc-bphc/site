@@ -1,3 +1,9 @@
 ---
-layout: home
+layout: articles
+title: Blog 
+show_title: true
+permalink: /
 ---
+<div class="layout--articles">
+  {%- include article-list.html articles=site.posts type='item' show_cover='true' show_info='true' show_excerpt='true' excerpt_type='html' show_readmore='true' -%}
+</div>
