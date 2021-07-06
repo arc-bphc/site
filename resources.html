@@ -1,30 +1,117 @@
 ---
 layout: articles
-titles:
-  # @start locale config
-  en      : &EN       Resources
-  en-GB   : *EN
-  en-US   : *EN
-  en-CA   : *EN
-  en-AU   : *EN
-  zh-Hans : &ZH_HANS  主页
-  zh      : *ZH_HANS
-  zh-CN   : *ZH_HANS
-  zh-SG   : *ZH_HANS
-  zh-Hant : &ZH_HANT  主頁
-  zh-TW   : *ZH_HANT
-  zh-HK   : *ZH_HANT
-  ko      : &KO       홈
-  ko-KR   : *KO
-  fr      : &FR       Accueil
-  fr-BE   : *FR
-  fr-CA   : *FR
-  fr-CH   : *FR
-  fr-FR   : *FR
-  fr-LU   : *FR
-  # @end locale config
+title: Resources
 show_title: true
 ---
-<div class="layout--articles">
-  {%- include article-list.html articles=site.resources type='item' show_cover='true' show_info='true' show_excerpt='true' excerpt_type='html' show_readmore='true' -%}
+<!--
+  <div class="row">
+    <a href="resources.html">
+        <div class="card">
+            <div class="card__image">
+              <img class="image" src="/assets/images/fish.jpg"/>
+            </div>
+            <div class="card__content">
+              <div class="card__header">
+                <h4>Level Up</h4>
+              </div>
+              <p>Explain about Level Up</p>
+            </div>
+          </div>
+      </a>
+      <a href="resources.html">
+        <div class="card">
+            <div class="card__image">
+              <img class="image" src="/assets/images/fish.jpg"/>
+            </div>
+            <div class="card__content">
+              <div class="card__header">
+                <h4>Intro To Robotics</h4>
+              </div>
+              <p>Workshop coming soon</p>
+            </div>
+          </div>
+      </a>
+  </div>
+
+<style>
+.card {
+    background-color: rgb(40, 36, 36);
+}
+    /* Three image containers (use 25% for four, and 50% for two, etc) */
+.row {
+  display: flex;
+}
+
+.card{
+  flex: 50%;
+  padding: 5px;
+}
+</style>
+
+-->
+
+<div id="holder">
+    <div id="logo" class='left'>
+        <a href="resources.html">
+            <div class="card">
+                <div class="card__image">
+                  <img class="image" src="/assets/images/fish.jpg"/>
+                </div>
+                <div class="card__content">
+                  <div class="card__header">
+                    <h4>Level Up</h4>
+                  </div>
+                  <p>Explain about Level Up</p>
+                </div>
+              </div>
+          </a>
+    </div>
+    <div class='right'>
+        <a href="resources.html">
+            <div class="card">
+                <div class="card__image">
+                  <img class="image" src="/assets/images/fish.jpg"/>
+                </div>
+                <div class="card__content">
+                  <div class="card__header">
+                    <h4>Workshop</h4>
+                  </div>
+                  <p>Explain about Level Up</p>
+                </div>
+              </div>
+          </a>
+    </div>
+    <div style='clear:both;'></div>
+    <div id="wrapper"></div>
 </div>
+
+
+<style> 
+	html, body {
+	    height: 100%;
+	    text-align:left;
+	    margin: 0px;
+	    padding: 0px;
+	}
+	#holder {
+	    margin :0 auto;
+	    display:inline-block;
+	    width: 620px;
+	}
+	.left {
+	    float:left;
+	}
+	.right {
+	    float:right;
+	}
+	#logo {
+	    align:middle;
+	    text-align:left
+	}
+	#wrapper {
+	    height:200px;
+	    position: relative;
+	    padding: 0em 0em 0em 0em;
+	}
+	
+</style>

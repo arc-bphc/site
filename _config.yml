@@ -16,7 +16,7 @@
 
 ## => Site Settings
 ##############################
-theme: jekyll-text-theme
+#theme: jekyll-text-theme
 text_skin: dark # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
 highlight_theme: tomorrow-night # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
 url     : # the base hostname & protocol for your site e.g. https://www.someone.com
@@ -205,8 +205,6 @@ exclude:
 collections:
   projects:
     output: true
-  resources:
-    output: true
 
 defaults:
   - scope:
@@ -223,7 +221,7 @@ defaults:
       pageview: true
   #projects
   - scope:
-      path: "projects"
+      path: "_projects"
     values:
       layout: articles
       license: true
@@ -234,18 +232,7 @@ defaults:
       # lightbox: true
   #Posts
   - scope:
-      path: "posts"
-    values:
-      layout: articles
-      license: true
-      aside:
-        toc: true
-      show_edit_on_github: true
-      show_date: false
-      # lightbox: true
-  #Resources
-  - scope:
-      path: "resources"
+      path: "_posts"
     values:
       layout: articles
       license: true
