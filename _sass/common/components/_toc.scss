@@ -44,7 +44,7 @@ ul.toc {
     margin-bottom: map-get($spacers, 2);
     color: $text-color-d;
     &, a {
-      font-size: map-get($base, font-size-sm);
+      font-size: 1.2rem;
       font-weight: map-get($base, font-weight-bold);
       line-height: map-get($base, line-height-sm);
     }
