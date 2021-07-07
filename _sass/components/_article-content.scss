@@ -212,7 +212,7 @@
     }
     th, td {
       padding: map-get($spacers, 2);
-      border: 1px solid $border-color-l;
+      border: 0px solid $border-color-l;
     }
     th {
       font-weight: map-get($base, font-weight-bold);
