@@ -23,10 +23,35 @@ type: article
   </div>
 
 </div>
-
 <script>
   {%- include scripts/article.js -%}
 </script>
+
+{% if page.applause_button %}
+  <link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css">
+  <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+{% endif %}
+
+{% if page.applause_button %}
+  <applause-button class="mb6"
+    color={{ site.accent_color | default:'rgb(79,177,186)' }}
+    url={{ site.url }}{{ page.url }} >
+  </applause-button>
+{% endif %}
+<style>
+  // applause-button
+
+applause-button {
+  width: 200px;
+  height: 200px;
+  margin: 50px;
+
+  .count-container {
+    color: inherit;
+  }
+}
+</style>
+
 <script src="https://utteranc.es/client.js"
         repo="arc-bphc/arc-bphc.github.io"
         issue-term="title"
@@ -34,5 +59,3 @@ type: article
         crossorigin="anonymous"
         async>
 </script>
-
-
