@@ -56,7 +56,7 @@ header:
       fr-FR   : *FR
       fr-LU   : *FR
       # @end locale config
-    url: https://arc-bphc.github.io
+    url: https://arc-bphc.github.io#about
 
 workshop-bar:
   - title:      Day 0
