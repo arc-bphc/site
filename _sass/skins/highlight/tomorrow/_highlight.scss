@@ -9,11 +9,15 @@ pre.lineno {
 pre,
 code {
     font-size: 15px;
-    border: 0px solid #121212 ;
-    border-radius: 3px;
-    background-color: #121212;
+    border: 30px none #121212 ;
+    border-radius: 8px;
+    background-color: #181818;
 }
 
+pre {
+	tab-size: 2;
+	-moz-tab-size: 2;
+}
 
 .highlight > pre {
   color: $highlight-comment;
