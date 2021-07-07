@@ -1,6 +1,7 @@
 ---
 title: Welcome
 tags: TeXt
+layout: article
 article_header:
   type: cover
   image:
