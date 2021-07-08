@@ -99,71 +99,106 @@
   }
   .highlighter-rouge > .highlight, figure.highlight {
     & > pre {
-      padding: map-get($spacers, 3) 0 map-get($spacers, 3) map-get($spacers, 3);
-      margin: 0;
-      background-color: $text-background-color;
-      border-radius: map-get($base, border-radius);
-      & > code {
-        display: block;
-      }
-    }
+      border: solid 0px #121212;
+      margin: 0 0;
+  background: #121212;
+  display:inline-block;
+  padding: 5px 5px;
+  max-width: 900px;
+  height: auto;
+  line-height: 0px;
+  margin-bottom: 0px;
+  margin-right: 2px;
+  white-space: pre;
+  overflow-x: auto;
+  word-break: inherit;
+  word-wrap: inherit;   
+}
+
+.highlight td {
+  padding: 0px 1px;
+}
+
+.gl {
+  background: #121212;
+  border-right: 1px solid #121212;
+  color: #121212;
+
+  /* Stop line numbers being visually selected */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
   }
-  figure.highlight {
-    &::before {
-      display: block;
-      padding: map-get($spacers, 2) map-get($spacers, 3) map-get($spacers, 2) 0;
-      font-weight: map-get($base, font-weight-bold);
-      color: $decorate-color;
-      text-align: right;
-      text-transform: uppercase;
-      content: attr(data-lang);
-      background-color: $text-background-color;
-      border-top-left-radius: map-get($base, border-radius);
-      border-top-right-radius: map-get($base, border-radius);
-    }
-    & > pre {
-      padding-top: 0;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      & > code {
-        & > .rouge-table {
-          width: auto;
-          margin: 0 0 #{- map-get($spacers, 3)} #{- map-get($spacers, 3)};
-          tbody, tr, td {
-            padding-top: 0;
-            padding-bottom: 0;
-            border: none;
-          }
-          & > tbody {
-            @include flexbox;
-            & > tr {
-              width: 100%;
-              @include flexbox;
-              & > .code {
-                padding: 0 0 map-get($spacers, 3) map-get($spacers, 2);
-                @include overflow(auto);
-              }
-            }
-          }
-          tbody td {
-            &.gl {
-              padding-left: map-get($spacers, 3);
-            }
-            & > pre {
-              display: block;
-              margin: 0;
-              border-radius: 0;
-              @include overflow(auto);
-              &.lineno {
-                color: $text-color-l;
-                @include user-select(none);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  //   & > pre {
+  //     padding: map-get($spacers, 3) 0 map-get($spacers, 3) map-get($spacers, 3);
+  //     margin: 0;
+  //     background-color: $text-background-color;
+  //     border-radius: map-get($base, border-radius);
+  //     & > code {
+  //       display: block;
+  //     }
+  //   }
+  // }
+  // figure.highlight {
+  //   &::before {
+  //     display: block;
+  //     padding: map-get($spacers, 2) map-get($spacers, 3) map-get($spacers, 2) 0;
+  //     font-weight: map-get($base, font-weight-bold);
+  //     color: $decorate-color;
+  //     text-align: right;
+  //     text-transform: uppercase;
+  //     content: attr(data-lang);
+  //     background-color: $text-background-color;
+  //     border-top-left-radius: map-get($base, border-radius);
+  //     border-top-right-radius: map-get($base, border-radius);
+  //   }
+  //   & > pre {
+  //     padding-top: 0;
+  //     border-top-left-radius: 0;
+  //     border-top-right-radius: 0;
+  //     & > code {
+  //       & > .rouge-table {
+  //         width: auto;
+  //         margin: 0 0 #{- map-get($spacers, 3)} #{- map-get($spacers, 3)};
+  //         tbody, tr, td {
+  //           padding-top: 0;
+  //           padding-bottom: 0;
+  //           border: none;
+  //         }
+  //         & > tbody {
+  //           @include flexbox;
+  //           & > tr {
+  //             width: 100%;
+  //             @include flexbox;
+  //             & > .code {
+  //               padding: 0 0 map-get($spacers, 3) map-get($spacers, 2);
+  //               @include overflow(auto);
+  //             }
+  //           }
+  //         }
+  //         tbody td {
+  //           &.gl {
+  //             padding-left: map-get($spacers, 3);
+  //           }
+  //           & > pre {
+  //             display: block;
+  //             margin: 0;
+  //             border-radius: 0;
+  //             @include overflow(auto);
+  //             &.lineno {
+  //               color: $text-color-l;
+  //               @include user-select(none);
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   ul, ol {
     margin-left: map-get($spacers, 4);
     ul, ol {
@@ -218,4 +253,23 @@
       font-weight: map-get($base, font-weight-bold);
     }
   }
+
+  /* width */
+  ::-webkit-scrollbar{
+    width: 7px;
+    height: 7px;
+    }
+    ::-webkit-scrollbar-thumb{
+    background: linear-gradient(46deg, #E05121 1%,#C7CEFF 64%);
+    border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(13deg, #0EBFEB 14%,#F9D4FF 64%);
+    }
+    ::-webkit-scrollbar-track{
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: inset 7px 10px 12px 0px #F0F0F0;
+    }
 }
+

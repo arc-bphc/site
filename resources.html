@@ -4,65 +4,91 @@ title: Resources
 show_title: true
 permalink: /resources.html
 ---
-<div id="holder">
-    <div id="logo" class='left'>
-        <a href="{{site.baseurl}}/resources/2021-07-06-Day2.html">
-            <div class="card">
-                <div class="card__image">
-                  <img class="image" src="{{site.baseurl}}/assets/images/fish.jpg"/>
-                </div>
-                <div class="card__content">
-                  <div class="card__header">
-                    <h4>Workshop</h4>
-                  </div>
-                  <p>Explain about Level Up</p>
-                </div>
+
+
+<div class="row">
+  <div class="column">
+    <div class="card_top">
+      <a href="{{site.baseurl}}/resources/2021-07-06-Day0-1.html">
+        <div class="card">
+            <div class="card__image">
+              <img class="image" src="{{site.baseurl}}/assets/images/fish.jpg"/>
+            </div>
+            <div class="card__content">
+              <div class="card__header">
+                <h4>Workshop</h4>
               </div>
-          </a>
+              <p>Explain about Level Up</p>
+            </div>
+          </div>
+      </a>
     </div>
-    <div class='right'>
-        <a href="resources.html">
-            <div class="card">
-                <div class="card__image">
-                  <img class="image" src="{{site.baseurl}}/assets/images/fish.jpg"/>
-                </div>
-                <div class="card__content">
-                  <div class="card__header">
-                    <h4>Level Up</h4>
-                  </div>
-                  <p>Explain about Level Up</p>
-                </div>
+  </div>
+  <div class="column">
+    <div class="card_top">
+      <a href="{{site.baseurl}}/resources/2021-07-06-Level-0-1.html">
+        <div class="card">
+            <div class="card__image">
+              <img class="image" src="{{site.baseurl}}/assets/images/fish.jpg"/>
+            </div>
+            <div class="card__content">
+              <div class="card__header">
+                <h4>Level Up</h4>
               </div>
-          </a>
+              <p>Explain about Level Up</p>
+            </div>
+          </div>
+      </a>
     </div>
-    <div style='clear:both;'></div>
-    <div id="wrapper"></div>
+  </div>
+  <!-- <div class="column">
+    <div class="card_top">..</div>
+  </div>
+  <div class="column">
+    <div class="card_top">..</div>
+  </div> -->
 </div>
-<style> 
-	html, body {
-	    height: 100%;
-	    text-align:left;
-	    margin: 0px;
-	    padding: 0px;
-	}
-	#holder {
-	    margin :0 auto;
-	    display:inline-block;
-	    width: 620px;
-	}
-	.left {
-	    float:left;
-	}
-	.right {
-	    float:right;
-	}
-	#logo {
-	    align:middle;
-	    text-align:left
-	}
-	#wrapper {
-	    height:200px;
-	    position: relative;
-	    padding: 0em 0em 0em 0em;
-	}
+
+<style>
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #121212;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
 </style>
