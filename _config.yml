@@ -209,6 +209,7 @@ exclude:
   - /screenshots
   - /test
   - /vendor
+  - .jekyll-cache
 
 collections:
   projects:
