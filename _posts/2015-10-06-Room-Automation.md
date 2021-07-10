@@ -1,6 +1,6 @@
 ---
-title: Gesture Controlled Bot
-tags: [Gesture,l298n,HC-05,bluetooth,arduino,MATLAB,Image Processing]
+title: Room Automation using Bluetooth
+tags: [HC-05,bluetooth,arduino,android phone]
 layout: article
 mode: normal
 type: article
