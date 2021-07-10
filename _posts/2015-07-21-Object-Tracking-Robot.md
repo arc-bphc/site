@@ -41,4 +41,5 @@ MATLAB Image Acquisition Toolbox to acquire images over laptop webcam of the ges
 MATLAB is slow and thus it was not wise to control Arduino through MATLAB. This mistake was realized later after the competition. It would also be preferable to use on board camera rather than overhead camera to detect and pick blocks. Also it would be better to build the robot on the lines of gesture controlled robot, wireless and controlled by Bluetooth rather than being wired. The gesture controlled robot was built after this robot and is of better design than this.
 
 
-Multiple Authors: Suyash Yeotikar, Amit Sharma, Saksham Phul {:.info}
+Multiple Authors: Suyash Yeotikar, Amit Sharma, Saksham Phul
+{:.info}
