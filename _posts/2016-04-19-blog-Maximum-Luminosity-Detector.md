@@ -1,6 +1,6 @@
 ---
 title: Maximum Luminosity Detector
-tags: [arduino,l298,ldr,servo,hc05,bluetooth]
+tags: [arduino,l298n,ldr,servo,hc05,bluetooth]
 layout: article
 mode: normal
 type: article

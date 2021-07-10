@@ -12,11 +12,11 @@ full_width: false
 header: true
 cover: /assets/images/blog/thumbnails/Music Visualisation.png
 ---
-## AIM
+## Aim
 To filter the incoming audio signal and see how each coloured LED of RGB 3528 SMD strip reacts to different frequencies of the signal.
 <!--more-->
 
-## HARDWARE NEEDED
+## Hardware
 - Arduino Uno(1)
 - RGB 3528 LED Strip(1)
 - TIP31C NPN transistor(3)
@@ -30,7 +30,7 @@ To filter the incoming audio signal and see how each coloured LED of RGB 3528 SM
 - 10KΩ resistor(2)
 - 100KΩ resistor(1)
 
-## THE WORKING 
+## Working 
 The project basically consists of 3 stages:-
 
 1. Constructing a pre-amplifier mic circuit

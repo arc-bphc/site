@@ -1,6 +1,6 @@
 ---
 title: Ball Picker Robot 
-tags: [arduino,hc05,bluetooth,servo,l298,mechanix]
+tags: [arduino,hc05,bluetooth,servo,l298n,mechanix]
 layout: article
 mode: normal
 type: article

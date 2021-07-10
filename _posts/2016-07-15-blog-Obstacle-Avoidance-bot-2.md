@@ -1,6 +1,6 @@
 ---
 title: Obstacle Avoidance Vehicle 2
-tags: [arduino,ultrasonic,l298]
+tags: [arduino,ultrasonic,l298n]
 layout: article
 mode: normal
 type: article
