@@ -53,7 +53,7 @@ The other bot had everything same except the wheels it used Omni wheels.
 
 <div class="swiper swiper-demo">
   <div class="swiper__wrapper">
-    <div class="swiper__slide"><img class="image image" src="{{site.baseurl}}/assets/images/blog/Badminton-Playing-Bot/bot.png"/></div>
+    <div class="swiper__slide"><img class="image image" src="{{site.baseurl}}/assets/images/blog/thumbnails/Badminton Playing Bot - ROBOCON 2015.png"/></div>
     <div class="swiper__slide"><img class="image image" src="{{site.baseurl}}/assets/images/blog/Badminton-Playing-Bot/field.png"/></div>
     <div class="swiper__slide"><img class="image image" src="{{site.baseurl}}/assets/images/blog/Badminton-Playing-Bot/room.png"/></div>
     <div class="swiper__slide"><img class="image image" src="{{site.baseurl}}/assets/images/blog/Badminton-Playing-Bot/workshop1.png"/></div>
