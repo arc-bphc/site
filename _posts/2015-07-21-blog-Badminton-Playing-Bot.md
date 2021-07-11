@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/Badminton-Playing-Bot/bot.png
+cover: /assets/images/blog/thumbnails/Badminton Playing Bot - ROBOCON 2015.png
 ---
 ## Aim
 The bot was made to play Badminton in the ROBOCON 2015 as part of the theme, declared by Televisi Republik Indonesia (TVRI) as, “Robominton: Badminton Robo-Game”.

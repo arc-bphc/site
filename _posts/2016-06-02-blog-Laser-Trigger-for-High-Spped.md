@@ -1,6 +1,6 @@
 ---
 title: Laser Trigger for High Speed Photography
-tags: [arduino,laser,photography,ldr,camera,npn]
+tags: [arduino,laser,photography,ldr,camera,NPN]
 layout: article
 mode: normal
 type: article

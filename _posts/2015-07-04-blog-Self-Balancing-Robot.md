@@ -1,6 +1,6 @@
 ---
-title: Self-Balancing/Segway Robot
-tags: [self-balancing,l298n,IMU,mpu6050,arduino]
+title: Self-Balancing-Segway Robot
+tags: [l298n,IMU]
 layout: article
 mode: normal
 type: article
@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/Self-Balancing-Robot/bot.png
+cover: /assets/images/blog/thumbnails/Self-Balancing-Segway Robot.png
 ---
 
 ## Aim

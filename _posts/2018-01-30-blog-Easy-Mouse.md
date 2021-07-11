@@ -1,6 +1,6 @@
 ---
 title: EasyMouse
-tags: [arduino,ADXL345,IMU,mpu6050,nrfl2401]
+tags: [arduino,ADXL345,IMU,mpu6050,nrf24l01]
 layout: article
 mode: normal
 type: article

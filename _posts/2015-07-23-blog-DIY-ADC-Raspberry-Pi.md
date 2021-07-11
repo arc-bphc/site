@@ -1,6 +1,6 @@
 ---
 title: DIY ADC for Raspberry Pi
-tags: [diy,adc,raspberry pi,adc0808,adc0809,cd4051,555 timer]
+tags: [adc,raspberry pi,cd4051,555 timer]
 layout: article
 mode: normal
 type: article
@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/DIY-ADC-Raspi/PCB.png
+cover: /assets/images/blog/thumbnails/DIY ADC for Raspberry Pi.png
 ---
 
 ## Aim

@@ -1,6 +1,6 @@
 ---
 title: Room Automation using Bluetooth
-tags: [HC-05,bluetooth,arduino,android phone]
+tags: [HC-05,android phone]
 layout: article
 mode: normal
 type: article
@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/Room-Automation/thumb.png
+cover: /assets/images/blog/thumbnails/Room Automation using Bluetooth.png
 ---
 
 

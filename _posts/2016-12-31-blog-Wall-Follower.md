@@ -1,6 +1,6 @@
 ---
 title: Wall Follower 
-tags: [arduino,ultrasonic,l298n]
+tags: [arduino,hcsr04,l298n]
 layout: article
 mode: normal
 type: article

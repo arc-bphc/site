@@ -1,6 +1,6 @@
 ---
 title: Bot Control using RF
-tags: [RF,433Mhz,l298n,arduino]
+tags: [RF,l298n,arduino]
 layout: article
 mode: normal
 type: article
