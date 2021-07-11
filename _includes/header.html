@@ -32,7 +32,7 @@
       {%- if site.data.navigation.header -%}
       <nav class="navigation">
         <ul>
-          {%- for _item in site.data.navigation.header -%}
+          <!-- {%- for _item in site.data.navigation.header -%}
             {%- include snippets/get-nav-url.html path=_item.url -%}
             {%- assign _nav_url = __return -%}
             {%- include snippets/get-nav-url.html path=page.url -%}
@@ -43,7 +43,25 @@
             {%- else -%}
               <li class="navigation__item"><a href="{{ _nav_url }}">{%- if _item.title -%}{{ _item.title }}{%- else -%}{{ __return }}{%- endif -%}</a></li>
             {%- endif -%}
-          {%- endfor -%}
+          {%- endfor -%} -->
+          <div class="navbar">
+            <a href="{{site.baseurl}}/projects/">Projects</a>
+            <a href="{{site.baseurl}}/resources">Resources</a>
+            <a href="{{site.baseurl}}/blog">Blog</a>
+            <!-- <a href="{{site.baseurl}}/archive">Archive</a> -->
+            <a href="https://arc-bphc.github.io#about">About</a>
+            <div class="dropdown">
+              <button class="dropbtn">Others 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="{{site.baseurl}}/archive">Archive</a>
+                <a href="#">Our Team</a>
+                <a href="#">Publications</a>
+                <a href="#">Skill Tree</a>
+              </div>
+            </div> 
+          </div>
           {%- if site.search.provider -%}
             <li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li>
           {%- endif -%}
@@ -52,3 +70,70 @@
       {%- endif -%}
     </div>
   </header>
+
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #202020;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: #202020;
+  text-align: center;
+  padding: 3px 5px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  padding: 3px 5px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #202020;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #202020;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 3px 5px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #202020;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
