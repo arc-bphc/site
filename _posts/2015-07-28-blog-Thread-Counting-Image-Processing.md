@@ -50,6 +50,7 @@ OpenCV is much better than almost all other visual processing softwares as it is
 .swiper-demo {
   height: auto;
 }
+
 </style>
 <script>
 {%- include scripts/lib/swiper.js -%}
