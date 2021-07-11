@@ -1,9 +1,93 @@
 ---
 layout: articles
-title: Blog 
+title: Latest 
 show_title: true
-permalink: /
 ---
-<div class="layout--articles">
+<!-- <div class="layout--articles">
   {%- include article-list.html articles=site.posts type='item' show_cover='true' show_info='true' show_excerpt='true' excerpt_type='html' show_readmore='true' -%}
+</div>  -->
+<h2>Blog Posts</h2>
+<div class="row"> 
+{% for post in site.posts limit:2 %}
+<div class="column">
+<a href="{{site.baseurl}}{{post.url}}">
+  <div class="card card--clickable">
+      <div class="card__image">
+        <img class="image" src="assets/images/blog/thumbnails/{{post.title}}.png"/>
+      </div>
+      <div class="card__content">
+        <div class="card__header">
+          <h4>{{post.title}}</h4>
+        </div>
+        <p>{{post.excerpt}}</p>
+      </div>
+  </div>
+</a>
 </div>
+{% endfor %}
+</div>
+<h2>Projects</h2>
+<div class="row"> 
+{% for post in site.projects limit:2 %}
+<div class="column">
+<a href="{{site.baseurl}}{{post.url}}">
+  <div class="card card--clickable">
+      <div class="card__image">
+        <img class="image" src="{{post.cover}}"/>
+      </div>
+      <div class="card__content">
+        <div class="card__header">
+          <h4>{{post.title}}</h4>
+        </div>
+        <p>{{post.excerpt}}</p>
+      </div>
+  </div>
+</a>
+</div>
+{% endfor %}
+</div>
+
+
+<style>
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 30%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #121212;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+</style>

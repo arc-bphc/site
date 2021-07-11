@@ -2,7 +2,7 @@
 layout: articles
 titles:
   # @start locale config
-  en      : &EN       Resources
+  en      : &EN       Blog
   en-GB   : *EN
   en-US   : *EN
   en-CA   : *EN
@@ -24,8 +24,16 @@ titles:
   fr-LU   : *FR
   # @end locale config
 show_title: true
+articles:
+  data_source: paginator.posts
+  article_type: BlogPosting
+  show_cover: true
+  show_excerpt: true
+  show_readmore: true
+  show_info: true
 ---
-<div class="layout--articles">
-  {%- include article-list.html articles=site.resources type='item' show_cover='true' show_info='true' show_excerpt='true' excerpt_type='html' show_readmore='true' -%}
-</div>
----sss
+{%- include paginator.html -%}
+<script>
+  {%- include scripts/home.js -%}
+</script>
+{{ content }}

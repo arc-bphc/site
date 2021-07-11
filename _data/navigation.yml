@@ -1,12 +1,12 @@
 header:
   - title: Projects
-    url: /projects.html
+    url: /projects/index.html
 
   - title: Resources
-    url: /resources.html
+    url: resources/index.html
   
   - title: Blog
-    url: /blog.html
+    url: blog/index.html
 
   - titles:
       # @start locale config
@@ -31,7 +31,7 @@ header:
       fr-FR   : *FR
       fr-LU   : *FR
       # @end locale config
-    url: /archive.html
+    url: archive/index.html
 
   - titles:
       # @start locale config

@@ -1,5 +1,5 @@
 ---
-title: Servo Motors & PWM
+title: Servo Motors PWM
 tags: [arduino,Servo,PWM]
 layout: article
 mode: normal
@@ -10,12 +10,13 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/thumbnails/Servo Motors & PWM.png
+cover: /assets/images/blog/thumbnails/Servo Motors PWM.png
 ---
-
-While playing with servo motors, I came across an interesting concept of pulse width modulation connected to the servo motors which I will be discussing here.
+## Aim
+Explore the working of the servo library.
 <!--more-->
-
+## Story
+While playing with servo motors, I came across an interesting concept of pulse width modulation connected to the servo motors which I will be discussing here.
 Servo library has to be called and an object has to be made in the Arduino IDE for controlling the servo motor. Once we do that we use object_name.write() and specify the angle which the servo should be turned to. Servo control is actually achieved by sending a PWM signal to the servo motor. But since there are only 6 PWM pins on the Arduino Uno does that mean we can connect only 6 servos to it ?
 
 For comparison I used the same servo on both PWM as well as non-PWM pins on the Arduino and there was no visible performance difference ! If PWM is used by servos, there has to be a difference ! So whats the hack then ?

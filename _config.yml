@@ -64,8 +64,8 @@ repository_tree: master
 ##############################
 paths:
   root    :  # title link url, "/" (default)
-  home    : /blog.html # home layout url, "/" (default)
-  archive : # "/archive.html" (default)
+  home    :  # home layout url, "/" (default)
+  archive : /archive/index.html# "archive/index.html" (default)
   rss     : # "/feed.xml" (default)
 
 
@@ -97,8 +97,8 @@ chart: # false (default), true
 
 ## => Paginate
 ##############################
-paginate: 8
-paginate_path: /page:num/ # don't change this unless for special need
+paginate: 6
+paginate_path: "/blog/page:num/" # don't change this unless for special need
 
 
 ## => Sources

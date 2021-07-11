@@ -14,7 +14,9 @@ cover: /assets/images/blog/thumbnails/Voice Controlled Car.png
 ---
 ## Aim
 To build a bluetooth operated voice controlled car.
+
 <!--more-->
+
 ## Hardware Used
 - Arduino Uno
 - Bread Board
