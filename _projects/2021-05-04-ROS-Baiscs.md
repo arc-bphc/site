@@ -8,8 +8,10 @@ article_header:
   type: cover
   image:
     src: /screenshot.jpg
-cover: /assets/images/fish.jpg
+cover: assets/images/fish.jpg
 ---
+Basics of ROS ecosystem have been covered
+<!--more-->
 ## Packages
 ROS uses packages to orgnaize its program, you can think of a package as all the files that a specific ROS program needs to run sucessfully. 
 A few common items inside a package:
