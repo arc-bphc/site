@@ -1,6 +1,6 @@
 ---
 title: Arduino based Seismograph
-tags: [op amp,arduino,magnets,seismograph]
+tags: [op-amp,arduino,magnets]
 layout: article
 mode: normal
 type: article

@@ -1,6 +1,6 @@
 ---
 title: Secret Clap Door Lock
-tags: [arduino,LM7805,l293,hc05,bluetooth]
+tags: [arduino,LM7805,l293d,hc05,bluetooth]
 layout: article
 mode: normal
 type: article

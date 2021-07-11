@@ -1,6 +1,6 @@
 ---
 title: LED Music Visualizer 
-tags: [lm324,74hc595,arduino,music]
+tags: [lm324,74hc595,music]
 layout: article
 mode: normal
 type: article
@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/LED-Music-Vis/led.png
+cover: /assets/images/blog/thumbnails/LED Music Visualizer.png
 ---
 
 ## Aim

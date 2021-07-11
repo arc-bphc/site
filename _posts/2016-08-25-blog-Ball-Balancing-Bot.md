@@ -1,6 +1,6 @@
 ---
 title: Ball-balancing Bot 
-tags: [arduino,ultrasonic,servo]
+tags: [arduino,hcsr04,servo]
 layout: article
 mode: normal
 type: article

@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/Thread-Counting/7.png
+cover: /assets/images/blog/thumbnails/Thread Counting Using Image Processing.png
 ---
 
 ## Aim

@@ -1,6 +1,6 @@
 ---
 title: Robotic Drawing Arm
-tags: [drawing,arm,arduino,servo]
+tags: [drawing,arm,servo]
 layout: article
 mode: normal
 type: article
@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/Robotic-Drawing-Arm/thumb.png
+cover: /assets/images/blog/thumbnails/Robotic Drawing Arm.png
 ---
 ## Aim
 To make a Robotic Drawing Arm that mimics the motion of a finger on touchpad or a mouse.

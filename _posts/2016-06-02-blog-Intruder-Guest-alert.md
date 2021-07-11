@@ -1,6 +1,6 @@
 ---
 title: Intruder-Guest alert system
-tags: [webcam,openCV,Image Processing]
+tags: [webcam,OpenCV,Image Processing]
 layout: article
 mode: normal
 type: article

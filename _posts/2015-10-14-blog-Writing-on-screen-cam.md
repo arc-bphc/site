@@ -1,5 +1,5 @@
 ---
-title: Writing on screen through Camera(3D to 2D Writing)
+title: Writing on screen through Camera
 tags: [drawing,arm,arduino,servo]
 layout: article
 mode: normal
@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/Writing-on-screen-cam/thumb.png
+cover: /assets/images/blog/thumbnails/Writing on screen through Camera.png
 ---
 
 

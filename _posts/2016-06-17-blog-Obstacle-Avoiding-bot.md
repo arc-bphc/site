@@ -1,6 +1,6 @@
 ---
 title: Obstacle Avoiding Bot
-tags: [arduino,l298n,hcsr04,ultrasonic]
+tags: [arduino,l298n,hcsr04]
 layout: article
 mode: normal
 type: article

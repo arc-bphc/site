@@ -1,6 +1,6 @@
 ---
 title: Object Tracking Robot
-tags: [object-tracking,l298n,HC-05,bluetooth,arduino]
+tags: [l298n,HC-05]
 layout: article
 mode: normal
 type: article
@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/LogoWhite.png
+cover: /assets/images/blog/thumbnails/Object Tracking Robot.png
 ---
 
 

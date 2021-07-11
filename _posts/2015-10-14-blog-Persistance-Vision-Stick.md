@@ -1,6 +1,6 @@
 ---
 title: Persistence of Vision Stick
-tags: [POV,arduino,led,SIPO registers,]
+tags: [POV,led,SIPO registers,]
 layout: article
 mode: normal
 type: article
@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/Persistence-Vision-Stick/thumb.png
+cover: /assets/images/blog/thumbnails/Persistence of Vision Stick.png
 ---
 
 ## Aim
