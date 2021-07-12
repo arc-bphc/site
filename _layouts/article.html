@@ -1,7 +1,11 @@
 ---
 layout: page
 type: article
+image_sliders_load_all: true
 ---
+{% include slider_styles.html %}
+
+{% include slider_scripts.html %}
 
 {%- include snippets/assign.html
   target = site.data.variables.default.page.sharing

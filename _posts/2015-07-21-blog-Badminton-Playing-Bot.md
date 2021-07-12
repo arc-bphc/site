@@ -2,15 +2,15 @@
 title: Badminton Playing Bot - ROBOCON 2015
 tags: [badminton,pneumatics,mecanum,robocon]
 layout: article
-mode: normal
-type: article
+#mode: normal
+#type: article
 sharing: true
 author: Jayanth Kanikpati
 show_author_profile: true
 show_title: true
-full_width: false
+#full_width: false
 header: true
-cover: /assets/images/blog/thumbnails/Badminton Playing Bot - ROBOCON 2015.png
+#cover: /assets/images/blog/thumbnails/Badminton Playing Bot - ROBOCON 2015.png
 ---
 ## Aim
 The bot was made to play Badminton in the ROBOCON 2015 as part of the theme, declared by Televisi Republik Indonesia (TVRI) as, “Robominton: Badminton Robo-Game”.
@@ -51,23 +51,69 @@ The bot used 85 watt motors with Mecanum wheels powered by Motors and 2 lead aci
 The other bot had everything same except the wheels it used Omni wheels.
 
 
+
+<!-- <div class="w3-content w3-display-container">
+  <img class="mySlides1" src="/site/assets/images/blog/thumbnails/Badminton Playing Bot - ROBOCON 2015.png" style="width:100%">
+  <img class="mySlides1" src="/site/assets/images/blog/Badminton-Playing-Bot/field.png" style="width:100%">
+  <img class="mySlides1" src="/site/assets/images/blog/Badminton-Playing-Bot/room.png" style="width:100%">
+  <img class="mySlides1" src="/site/assets/images/blog/Badminton-Playing-Bot/workshop1.png" style="width:100%">
+  <img class="mySlides1" src="/site/assets/images/blog/Badminton-Playing-Bot/workshop2.png" style="width:100%">
+  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1, 0)">&#10094;</button>
+  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1, 0)">&#10095;</button>
+</div>
+
+<script>
+var slideIndex = [1,1];
+var slideId = ["mySlides1"]
+showDivs(1, 0);
+showDivs(1, 1);
+
+function plusDivs(n, no) {
+  showDivs(slideIndex[no] += n, no);
+}
+
+function showDivs(n, no) {
+  var i;
+  var x = document.getElementsByClassName(slideId[no]);
+  if (n > x.length) {slideIndex[no] = 1}
+  if (n < 1) {slideIndex[no] = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex[no]-1].style.display = "block";  
+}
+</script>  -->
+
 <div class="swiper swiper-demo">
   <div class="swiper__wrapper">
-    <div class="swiper__slide"><img class="image image" src="{{site.baseurl}}/assets/images/blog/thumbnails/Badminton Playing Bot - ROBOCON 2015.png"/></div>
-    <div class="swiper__slide"><img class="image image" src="{{site.baseurl}}/assets/images/blog/Badminton-Playing-Bot/field.png"/></div>
-    <div class="swiper__slide"><img class="image image" src="{{site.baseurl}}/assets/images/blog/Badminton-Playing-Bot/room.png"/></div>
-    <div class="swiper__slide"><img class="image image" src="{{site.baseurl}}/assets/images/blog/Badminton-Playing-Bot/workshop1.png"/></div>
-    <div class="swiper__slide"><img class="image image" src="{{site.baseurl}}/assets/images/blog/Badminton-Playing-Bot/workshop2.png"/></div>
+    <div class="swiper__slide">
+    <img  src="/site/assets/images/blog/thumbnails/Badminton Playing Bot - ROBOCON 2015.png">
+    </div>
+    <div class="swiper__slide">
+    <img  src="/site/assets/images/blog/Badminton-Playing-Bot/field.png">
+    </div>
+    <div class="swiper__slide">
+    <img  src="/site/assets/images/blog/Badminton-Playing-Bot/workshop2.png">
+    </div>
+    <div class="swiper__slide">
+    <img  src="/site/assets/images/blog/Badminton-Playing-Bot/room.png">
+    </div>
+    <div class="swiper__slide">
+      <img  src="/site/assets/images/blog/Badminton-Playing-Bot/workshop1.png">
+    </div>
   </div>
   <div class="swiper__button swiper__button--prev fas fa-chevron-left"></div>
   <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
 </div>
 
-<style>
-.swiper-demo {
-  height: auto;
+ <style>
+ .img {
+  width: 400px;
+  height: 600px;
+  object-fit: contain;
 }
 </style>
+ 
 <script>
 {%- include scripts/lib/swiper.js -%}
 var SOURCES = window.TEXT_VARIABLES.sources;
