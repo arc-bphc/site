@@ -105,14 +105,6 @@ function showDivs(n, no) {
   <div class="swiper__button swiper__button--prev fas fa-chevron-left"></div>
   <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
 </div>
-
- <style>
- .img {
-  width: 400px;
-  height: 600px;
-  object-fit: contain;
-}
-</style>
  
 <script>
 {%- include scripts/lib/swiper.js -%}
