@@ -106,8 +106,8 @@ function showDivs(n, no) {
   <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
 </div>
 
-<style>
-  img {
+ <style>
+ .img {
   width: 400px;
   height: 600px;
   object-fit: contain;
