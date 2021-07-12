@@ -52,7 +52,7 @@ The other bot had everything same except the wheels it used Omni wheels.
 
 
 
-<div class="w3-content w3-display-container">
+<!-- <div class="w3-content w3-display-container">
   <img class="mySlides1" src="/site/assets/images/blog/thumbnails/Badminton Playing Bot - ROBOCON 2015.png" style="width:100%">
   <img class="mySlides1" src="/site/assets/images/blog/Badminton-Playing-Bot/field.png" style="width:100%">
   <img class="mySlides1" src="/site/assets/images/blog/Badminton-Playing-Bot/room.png" style="width:100%">
@@ -82,4 +82,42 @@ function showDivs(n, no) {
   }
   x[slideIndex[no]-1].style.display = "block";  
 }
-</script> 
+</script>  -->
+
+<div class="swiper swiper-demo">
+  <div class="swiper__wrapper">
+    <div class="swiper__slide">
+    <img  src="/site/assets/images/blog/thumbnails/Badminton Playing Bot - ROBOCON 2015.png">
+    </div>
+    <div class="swiper__slide">
+    <img  src="/site/assets/images/blog/Badminton-Playing-Bot/field.png">
+    </div>
+    <div class="swiper__slide">
+    <img  src="/site/assets/images/blog/Badminton-Playing-Bot/workshop2.png">
+    </div>
+    <div class="swiper__slide">
+    <img  src="/site/assets/images/blog/Badminton-Playing-Bot/room.png">
+    </div>
+    <div class="swiper__slide">
+      <img  src="/site/assets/images/blog/Badminton-Playing-Bot/workshop1.png">
+    </div>
+  </div>
+  <div class="swiper__button swiper__button--prev fas fa-chevron-left"></div>
+  <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
+</div>
+
+<style>
+  img {
+  width: 400px;
+  height: 600px;
+  object-fit: contain;
+}
+</style>
+ 
+<script>
+{%- include scripts/lib/swiper.js -%}
+var SOURCES = window.TEXT_VARIABLES.sources;
+window.Lazyload.js(SOURCES.jquery, function() {
+  $('.swiper-demo').swiper();
+});
+</script>

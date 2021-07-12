@@ -17,9 +17,11 @@
 }
 
 .swiper__slide {
+   
   @include flex-shrink(0);
   & > img {
-    max-width: 100%;
+    background-size: cover;
+    width: 100%;
   }
 }
 
