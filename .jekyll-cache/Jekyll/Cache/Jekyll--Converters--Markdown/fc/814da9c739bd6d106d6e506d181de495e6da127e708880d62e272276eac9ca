@@ -1,0 +1,23 @@
+I"�<h2 id="aim">Aim</h2>
+<p>To make a self-balanced robot which can be controlled through Bluetooth.
+<!--more--></p>
+<h2 id="hardware-used">Hardware used</h2>
+<ul>
+  <li>1 – Arduino Uno</li>
+  <li>2 – Bluetooth Module HC-05.</li>
+  <li>2 – 500 RPM Geared motor.</li>
+  <li>1 – L298 H-bridge motor driver.</li>
+  <li>1 – MPU-6050 Accelerometer+Gyroscope.</li>
+  <li>1- 7.4V LiPo Battery.
+<img src="/site/assets/images/blog/bluetooth-self-balancing/2.png" alt="Resistor" width="auto" height="auto" /></li>
+</ul>
+
+<h2 id="details">Details</h2>
+<p>The project was inspired by Segways, and to control it using Bluetooth. The battery being used is 7.4V LiPo but the motors need 11.1V in order to perform at the maximum capacity. The values of the constants for PID algorithm make it stable by calculating and adjusting the input 30 times a second.
+<img src="/site/assets/images/blog/bluetooth-self-balancing/1.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/_0YfaQifOyI?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+:ET

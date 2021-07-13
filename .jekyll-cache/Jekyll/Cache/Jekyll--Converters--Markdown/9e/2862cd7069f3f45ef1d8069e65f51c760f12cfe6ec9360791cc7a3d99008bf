@@ -1,0 +1,533 @@
+I"�g<!--more-->
+<h2 id="arduino-uno">Arduino Uno</h2>
+<p>Arduino is a platform used for building electronic projects, it consists of a physical
+programmable circuit board (often referred to as a microcontroller ), and a software (called the IDE) which runs on the computer and allows you to write programs to the physical board.</p>
+
+<p>Arduino boards are useful in reading inputs (Ex: light on a sensor, finger on a button)
+and turn it into desirable outputs (Ex: turning on an LED, or running a motor). This
+process can be done by providing a set of instructions to the Arduino board using the IDE.
+Arduino provides several microcontrollers, but our focus will remain on the most popular
+one i.e. Arduino Uno</p>
+
+<h2 id="whats-in-an-arduino-uno">What’s in an Arduino Uno?</h2>
+
+<p><img src="/site/assets/images/resources/Level 2/arduinouno.png" alt="LED" width="auto" height="auto" /></p>
+
+<h3 id="microcontroller">Microcontroller</h3>
+<p>This part is the brain of the Arduino. It processes the code written and executes the
+input and output commands. So it includes a memory that stores your code, a processor
+that processes your code. The Arduino uses ATMega microcontrollers and the Arduino Uno
+has the ATMega328 microcontroller.</p>
+
+<h3 id="usb-port">USB Port</h3>
+<p>The USB port allows you to connect to the computer
+to establish a medium of communication between
+communication has to follow a set of rules called a
+uses to communicate with the computer is called
+Receptor &amp; Transmitter).</p>
+
+<h3 id="power-pins">Power pins</h3>
+<p>The Arduino Uno can output 5 volt and 3.3 volt from the pins “5V” and “3.3V”. This can
+be used to power other sensors or components.</p>
+
+<h3 id="gnd-or-ground-pins">GND or Ground pins</h3>
+<p>These pins are at 0 volt. They are used to complete and form a closed circuit.</p>
+
+<h3 id="reset-push-button">Reset Push Button</h3>
+<p>By clicking this button restarts your Arduino Uno.</p>
+
+<h3 id="gpio-general-purpose-input-output-pins">GPIO (General Purpose Input Output) Pins</h3>
+<p>They are specific pins on the arduino that can be programmed to input/output signals.
+They bridge the programming with the electronics.
+They are of two types:
+<strong>Digital GPIO</strong>: Strictly outputs two values i.e. HIGH or LOW.
+<strong>Analog GPIO</strong>: Reads an analog signal within a defined precision.</p>
+
+<p><img src="/site/assets/images/resources/Level 2/digitalvsanalog.png" alt="LED" width="auto" height="auto" /></p>
+
+<h2 id="serial-communication">Serial Communication</h2>
+<p>On the software side, let’s look into how the Uno actually
+communicates with the computer and the serial monitor.</p>
+
+<p>A video on the serial port and print commands can be found here.</p>
+
+<p><code class="language-plaintext warning highlighter-rouge">important</code></p>
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/b5kndEtAKl8?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<p>The serial monitor can also be used to take inputs from the
+user.</p>
+
+<p>Here is Paul McWhorter’s amazing tutorial on this topic.</p>
+
+<p><code class="language-plaintext warning highlighter-rouge">important</code></p>
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/7aP5KL5clWA?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<p>Pay special attention to <a href="https://www.arduino.cc/reference/en/language/functions/communication/serial/parseint/">parseInt()</a> and <a href="https://www.arduino.cc/reference/en/language/functions/communication/stream/streamparsefloat/">parseFloat()</a> commands.</p>
+
+<p>There are two important functions related to the serial input in the code, and that is <a href="https://www.arduino.cc/reference/en/language/functions/communication/serial/available/">Serial.available()</a> and <a href="https://www.arduino.cc/reference/en/language/functions/communication/serial/read/">Serial.read()</a>.</p>
+
+<blockquote>
+  <p><strong>Serial.available()</strong> returns the number of characters (i.e. bytes of data) which have arrived in the serial buffer and that are ready to be read.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Serial.read()</strong> returns the first (oldest) character in the buffer and removes that byte of data from the buffer.</p>
+</blockquote>
+
+<p>So when all the bytes of data are read and no new serial data has arrived, the buffer is empty and Serial.available() will return 0.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>
+<span class="kt">int</span> <span class="n">arrivingdatabyte</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// initializing the incoming serial byte  </span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>  
+	<span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span> <span class="c1">// 9600 is the data rate in bps (bits per second).  </span>
+<span class="p">}</span>  
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(){</span> <span class="c1">// loop function that executes repeatedly  </span>
+	<span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">(</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>  <span class="c1">//  It will only send data when the received data is greater than 0.  </span>
+		<span class="n">arrivingdatabyte</span> <span class="o">=</span> <span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">(</span> <span class="p">);</span>  <span class="c1">// It will read the incoming or arriving data byte  </span>
+		<span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">"data byte received:"</span><span class="p">);</span>  
+		<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">arrivingdatabyte</span><span class="p">,</span> <span class="n">DEC</span><span class="p">);</span> <span class="c1">// here, DEC means Decimal  </span>
+	<span class="p">}</span>  
+<span class="p">}</span> 
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="if-else-conditional-statements">If else Conditional Statements</h2>
+<p>The if… else allows greater control over the flow of code than the basic if
+statement, by allowing multiple tests to be grouped.</p>
+
+<p>An else clause (if at all exists) will be executed if the condition in the
+if statement results in false. The else can proceed another if test, so
+that multiple, mutually exclusive tests can be run at the same time.
+Each test will proceed to the next one until a true test is encountered.
+When a true test is found, its associated block of code is run, and the
+program then skips to the line following the entire if/else construction.
+If no test proves to be true, the default else block is executed, if one
+is present, and sets the default behavior.</p>
+
+<p>Note that an else if block may be used with or without a terminating else block and vice versa. An unlimited number of such else if branches are allowed.</p>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="k">if</span><span class="p">(</span><span class="n">condition1</span><span class="p">){</span>
+	
+<span class="p">}</span>
+<span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">condition2</span><span class="p">){</span>
+	
+<span class="p">}</span>
+<span class="k">else</span><span class="p">{</span>
+	
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h2 id="binary-system-and-decimal-system">Binary System and Decimal System</h2>
+
+<p>Computers count different from us. They count with the digits 1 and 0. A computer uses the binary numeral system which is also known as base 2. And in this system, there are only two digits, 1 and 0. This system is used in all modern computers and digital devices like mobile phones.</p>
+
+<p>On the other hand, the decimal system is the oldest and the most widely used numbering system which is also known as base 10. Numbers based on 10 were commonly used in ancient cultures too. This system was derived because we could use our fingers to count.</p>
+
+<blockquote>
+  <p>A bit (short for binary digit) is the smallest and basic unit of data in a computer, and it is usually represented by one of these values, 0 or 1. There are 8 bits in a byte.</p>
+</blockquote>
+
+<p>An introduction to Binary number system and Decimal number systems is explained well in these links :</p>
+
+<p><code class="language-plaintext warning highlighter-rouge">important</code></p>
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/5OBZYhJnne0?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<p><code class="language-plaintext warning highlighter-rouge">important</code></p>
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/4vNlt_EDw1Q?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<p><code class="language-plaintext warning highlighter-rouge">important</code></p>
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/rTuKKVcYeMg?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<p><img src="/site/assets/images/resources/Level 2/binaryquestion.png" alt="LED" width="auto" height="auto" /></p>
+
+<h2 id="bit-math">Bit Math</h2>
+<p>Working on bytes, or data types comprising of bytes like ints, floats, doubles or even
+data structures which stores large amount of bytes is normal for a programmer. In some
+cases, a programmer needs to go beyond this - that is to say that in a deeper level
+where the importance of bits is realized.</p>
+
+<p>There are different bitwise operations used in the bit manipulation. These bit
+operations operate on the individual bits of the bit patterns. Bit operations are fast
+and can be used in optimizing time complexity. Some common bit operators are discussed
+in this section and in this video</p>
+
+<p><code class="language-plaintext warning highlighter-rouge">important</code></p>
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/McgvehwAako?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<div class="swiper swiper-demo">
+  <div class="swiper__wrapper">
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/bitwise.png" /></div>
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/and.png" /></div>
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/or_exp.png" /></div>
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/NOT.png" /></div>
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/xor.png" /></div>
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/left_shift.png" /></div>
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/right_shift.png" /></div>
+  </div>
+  <div class="swiper__button swiper__button--prev fas fa-chevron-left"></div>
+  <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
+</div>
+
+<style>
+.swiper-demo {
+  height: auto;
+}
+</style>
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function swiper(options) {
+      var $window = $(window), $root = this, $swiperWrapper, $swiperSlides, $swiperButtonPrev, $swiperButtonNext,
+        initialSlide, animation, onChange, onChangeEnd,
+        rootWidth, count, preIndex, curIndex, translateX, CRITICAL_ANGLE = Math.PI / 3;
+
+      function setOptions(options) {
+        var _options = options || {};
+        initialSlide = _options.initialSlide || 0;
+        animation = _options.animation === undefined && true;
+        onChange = onChange || _options.onChange;
+        onChangeEnd = onChangeEnd || _options.onChangeEnd;
+      }
+
+      function init() {
+        $swiperWrapper = $root.find('.swiper__wrapper');
+        $swiperSlides = $root.find('.swiper__slide');
+        $swiperButtonPrev = $root.find('.swiper__button--prev');
+        $swiperButtonNext = $root.find('.swiper__button--next');
+        animation && $swiperWrapper.addClass('swiper__wrapper--animation');
+        calc(true);
+      }
+
+      function preCalc() {
+        rootWidth = $root.width();
+        count = $swiperWrapper.children('.swiper__slide').length;
+        if (count < 2) {
+          $swiperButtonPrev.addClass('d-none');
+          $swiperButtonNext.addClass('d-none');
+        }
+        curIndex = initialSlide || 0;
+        translateX = getTranslateXFromCurIndex();
+      }
+
+      var calc = (function() {
+        var preAnimation, $swiperSlide, $preSwiperSlide;
+        return function (needPreCalc, params) {
+          needPreCalc && preCalc();
+          var _animation = (params && params.animation !== undefined) ? params.animation : animation;
+          if (preAnimation === undefined || preAnimation !== _animation) {
+            preAnimation = _animation ? $swiperWrapper.addClass('swiper__wrapper--animation') :
+              $swiperWrapper.removeClass('swiper__wrapper--animation');
+          }
+          if (preIndex !== curIndex) {
+            ($preSwiperSlide = $swiperSlides.eq(preIndex)).removeClass('active');
+            ($swiperSlide = $swiperSlides.eq(curIndex)).addClass('active');
+            onChange && onChange(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+            if (onChangeEnd) {
+              if (_animation) {
+                setTimeout(function() {
+                  onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+                }, 400);
+              } else {
+                onChangeEnd(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
+              }
+            }
+            preIndex = curIndex;
+          }
+          $swiperWrapper.css('transform', 'translate(' + translateX + 'px, 0)');
+          if (count > 1) {
+            if (curIndex <= 0) {
+              $swiperButtonPrev.addClass('disabled');
+            } else {
+              $swiperButtonPrev.removeClass('disabled');
+            }
+            if (curIndex >= count - 1) {
+              $swiperButtonNext.addClass('disabled');
+            } else {
+              $swiperButtonNext.removeClass('disabled');
+            }
+          }
+        };
+      })();
+
+      function getTranslateXFromCurIndex() {
+        return curIndex <= 0 ? 0 : - rootWidth * curIndex;
+      }
+
+      function moveToIndex(index ,params) {
+        preIndex = curIndex;
+        curIndex = index;
+        translateX = getTranslateXFromCurIndex();
+        calc(false, params);
+      }
+
+      function move(type) {
+        var nextIndex = curIndex, unstableTranslateX;
+        if (type === 'prev') {
+          nextIndex > 0 && nextIndex--;
+        } else if (type === 'next') {
+          nextIndex < count - 1 && nextIndex++;
+        }
+        if (type === 'cur') {
+          moveToIndex(curIndex, { animation: true });
+          return;
+        }
+        unstableTranslateX = translateX % rootWidth !== 0;
+        if (nextIndex !== curIndex || unstableTranslateX) {
+          unstableTranslateX ? moveToIndex(nextIndex, { animation: true }) : moveToIndex(nextIndex);
+        }
+      }
+
+      setOptions(options);
+      init();
+      preIndex = curIndex;
+
+      $swiperButtonPrev.on('click', function(e) {
+        e.stopPropagation();
+        move('prev');
+      });
+      $swiperButtonNext.on('click', function(e) {
+        e.stopPropagation();
+        move('next');
+      });
+      $window.on('resize', function() {
+        calc(true, { animation: false });
+      });
+
+      (function() {
+        var pageX, pageY, velocityX, preTranslateX = translateX, timeStamp, touching;
+        function handleTouchstart(e) {
+          var point = e.touches ? e.touches[0] : e;
+          pageX = point.pageX;
+          pageY = point.pageY;
+          velocityX = 0;
+          preTranslateX = translateX;
+        }
+        function handleTouchmove(e) {
+          if (e.touches && e.touches.length > 1) {
+            return;
+          }
+          var point = e.touches ? e.touches[0] : e;
+          var deltaX = point.pageX - pageX;
+          var deltaY = point.pageY - pageY;
+          velocityX = deltaX / (e.timeStamp - timeStamp);
+          timeStamp = e.timeStamp;
+          if (e.cancelable && Math.abs(Math.atan(deltaY / deltaX)) < CRITICAL_ANGLE) {
+            touching = true;
+            translateX += deltaX;
+            calc(false, { animation: false });
+          }
+          pageX = point.pageX;
+          pageY = point.pageY;
+        }
+        function handleTouchend() {
+          touching = false;
+          var deltaX = translateX - preTranslateX;
+          var distance = deltaX + velocityX * rootWidth;
+          if (Math.abs(distance) > rootWidth / 2) {
+            distance > 0 ? move('prev') : move('next');
+          } else {
+            move('cur');
+          }
+        }
+        $swiperWrapper.on('touchstart', handleTouchstart);
+        $swiperWrapper.on('touchmove', handleTouchmove);
+        $swiperWrapper.on('touchend', handleTouchend);
+        $swiperWrapper.on('touchcancel', handleTouchend);
+
+        (function() {
+          var pressing = false, moved = false;
+          $swiperWrapper.on('mousedown', function(e) {
+            pressing = true; handleTouchstart(e);
+          });
+          $swiperWrapper.on('mousemove', function(e) {
+            pressing && (e.preventDefault(), moved = true, handleTouchmove(e));
+          });
+          $swiperWrapper.on('mouseup', function(e) {
+            pressing && (pressing = false, handleTouchend(e));
+          });
+          $swiperWrapper.on('mouseleave', function(e) {
+            pressing && (pressing = false, handleTouchend(e));
+          });
+          $swiperWrapper.on('click', function(e) {
+            moved && (e.stopPropagation(), moved = false);
+          });
+        })();
+
+        $root.on('touchmove', function(e) {
+          if (e.cancelable & touching) {
+            e.preventDefault();
+          }
+        });
+      })();
+
+      return {
+        setOptions: setOptions,
+        previous: function(){
+          move('prev');
+        },
+        next: function(){
+          move('next');
+        },
+        refresh: function() {
+          calc(true, { animation: false });
+        }
+      };
+    }
+    $.fn.swiper = swiper;
+  });
+})();
+var SOURCES = window.TEXT_VARIABLES.sources;
+window.Lazyload.js(SOURCES.jquery, function() {
+  $('.swiper-demo').swiper();
+});
+</script>
+
+<h2 id="truth-tables">Truth Tables</h2>
+
+<div class="swiper swiper-demo">
+  <div class="swiper__wrapper">
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/NOT_table.png" /></div>
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/or.png" /></div>
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/table 1.png" /></div>
+    <div class="swiper__slide"><img class="image image" src="/site/assets/images/resources/Level 2/table 2.png" /></div>
+  </div>
+  <div class="swiper__button swiper__button--prev fas fa-chevron-left"></div>
+  <div class="swiper__button swiper__button--next fas fa-chevron-right"></div>
+</div>
+
+<h2 id="oscilloscope">Oscilloscope</h2>
+<p>An oscilloscope is a type of electronic test instrument that can graphically display
+signal voltage changes. Other signals (such as sound or vibration) can be converted to
+voltages and displayed on the screen of the oscilloscope.</p>
+
+<p>Engineers use oscilloscopes to study the changing process of various electrical
+phenomena for laboratory work. It can be used to capture, process, display and analyze
+the waveform and bandwidth of electronic signals.</p>
+
+<p>They graph an electrical signal as it varies over time and produces a 2D graph with the
+x-axis being time and y-axis being voltage.</p>
+
+<p>You can learn more about an oscilloscope through these videos :</p>
+
+<p><code class="language-plaintext warning highlighter-rouge">important</code></p>
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/lSHAE_Y6snc?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<p><code class="language-plaintext warning highlighter-rouge">important</code></p>
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/wfvYz1L0Qkk?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<h2 id="measuring-voltage-and-current-using-a-multimeter">Measuring Voltage and Current using a Multimeter</h2>
+<p>A multimeter or a multitester, also known as a VOM (volt-ohm-milliammeter), is an
+electronic measuring instrument that combines several measurement functions in one unit. A
+typical multimeter can measure voltage, current, and resistance.</p>
+
+<p><code class="language-plaintext warning highlighter-rouge">important</code></p>
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/0UUZkiNbklA?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<p><code class="language-plaintext warning highlighter-rouge">important</code></p>
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/Gnsrjc8RU4A?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<h2 id="assignment">Assignment</h2>
+<ul>
+  <li>Check if a number is prime or not
+    <ul>
+      <li>Input and Output should be via the Serial Monitor.</li>
+    </ul>
+  </li>
+  <li>Encrypt and Decrypt a number using XOR
+    <ul>
+      <li>Input and Output should be via the Serial Monitor.</li>
+      <li>Bonus if you can let the user decide the “key”.</li>
+      <li>Reference: <a href="https://www.geeksforgeeks.org/xor-cipher/">XOR Cipher</a></li>
+    </ul>
+  </li>
+  <li>Analyze the waveform from the given Black Box and comment about the same.
+    <ul>
+      <li>Check the code comments for further Instructions</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="black-box">Black Box</h3>
+<iframe width="725" height="453" src="https://www.tinkercad.com/embed/b46DborvjJo?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+<h2 id="extra">Extra</h2>
+<ul>
+  <li>
+    <p><strong>NOTE:</strong> Digital pin 13 is harder to use as a digital input than the other digital pins because it has an LED and resistor attached to it that’s soldered to the board on most boards. If you enable its internal 20k pull-up resistor, it will hang at around 1.7V instead of the expected 5V because the onboard LED and series resistor pull the voltage level down, meaning it always returns LOW. If you must use pin 13 as a digital input, set its pinMode() to INPUT and use an external pull down resistor.</p>
+  </li>
+  <li>The LED on pin 13 is used by the optiboot loader (the one used on UNO):
+    <ul>
+      <li>at Arduino boot time (the LED blinks a few times)</li>
+      <li>when uploading a sketch to Arduino</li>
+      <li>Reference: <a href="https://arduino.stackexchange.com/questions/1448/whats-the-deal-with-unos-pin-13-led">Stackexchange</a></li>
+      <li>In Case you’d like to know what a bootloader is, Reference: <a href="https://www.electronicwings.com/arduino/basics-to-developing-bootloader-for-arduino#:~:text=Arduino%20bootloader%20uses%20the%20serial,board%20over%20USB%20cable%20serially.">Electrowing</a></li>
+    </ul>
+  </li>
+  <li>Topics to Brainstorm if you’re done with the slides
+    <ul>
+      <li>What are the different kinds of microcontrollers available in the market other than arduino and what makes arduino so special?</li>
+      <li>Have a look at all the arduino universe made in the past years, sensors, actuators custom built to go along with arduino.</li>
+      <li><a href="https://www.electronicsforu.com/technology-trends/learn-electronics/difference-between-microprocessor-and-microcontroller">Microcontroller vs Microprocessor</a></li>
+      <li>Location and purpose of a crystal oscillator on the arduino uno?</li>
+      <li>Purpose of the RX and TX LEDS : The TX and RX LEDs blink whenever there is a communication between the onboard microcontroller and the computer through the USB to serial converter chip present near the USB port.</li>
+      <li><a href="https://technobyte.org/2016/07/power-up-the-arduino-uno/(edited)">Ways to power an arduino</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>The lighting up of the LEDs indicate the direction of flow of data. When a bit of data goes from the Arduino board to the computer, the TX LED glows. The RX LED glows when a bit of data goes from the computer to the Arduino board.</p>
+
+<p>While the computer uploads a code to the Arduino code, the computer sends the data to the Arduino board to set its fuse bits, determines the inputs and outputs to be used and other necessary instructions to make the code work. The Arduino board replies each time the data is sent during upload to tell the computer that it is receiving the instructions. So, when the computer uploads the code to the Arduino board, the TX and RX LEDs flash rapidly, showing the data exchange process. It is so fast that these LEDs seem to be turned steady on.</p>
+
+:ET

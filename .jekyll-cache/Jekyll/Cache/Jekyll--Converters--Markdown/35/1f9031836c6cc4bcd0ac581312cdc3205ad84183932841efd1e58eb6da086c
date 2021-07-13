@@ -1,0 +1,939 @@
+I"n�<p>Basics of ROS ecosystem have been covered
+<!--more--></p>
+<h2 id="packages">Packages</h2>
+<p>ROS uses packages to orgnaize its program, you can think of a package as all the files that a specific ROS program needs to run sucessfully. 
+A few common items inside a package:</p>
+
+<ul>
+  <li><strong>launch</strong> - contains launch files</li>
+  <li><strong>src</strong> - contains the source files</li>
+  <li><strong>CMakeLists.txt</strong> - contains the rules for compilation</li>
+  <li><strong>package.xml</strong> - package info and depends</li>
+</ul>
+
+<p>You can use roscd to go to any package in ROS
+<code class="language-plaintext highlighter-rouge">roscd &lt;package_name&gt;</code></p>
+
+<h3 id="creating-ros-packages">Creating ROS Packages</h3>
+<p>All packages must be created inside <code class="language-plaintext highlighter-rouge">~/catkin_ws/src</code></p>
+
+<p><strong>To create a package the following synatx can be used:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">catkin_create_pkg &lt;package_name&gt; &lt;package_depends&gt;</code></p>
+
+<h3 id="compiling-ros-packages">Compiling ROS Packages</h3>
+<p>Once a package has been created, it needs to be compiled in order for it to work.</p>
+
+<p><code class="language-plaintext highlighter-rouge">catkin_make</code> - Will compile the entire src directory and needs to be issued only in the catkin_ws directory.
+<code class="language-plaintext highlighter-rouge">catkin_make --only-pkg-with-deps &lt;package_name&gt;</code> - Will only compile the selected package.</p>
+
+<h2 id="nodes">Nodes</h2>
+<p>Nodes are individual ROS programs that together with other nodes form a working structure.</p>
+
+<p><strong>To launch a node from the terminal:</strong>
+<code class="language-plaintext highlighter-rouge">rosrun &lt;package_name&gt; &lt;node_name&gt; __name:=new_node_name __ns:=name_space topic:=new_topic</code></p>
+
+<p><strong>To get a list of nodes that are currently active:</strong>
+<code class="language-plaintext highlighter-rouge">rosnode list</code></p>
+
+<p><strong>To get more information about a paticular node:</strong>
+<code class="language-plaintext highlighter-rouge">rosnode info /node_name</code></p>
+
+<h2 id="launch-files">Launch Files</h2>
+<p>All launch files are contained inside the <code class="language-plaintext highlighter-rouge">&lt;launch&gt;</code> tags. Launch files are used to “launch” nodes/programs in ROS. One of the major advantages of launch files is the fact that you can launch multiple nodes at once.</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>  
+    <span class="nt">&lt;include</span> <span class="na">file=</span><span class="s">"$(find package_where_launch_is)/launch/my_launch_file.launch"</span><span class="nt">/&gt;</span>  
+    <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"package_name"</span> <span class="na">type=</span><span class="s">"script_name.py"</span> <span class="na">name=</span><span class="s">"node_name"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">ns=</span><span class="s">"w"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;remap</span> <span class="na">from=</span><span class="s">"/current_topic"</span> <span class="na">to=</span><span class="s">"/needed_topic"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/node&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="parameter-server">Parameter Server</h2>
+<p>A parameter server is a dictonary that ROS uses to store parameters. Any ROS program can access these parameters during runtime to customize itself accordingly. The following commands can be used to interact with the parameter server.</p>
+
+<p><code class="language-plaintext highlighter-rouge">rosparam list</code> - Gets a list of parameter names that can be accessed
+<code class="language-plaintext highlighter-rouge">rosparam get &lt;parameter_name&gt;</code> - Gets the current value of that parameter
+<code class="language-plaintext highlighter-rouge">rosparam set &lt;parameter_name&gt; &lt;value&gt;</code> - Updates the parameter value</p>
+
+<h2 id="topics">Topics</h2>
+
+<p>ROS Nodes communicate with each other via communication channels called “Topics”, further messages are passed between nodes through topics. Every topic has a message type that it supports communication over. Nodes can subscribe to a topic to listen to data from other nodes or publish to topics to send data to other nodes which are subscribed to a given topic.</p>
+
+<p><strong>To check for active topics:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rostopic list</code></p>
+
+<p><strong>For more information about a topic:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rostopic info /topic_name</code></p>
+
+<p><strong>To publish to a topic at a rate of x Hz:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rostopic pub -r x /topic_name /message_type args</code></p>
+
+<p><strong>To Listen to a topic:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rostopic echo /topic_name</code></p>
+
+<h3 id="simple-publisher">Simple Publisher</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="c1">#! /usr/bin/env python
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'node_name'</span><span class="p">)</span>
+<span class="n">pub</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'/topic_name'</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">latch</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 10hz
+</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+   <span class="n">pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="s">"hello world"</span><span class="p">)</span>
+   <span class="n">r</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="simple-subscriber">Simple Subscriber</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="c1">#! /usr/bin/env python
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+
+<span class="k">def</span> <span class="nf">callback_function</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">data</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'node_name'</span><span class="p">)</span>
+<span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'/topic_name'</span><span class="p">,</span><span class="n">String</span><span class="p">,</span><span class="n">callback_function</span><span class="p">)</span>
+<span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="messages">Messages</h2>
+<p>As explained before data is sent via messages inside topics. ROS has a rich set of predefined messages that can be used.</p>
+
+<p><strong>To find out more infomation about a paticular message:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rosmsg show &lt;package_name&gt;/&lt;message&gt;</code></p>
+
+<p>You can get more information about what message type is used by a paticular node by using <code class="language-plaintext highlighter-rouge">rosnode info</code>. Messages can contain premitive datatypes or can be composed of multiple primitve datatypes. Here is an example <code class="language-plaintext highlighter-rouge">rosmsg show geometry_msgs/PointStamped</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>[geometry_msgs/PointStamped]:
+std_msgs/Header header
+
+uint32 seq  
+time stamp  
+string frame_id  
+
+geometry_msgs/Point point
+
+float64 x  
+float64 y  
+float64 z  
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="custom-messages">Custom Messages</h3>
+<p>In situations where standard messages don’t do the job, you can create your own message types using the following steps.</p>
+
+<ul>
+  <li><strong>Create a <code class="language-plaintext highlighter-rouge">msg</code> folder in your package directory</strong></li>
+  <li><strong>Create a new file named <code class="language-plaintext highlighter-rouge">YourMessage.msg</code> inside the msg folder.</strong></li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">Age.msg</code> should contain the message structure for example</strong></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  Float32 Years   
+  Float32 Months
+  Float32 Days
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the CMakeLists.txt - find_package()</strong>
+This is where all the packages required to COMPILE the messages of the topics, services, and actions go. In package.xml, you have to state them as build_depend.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>  find_package(catkin REQUIRED COMPONENTS
+       rospy
+       std_msgs
+       message_generation   # Add message_generation here, after the other packages
+  )
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the CMakeLists.txt - add_message_files()</strong> This function includes all of the messages of this package (in the msg folder) to be compiled. The file should look like this.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>  add_message_files(
+      FILES
+      Age.msg
+    ) # Dont Forget to UNCOMENT the parenthesis and add_message_files TOO
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the CMakeLists.txt - generate_messages()</strong> Here is where the packages needed for the messages compilation are imported.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>  generate_messages(
+      DEPENDENCIES
+      std_msgs
+  ) # Dont Forget to uncoment here TOO
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the CMakeLists.txt - catkin_package()</strong> State here all of the packages that will be needed by someone that executes something from your package. All of the packages stated here must be in the package.xml as exec_depend.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  catkin_package(
+      CATKIN_DEPENDS rospy message_runtime   # This will NOT be the only thing here
+  )
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the package.xml</strong>
+Just add these 3 lines to the package.xml file.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  &lt;build_depend&gt;message_generation&lt;/build_depend&gt; 
+  &lt;build_export_depend&gt;message_runtime&lt;/build_export_depend&gt;
+  &lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Compile</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  roscd; cd ..
+  catkin_make
+  source devel/setup.bash
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Verification</strong>
+  <code class="language-plaintext highlighter-rouge">rosmsg show Age</code></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>  [topic_ex/Age]
+  float32 years   
+  float32 months   
+  float32 days
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>Using these in ROS Nodes
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kn">from</span> <span class="nn">package_name.msg</span> <span class="kn">import</span> <span class="n">Age</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="services">Services</h2>
+<p>Messages over topics are not the only way nodes communicate with each other, Services are a synchronous way of commincation where a ROS program calls a service, and waits until it receives a result from the service before continuing.</p>
+
+<p><strong>To view what services are currently being offered:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rosservice list</code></p>
+
+<p><strong>For more information about a service:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rosservice info /service_name</code></p>
+
+<p>This will return you the <code class="language-plaintext highlighter-rouge">name_of_the_package/Name_of_Service_message</code></p>
+
+<p><strong>To call a service via terminal:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rosservice call /service_name /message_type arguments</code></p>
+
+<h3 id="client">Client</h3>
+<p>This is what CALLS the functionality provided by the Service Server. That is, it CALLS the Service Server.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="c1">#! /usr/bin/env python
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="c1"># Import the service message used by the service /trajectory_by_name
+</span><span class="kn">from</span> <span class="nn">trajectory_by_name_srv.srv</span> <span class="kn">import</span> <span class="n">TrajByName</span><span class="p">,</span> <span class="n">TrajByNameRequest</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'service_client'</span><span class="p">)</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s">'/trajectory_by_name'</span><span class="p">)</span>
+<span class="n">traj_by_name_service</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">ServiceProxy</span><span class="p">(</span><span class="s">'/trajectory_by_name'</span><span class="p">,</span> <span class="n">TrajByName</span><span class="p">)</span>
+<span class="n">traj_by_name_object</span> <span class="o">=</span> <span class="n">TrajByNameRequest</span><span class="p">()</span>
+
+<span class="n">traj_by_name_object</span><span class="p">.</span><span class="n">traj_name</span> <span class="o">=</span> <span class="s">"release_food"</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">traj_by_name_service</span><span class="p">(</span><span class="n">traj_by_name_object</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">result</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="service-messages">Service Messages</h3>
+<p>ROS Services are defined by srv files, which contains a request message and a response message. These are identical to the messages used with ROS Topics (see rospy message overview). rospy converts these srv files into Python source code and creates three classes that you need to be familiar with: service definitions, request messages, and response messages. The names of these classes come directly from the srv filename:</p>
+
+<p><code class="language-plaintext highlighter-rouge">my_package/srv/Foo.srv → my_package.srv.Foo</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">my_package/srv/Foo.srv → my_package.srv.FooRequest</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">my_package/srv/Foo.srv → my_package.srv.FooResponse</code></p>
+
+<p>Service message files have the extension <code class="language-plaintext highlighter-rouge">.srv</code>. Remember that Topic message files have the extension <code class="language-plaintext highlighter-rouge">.msg</code>. Service message files are defined inside a srv directory. Remember that Topic message files are defined inside a msg directory.</p>
+
+<p><strong>To see the structure of a srv message:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rossrv show name_of_the_package/Name_of_Service_message</code></p>
+
+<p><strong>Service messages have TWO parts:</strong></p>
+
+<p><strong>REQUEST</strong></p>
+
+<p>The REQUEST is the part of the service message that defines HOW you will do a call to your service. This means, what variables you will have to pass to the Service Server so that it is able to complete its task.</p>
+
+<p><strong>—</strong></p>
+
+<p><strong>RESPONSE</strong></p>
+
+<p>The RESPONSE is the part of the service message that defines HOW your service will respond after completing its functionality. If, for instance, it will return an string with a certaing message saying that everything went well, or if it will return nothing, etc…</p>
+
+<h3 id="server">Server</h3>
+<p>This is what PROVIDES the functionality. Whatever you want your Service to do, you have to place it in the Service Server.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="c1">#! /usr/bin/env python
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">Empty</span><span class="p">,</span> <span class="n">EmptyResponse</span>
+
+<span class="k">def</span> <span class="nf">my_callback</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">"My_callback has been called"</span>
+    <span class="k">return</span> <span class="n">EmptyResponse</span><span class="p">()</span> <span class="c1"># the service Response class, in this case EmptyResponse
+</span>
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'service_server'</span><span class="p">)</span> 
+<span class="n">my_service</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Service</span><span class="p">(</span><span class="s">'/my_service'</span><span class="p">,</span> <span class="n">Empty</span> <span class="p">,</span> <span class="n">my_callback</span><span class="p">)</span> <span class="c1"># create the Service called my_service with the defined callback
+</span><span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span> <span class="c1"># maintain the service open.
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="custom-service-messages">Custom Service Messages</h3>
+<p>In order to create a service message, you will have to follow the next steps</p>
+<ul>
+  <li><strong>Create a <code class="language-plaintext highlighter-rouge">srv</code> folder in your package directory</strong></li>
+  <li><strong>Create a new file named <code class="language-plaintext highlighter-rouge">MyCustomServiceMessage.srv</code> inside the srv folder.</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">MyCustomServiceMessage.srv</code> should contain the message structure for example
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  int32 duration  
+  ---
+  bool success
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the CMakeLists.txt - find_package()</strong>
+This is where all the packages required to COMPILE the messages of the topics, services, and actions go. In package.xml, you have to state them as build_depend.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>find_package(catkin REQUIRED COMPONENTS
+   rospy
+   std_msgs
+   message_generation   # Add message_generation here, after the other packages
+)
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the CMakeLists.txt - add_service_files()</strong> 
+This function includes all of the service messages of this package (in the srv folder) to be compiled. The file should look like this.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>  add_service_files(
+      FILES
+      MyCustomServiceMessage.srv
+    ) # Dont Forget to UNCOMENT the parenthesis and add_message_files TOO
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the CMakeLists.txt - generate_messages()</strong> 
+Here is where the packages needed for the service messages compilation are imported.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>  generate_messages(
+      DEPENDENCIES
+      std_msgs
+  ) # Dont Forget to uncoment here TOO
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the CMakeLists.txt - catkin_package()</strong> 
+State here all of the packages that will be needed by someone that executes something from your package. All of the packages stated here must be in the package.xml as exec_depend.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  catkin_package(
+      CATKIN_DEPENDS rospy message_runtime   # This will NOT be the only thing here
+  )
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the package.xml</strong>
+Just add these 3 lines to the package.xml file.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  &lt;build_depend&gt;message_generation&lt;/build_depend&gt; 
+  &lt;build_export_depend&gt;message_runtime&lt;/build_export_depend&gt;
+  &lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Compile</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  roscd; cd ..
+  catkin_make
+  source devel/setup.bash
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Verification</strong>
+<code class="language-plaintext highlighter-rouge">rossrv show package_name/MyCustomServiceMessage</code>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>[package_name/MyCustomServiceMessage]:   
+int32 duration
+---
+bool success
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Using these in ROS Nodes</strong></p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>  <span class="kn">from</span> <span class="nn">package_name.srv</span> <span class="kn">import</span> <span class="n">MyCustomServiceMessage</span><span class="p">,</span> <span class="n">MyCustomServiceRequest</span><span class="o">/</span><span class="n">Responce</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="actions">Actions</h2>
+<p>Actions are like asynchronous calls to services, therefore are very similar to services. When you call an action, you are calling a functionality that another node is providing. Just the same as with services. The difference is that when your node calls a service, it must wait until the service finishes. When your node calls an action, it doesn’t necessarily have to wait for the action to complete.</p>
+
+<p>Hence, an action is an asynchronous call to another node’s functionality.</p>
+
+<p>The node that provides the functionality has to contain an action server. The action server allows other nodes to call that action functionality.
+The node that calls to the functionality has to contain an action client. The action client allows a node to connect to the action server of another node.</p>
+
+<p>When a robot provides an action, you will see that in the topics list. There are 5 topics with the same base name, and with the subtopics <strong>cancel, feedback, goal, result, and status.</strong></p>
+
+<p><strong>For example, here the name of the action server is “ardrone_action_server”:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre>```bash
+user ~ $ rostopic list
+...
+...
+/ardrone_action_server/cancel
+/ardrone_action_server/feedback
+/ardrone_action_server/goal
+/ardrone_action_server/result
+/ardrone_action_server/status
+...
+``` ### Calling an Action Server Calling an action server means sending a message to it. In the same way as with topics and services, it all works by passing messages around.
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>The message of a topic is composed of a single part: the information the topic provides.</li>
+  <li>The message of a service has two parts: the request and the response.</li>
+  <li>The message of an action server is divided into three parts: the goal, the result, and the feedback.</li>
+</ul>
+
+<p>For example, here is the message structure of an action server:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>user ~ <span class="nv">$ </span>roscd ardrone_as/action<span class="p">;</span> <span class="nb">cat </span>Ardrone.action
+<span class="c">#goal for the drone</span>
+int32 nseconds  <span class="c"># the number of seconds the drone will be taking pictures</span>
+<span class="nt">---</span>
+<span class="c">#result</span>
+sensor_msgs/CompressedImage[] allPictures <span class="c"># an array containing all the pictures taken along the nseconds</span>
+<span class="nt">---</span>
+<span class="c">#feedback</span>
+sensor_msgs/CompressedImage lastImage  <span class="c"># the last image taken</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="feedback">Feedback</h3>
+<p>Due to the fact that calling an action server does not interrupt your thread, action servers provide a message called the feedback. The feedback is a message that the action server generates every once in a while to indicate how the action is going (informing the caller of the status of the requested action). It is generated while the action is in progress.</p>
+
+<h3 id="working-explained">Working Explained</h3>
+<p>So, whenever an action server is called, the sequence of steps are as follows:</p>
+
+<p>1) When an <strong>action client</strong> calls an <strong>action server</strong> from a node, what actually happens is that the <strong>action client</strong> sends to the <strong>action server</strong> the goal requested through the <strong>/ardrone_action_server/goal</strong> topic.</p>
+
+<p>2) When the <strong>action server</strong> starts to execute the goal, it sends to the <strong>action client</strong> the feedback through the <strong>/ardrone_action_server/feedback</strong> topic.</p>
+
+<p>3) Finally, when the <strong>action server</strong> has finished the goal, it sends to the <strong>action client</strong> the result through the <strong>/ardrone_action_server/result</strong> topic.</p>
+
+<h3 id="sending-goals-via-terminal">Sending Goals via terminal</h3>
+<p>Each one of those three topics have their own type of message. The type of the message is built automatically by ROS from the .action file.</p>
+
+<p>For example, in the case of the <strong>ardrone_action_server</strong> the action file is called <strong>Ardrone.action</strong>.</p>
+
+<p>When you compile the package (with catkin_make), ROS will generate the following types of messages from the <strong>Ardrone.action</strong> file:</p>
+<ul>
+  <li>ArdroneActionGoal</li>
+  <li>ArdroneActionFeedback</li>
+  <li>ArdroneActionResult</li>
+  <li>ArdroneAction</li>
+  <li>ArdroneGoal</li>
+  <li>ArdroneResult</li>
+  <li>ArdroneFeedback</li>
+</ul>
+
+<p>Each topic of the action server uses its associated type of message accordingly.</p>
+
+<p><strong>To send goals via the terminal:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rostopic pub /name_of_action_server/goal /type_of_the_message_used_by_the_topic parameters</code></p>
+
+<h3 id="client-1">Client</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+</pre></td><td class="rouge-code"><pre><span class="c1">#! /usr/bin/env python
+</span><span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="kn">from</span> <span class="nn">ardrone_as.msg</span> <span class="kn">import</span> <span class="n">ArdroneAction</span><span class="p">,</span> <span class="n">ArdroneGoal</span><span class="p">,</span> <span class="n">ArdroneResult</span><span class="p">,</span> <span class="n">ArdroneFeedback</span>
+
+<span class="n">nImage</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># definition of the feedback callback. This will be called when feedback
+# is received from the action server
+# it just prints a message indicating a new message has been received
+</span><span class="k">def</span> <span class="nf">feedback_callback</span><span class="p">(</span><span class="n">feedback</span><span class="p">):</span>
+	<span class="k">global</span> <span class="n">nImage</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">'[Feedback] image n.%d received'</span><span class="o">%</span><span class="n">nImage</span><span class="p">)</span>
+	<span class="n">nImage</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># initializes the action client node
+</span><span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'drone_action_client'</span><span class="p">)</span>
+
+<span class="c1"># create the connection to the action server
+</span><span class="n">client</span> <span class="o">=</span> <span class="n">actionlib</span><span class="p">.</span><span class="n">SimpleActionClient</span><span class="p">(</span><span class="s">'/ardrone_action_server'</span><span class="p">,</span> <span class="n">ArdroneAction</span><span class="p">)</span>
+<span class="c1"># waits until the action server is up and running
+</span><span class="n">client</span><span class="p">.</span><span class="n">wait_for_server</span><span class="p">()</span>
+
+<span class="c1"># creates a goal to send to the action server
+</span><span class="n">goal</span> <span class="o">=</span> <span class="n">ArdroneGoal</span><span class="p">()</span>
+<span class="n">goal</span><span class="p">.</span><span class="n">nseconds</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># indicates, take pictures along 10 seconds
+</span>
+<span class="c1"># sends the goal to the action server, specifying which feedback function
+# to call when feedback received
+</span><span class="n">client</span><span class="p">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">goal</span><span class="p">,</span> <span class="n">feedback_cb</span><span class="o">=</span><span class="n">feedback_callback</span><span class="p">)</span>
+
+<span class="c1"># Uncomment these lines to test goal preemption:
+#time.sleep(3.0)
+#client.cancel_goal()  # would cancel the goal 3 seconds after starting
+</span>
+<span class="c1"># wait until the result is obtained
+# you can do other stuff here instead of waiting
+# and check for status from time to time 
+# status = client.get_state()
+# check the client API link below for more info
+</span>
+<span class="n">client</span><span class="p">.</span><span class="n">wait_for_result</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'[Result] State: %d'</span><span class="o">%</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="n">get_state</span><span class="p">()))</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="how-to-perform-other-tasks-while-the-action-is-in-progress">How to perform other tasks while the Action is in progress</h3>
+<p>So, the SimpleActionClient objects have two functions that can be used for knowing if the action that is being performed has finished, and how:</p>
+
+<p>1) <strong>wait_for_result():</strong> This function is very simple. When called, it will wait until the action has finished and returns a true value. As you can see, it’s useless if you want to perform other tasks in parallel because the program will stop there until the action is finished.</p>
+
+<p>2) <strong>get_state():</strong> This function is much more interesting. When called, it returns an integer that indicates in which state is the action that the SimpleActionClient object is connected to.</p>
+
+<ul>
+  <li>0 ==&gt; PENDING</li>
+  <li>1 ==&gt; ACTIVE</li>
+  <li>2 ==&gt; DONE</li>
+  <li>3 ==&gt; WARN</li>
+  <li>4 ==&gt; ERROR</li>
+</ul>
+
+<p>This allows you to create a while loop that checks if the value returned by get_state() is 2 or higher. If it is not, it means that the action is still in progress, so you can keep doing other things.</p>
+
+<h3 id="preempting-a-goal">Preempting a goal</h3>
+<p>It happens that you can cancel a goal previously sent to an action server prior to its completion. Cancelling a goal while it is being executed is called preempting a goal</p>
+
+<p>You may need to preempt a goal for many reasons, like, for example, the robot went mad about your goal and it is safer to stop it prior to the robot doing some harm.</p>
+
+<p>In order to preempt a goal, you send the cancel_goal to the server through the client connection.</p>
+
+<p><code class="language-plaintext highlighter-rouge">client.cancel_goal()</code></p>
+
+<h3 id="the-axclient">The axclient</h3>
+<p>The axclient is, basically, a GUI tool provided by the actionlib package, that allows you to interact with an Action Server in a very easy and visual way.</p>
+
+<p><strong>The command used to launch the axclient is the following:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rosrun actionlib axclient.py /name_of_action_server</code></p>
+
+<h3 id="server-1">Server</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre></td><td class="rouge-code"><pre><span class="c1">#! /usr/bin/env python
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">Empty</span>
+<span class="kn">from</span> <span class="nn">actions_quiz.msg</span> <span class="kn">import</span> <span class="n">CustomActionMsgAction</span><span class="p">,</span> <span class="n">CustomActionMsgGoal</span><span class="p">,</span> <span class="n">CustomActionMsgFeedback</span>
+<span class="kn">import</span> <span class="nn">actionlib</span>
+
+<span class="k">class</span> <span class="nc">DroneAction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">feedbackM</span> <span class="o">=</span> <span class="n">CustomActionMsgFeedback</span><span class="p">()</span>
+    <span class="n">goalM</span> <span class="o">=</span> <span class="n">CustomActionMsgGoal</span><span class="p">()</span>
+    <span class="n">emp</span> <span class="o">=</span> <span class="n">Empty</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">success</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pub_takeoff</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'drone/takeoff'</span><span class="p">,</span><span class="n">Empty</span><span class="p">,</span><span class="n">latch</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pub_land</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">'drone/land'</span><span class="p">,</span><span class="n">Empty</span><span class="p">,</span><span class="n">latch</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">actionlib</span><span class="p">.</span><span class="n">SimpleActionServer</span><span class="p">(</span><span class="s">'/action_custom_msg_as'</span><span class="p">,</span><span class="n">CustomActionMsgAction</span><span class="p">,</span><span class="bp">self</span><span class="p">.</span><span class="n">goal_callback</span><span class="p">,</span><span class="bp">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">goal_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">goal</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">is_preempt_requested</span><span class="p">():</span>
+                <span class="n">rospy</span><span class="p">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s">'asked to quit'</span><span class="p">)</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">set_preempted</span><span class="p">()</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">success</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="k">if</span> <span class="n">goal</span><span class="p">.</span><span class="n">goal</span> <span class="o">==</span> <span class="s">'TAKEOFF'</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">pub_takeoff</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">emp</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">goal</span><span class="p">.</span><span class="n">goal</span> <span class="o">==</span> <span class="s">'LAND'</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">pub_land</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">emp</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">feedbackM</span><span class="p">.</span><span class="n">feedback</span> <span class="o">=</span> <span class="n">goal</span><span class="p">.</span><span class="n">goal</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">publish_feedback</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">feedbackM</span><span class="p">)</span>
+            <span class="n">rospy</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">success</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">emp</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">set_succeeded</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">result</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+  <span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'server_noder'</span><span class="p">)</span>
+  <span class="n">DroneAction</span><span class="p">()</span>
+  <span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>Once the server is launched you should be able to see the following:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>rostopic list | <span class="nb">grep </span>action_custom_msg_as
+    /action_custom_msg_as/cancel
+    /action_custom_msg_as/feedback
+    /action_custom_msg_as/goal
+    /action_custom_msg_as/result
+    /action_custom_msg_as/status
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="custom-action-messages">Custom Action Messages</h3>
+<p>In order to create a actiob message, you will have to follow the next steps:</p>
+
+<ul>
+  <li><strong>Create a action folder in your package directory</strong></li>
+  <li><strong>Create a new file named Name.action inside the action folder.</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">Name.action</code> should contain the message structure for example
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>  int32 duration #Goal   
+  ---   
+  bool success #Result   
+  ---   
+  int32 current_time #Feedback
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the CMakeLists.txt - find_package()</strong>
+This is where all the packages required to COMPILE the messages of the topics, services, and actions go. In package.xml, you have to state them as build_depend.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>  find_package(catkin REQUIRED COMPONENTS
+       rospy
+       actionlib_msgs
+  )
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the CMakeLists.txt - add_action_files()</strong> 
+This function includes all of the action messages of this package (in the action folder) to be compiled. The file should look like this.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>  add_action_files(
+      FILES
+      Name.action
+    ) # Dont Forget to UNCOMENT the parenthesis
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Edit the CMakeLists.txt - generate_messages()</strong>
+Here is where the packages needed for the service messages compilation are imported.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>  generate_messages(
+      DEPENDENCIES
+      actionlib_msgs
+  ) # Dont Forget to uncoment here TOO
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Edit the CMakeLists.txt - catkin_package()</strong> 
+State here all of the packages that will be needed by someone that executes something from your package. All of the packages stated here must be in the package.xml as exec_depend.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  catkin_package(
+      CATKIN_DEPENDS rospy message_runtime   # This will NOT be the only thing here
+  )
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Edit the package.xml</strong>
+Just add these 3 lines to the package.xml file.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>  &lt;build_depend&gt;actionlib&lt;/build_depend&gt;
+  &lt;build_depend&gt;actionlib_msgs&lt;/build_depend&gt;
+  &lt;build_export_depend&gt;actionlib&lt;/build_export_depend&gt;
+  &lt;build_export_depend&gt;actionlib_msgs&lt;/build_export_depend&gt;
+  &lt;exec_depend&gt;actionlib&lt;/exec_depend&gt;
+  &lt;exec_depend&gt;actionlib_msgs&lt;/exec_depend&gt;
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Compile</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  roscd; cd ..
+    catkin_make
+    source devel/setup.bash
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Verification</strong></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>  rosmsg list | grep Name          
+    my_custom_action_msg_pkg/NameAction   
+    my_custom_action_msg_pkg/NameActionFeedback  
+    my_custom_action_msg_pkg/NameActionGoal  
+    my_custom_action_msg_pkg/NameActionResult  
+    my_custom_action_msg_pkg/NameFeedback  
+    my_custom_action_msg_pkg/NameGoal   
+    my_custom_action_msg_pkg/NameResult
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+  <li><strong>Using these in ROS Nodes</strong>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kn">from</span> <span class="nn">my_custom_action_msg_pkg.msg</span> <span class="kn">import</span> <span class="n">NameAction</span><span class="p">,</span> <span class="n">NameGoal</span><span class="p">,</span> <span class="n">NameFeedback</span><span class="p">,</span> <span class="n">NameResult</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
+  </li>
+</ul>
+:ET

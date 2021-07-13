@@ -1,0 +1,48 @@
+I"~<h2 id="aim">Aim</h2>
+<p>To control the lights and fan of the room through an Android app over Bluetooth.
+<!--more--></p>
+<h2 id="hardware-involved">Hardware involved</h2>
+<ul>
+  <li>4* 5 Volts Relay Board</li>
+  <li>Arduino Board</li>
+  <li>HC-05 Bluetooth Module</li>
+  <li>Jumpers</li>
+  <li>The  app which used is <a href="https://play.google.com/store/apps/details?id=com.techbitar.android.Andruino&amp;hl=en">Ardudroid</a></li>
+</ul>
+
+<p>Though Ardudroid has many Bugs but it works good.</p>
+
+<p><img src="/site/assets/images/blog/Room-Automation/1.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<h2 id="technical-details">Technical details</h2>
+<p>Upload the code to Arduino (found at the bottom) and</p>
+
+<h3 id="connect-the-schematics-as-shown-in-the-diagram-">Connect the schematics as shown in the diagram:-</h3>
+<p><img src="/site/assets/images/blog/Room-Automation/2.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<h3 id="how-to-connect-your-setup-to-the-switch-board-">How to connect your setup to the switch board:-</h3>
+
+<ol>
+  <li>Go and find the MCB of your room. You will find a MCB Board in your corridor.</li>
+  <li>Turn the MCB off for your room only.</li>
+  <li>Open your Switch Board.</li>
+  <li>Look for a wire which is common to all the switches. The above found wire is LIVE  wire {Be cautious of it , Never touch it directly)</li>
+  <li>Extend this wire and feed it to all COMs of your Relay Board.</li>
+  <li>You will find the wire for tubelight connected to the other side of switch. Connect this wire to NO pin of any of the relays.</li>
+  <li>Connect other wires(From Fan/Lamp/Tubelight) to different Relays .</li>
+  <li>Pack your Switch Board.</li>
+</ol>
+
+<h2 id="precautions">Precautions</h2>
+<ul>
+  <li>Don’t mess with the AC current.</li>
+  <li>Use High quality wires for AC current.</li>
+</ul>
+
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/YmVJkK9b70s?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<p>Code files can be found <a href="https://technopediabphc.files.wordpress.com/2015/10/bluetooth-code.docx">here</a></p>
+:ET
