@@ -1,0 +1,132 @@
+I"%<h2 id="aim">Aim</h2>
+<p>To follow a wall (The wall refers to a boundary line of any shape) .The robot has to simply follow the wall wherever the wall leads to, the robot must go there.
+<!--more--></p>
+
+<h2 id="hardware-used">Hardware Used</h2>
+
+<ol>
+  <li>
+    <p>Arduino Uno.</p>
+  </li>
+  <li>
+    <p>Breadboard.</p>
+  </li>
+  <li>
+    <p>Ultrasound Sensors(X3).</p>
+  </li>
+  <li>
+    <p>12 Volt Battery.</p>
+  </li>
+  <li>
+    <p>L293d Motor Driver Chip With Breakout Board.</p>
+  </li>
+  <li>
+    <p>150 RPM Motors.</p>
+  </li>
+  <li>
+    <p>Chassis (2 Wheel).</p>
+  </li>
+  <li>
+    <p>Regular Size Castor Wheel.</p>
+  </li>
+</ol>
+
+<p><img src="/site/assets/images/blog/thumbnails/Wall Follower.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<h2 id="working">WORKING</h2>
+<p>This Robot Uses 3 Ultrasound Sensors(Left(l),Right(r),Center(c)).The Robot first moves forward.If the distance measured between any of the sensors and a wall is less than 12 cm then it means that a wall is found(sensor is active) and this has to followed. The robot responds in the way that is given in the table below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>SENSOR ACTIVE</th>
+      <th>RESPONSE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>c only</td>
+      <td>Turn right or left</td>
+    </tr>
+    <tr>
+      <td>r only</td>
+      <td>Move Forward</td>
+    </tr>
+    <tr>
+      <td>l only</td>
+      <td>Move forward</td>
+    </tr>
+    <tr>
+      <td>l and r</td>
+      <td>Move forward</td>
+    </tr>
+    <tr>
+      <td>l and c</td>
+      <td>Turn Right</td>
+    </tr>
+    <tr>
+      <td>r and c</td>
+      <td>Turn Left</td>
+    </tr>
+    <tr>
+      <td>all sensors</td>
+      <td>Turn 180 degree and Reverse.</td>
+    </tr>
+    <tr>
+      <td>No Sensor</td>
+      <td>Move forward</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(before a wall is found)</p>
+
+<p>9.No Sensor           STOP ,Turn Right Search for a wall,if not found come back to initial position,Then Turn Left And Search for a wall and start following it as soon as it is found.</p>
+
+<p>(After A wall is found)</p>
+
+<p>It is also made sure that the wall follower lies at a distance range of 3-10 cms from the wall According to the following table.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>SENSOR ACTIVE</th>
+      <th>DISTANCE FROM WALL</th>
+      <th>RESPONSE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Left</td>
+      <td>less than 3</td>
+      <td>Turn Right</td>
+    </tr>
+    <tr>
+      <td>Left</td>
+      <td>greater than 10</td>
+      <td>Turn Left</td>
+    </tr>
+    <tr>
+      <td>Right</td>
+      <td>less than 3</td>
+      <td>Turn Left</td>
+    </tr>
+    <tr>
+      <td>Right</td>
+      <td>greater than 10</td>
+      <td>Turn Right</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This will be helpful in case of walls which are not straight,round walls.It can even avoid obstacles of any shape.</p>
+
+<p>The Robot Cannot Turn 90degree Perfectly near turnings  so there is a high chance it may  either collide with the wall or deviate slant wards.The above arrangement removes these difficulties.</p>
+
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/D0oTSD_81vU?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<p class="info">Multiple Authors: Satcheel Reddy Chamakoora and C.Vineel</p>
+:ET

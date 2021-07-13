@@ -1,0 +1,40 @@
+I"	<h2 id="aim">Aim</h2>
+<p>To build your own “Intruder Alert System”  with following capabilities:</p>
+<ol>
+  <li>Recognising people who enter your room in a real-time video recording.</li>
+  <li>Notifies you and your friends/neighbours on social media if some one entered your room without your permission.
+<!--more-->
+<img src="/site/assets/images/blog/thumbnails/Intruder-Guest alert system.png" alt="Resistor" width="auto" height="auto" /></li>
+</ol>
+
+<h2 id="hardware-used">Hardware used</h2>
+<ol>
+  <li>A laptop/desktop with built-in camera or a USB-camera.</li>
+  <li>Your system running on Ubuntu is preferred. You can manage with windows but, installing all the programs required, on windows machine is a bit difficult.</li>
+</ol>
+
+<h2 id="software-used">Software used</h2>
+<ol>
+  <li>As we are coding in python, you need to install python on your machine.</li>
+  <li>You need to install OpenCV bindings for Python, so that we can tackle with computer vision stuff.</li>
+  <li>And lastly, some Python modules like ‘requests’, which we will be using to post a status update on social media to notify you and your friends.</li>
+</ol>
+
+<h2 id="technical-details">Technical details</h2>
+<p>For building this system I have used my Laptop running on Ubuntu OS. I used Sublime text 3 for writing the code. I build this system in Python language using OpenCV to tackle with Computer vision problem.</p>
+
+<p>You can find the whole code used in this tutorial at my GitHub repository <a href="https://github.com/SnShine/FaceRecognizer">here</a>.
+<img src="/site/assets/images/blog/Intruder-Guest-alert/1.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<h2 id="setting-up-the-system">Setting up the system</h2>
+<ol>
+  <li>Position your camera (USB/ built-in) pointing towards the main door and start the program. The program starts recording the video and analyses it to detect any humans in real-time.</li>
+  <li>When some one enters your room it detects that person and checks with our database to recognize him/her.</li>
+  <li>It notifies you/your friends by posting a status on social media.</li>
+</ol>
+
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/1SnUQQRJDI8?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+:ET

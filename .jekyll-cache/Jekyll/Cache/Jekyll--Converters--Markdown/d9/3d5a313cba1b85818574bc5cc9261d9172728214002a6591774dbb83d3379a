@@ -1,0 +1,28 @@
+I"<h2 id="aim">Aim</h2>
+<p>To build a wireless differential drive robot (3-wheeled robot) , that can controlled by using gestures which are recognised by using image processing.
+<!--more--></p>
+
+<h2 id="details">Details</h2>
+<p>The project began as an extension of the virtual mouse, as per which the mouse of any computer can be controlled by using gestures which are identified by image processing. A finger was covered with colored paper to make it distinguishable from the environment for the algorithm. The direction as well as the speed of robot can be controlled. Direction is decided by the relative position of the finger with respect to centre and the speed is decided by the distance of the finger from the camera. The interpretation of gestures was then sent to the robot by using Bluetooth from laptop.</p>
+
+<h2 id="hardware-involved">Hardware involved</h2>
+<ul>
+  <li>2 wheels</li>
+  <li>chassis</li>
+  <li>1 castor wheel( free moving front wheel)</li>
+  <li>2 DC motors</li>
+  <li>L298 motor driver (to drive motors)</li>
+  <li>12 V 1.3 Ah Lead Acid rechargeable battery (to power motors)</li>
+  <li>Arduino (As the microcontroller)</li>
+  <li>HC-05 Bluetooth module (to receive commands from laptop over Bluetooth)</li>
+  <li>6 V AA battery pack to power arduino.</li>
+</ul>
+
+<h2 id="software-involved">Software Involved</h2>
+<p>MATLAB Image Acquisition Toolbox to acquire images over laptop webcam of the gestures and Image Processing Toolbox to extract gestures and interpret their meaning. Arduino programming to receive message through HC-05 bluetooth module and accordingly command motors</p>
+
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/cEbqooYJVtI?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+:ET
