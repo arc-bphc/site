@@ -216,8 +216,6 @@ collections:
     output: true
   resources:
     output: true
-  teams:
-    output: true
 
 defaults:
   - scope:
