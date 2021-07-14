@@ -1,0 +1,27 @@
+I"~<h2 id="aim">Aim</h2>
+<p>The aim of this robot is to avoid all the obstacles in its path and to move on the path that is less crowded.
+<!--more--></p>
+
+<h2 id="hardware-used">Hardware Used</h2>
+<ul>
+  <li>1 – Arduino Uno.</li>
+  <li>1 – breadboard.</li>
+  <li>1-9V battery supply for Arduino.</li>
+  <li>1 – 12V supply for motors.</li>
+  <li>1 – chasis.</li>
+  <li>2 – 100 rpm motors.</li>
+  <li>1 – regular sized castor wheel.</li>
+  <li>1 – ulrasound sensor.</li>
+  <li>1 – servo motor.
+<img src="/site/assets/images/blog/thumbnails/Obstacle Avoidance Vehicle 2.png" alt="Resistor" width="auto" height="auto" /></li>
+</ul>
+
+<h2 id="working">Working</h2>
+<p>This uses the ultrasound sensor to calculate the distance of the object in front of it and it is programmed in such a way that if the object distance is less than 30 cm the bot stops moving forward. The servo motor then makes the ultrasound sensor turn 90 degrees right and records the distance and then 90 degrees left and records the object distance.Depending on which of the object distances (left or right) is less it takes a turn towards that direction and continues to move forward until the initial condition is met.</p>
+
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/nEKwp_5kVLY?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+:ET

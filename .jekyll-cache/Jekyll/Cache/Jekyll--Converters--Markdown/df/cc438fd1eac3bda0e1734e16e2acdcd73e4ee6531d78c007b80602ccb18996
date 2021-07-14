@@ -1,0 +1,412 @@
+I"�L<h1 id="introduction">Introduction</h1>
+
+<p>Hola people! Congratulations on making it to THE FINAL SAGA!</p>
+
+<p>In this section, you will be learning how to</p>
+<ul>
+  <li>Assemble the chassis that is included in your kit</li>
+  <li>Make all necessary connections with the relevant electronic components</li>
+  <li>Program your bot!</li>
+</ul>
+
+<h1 id="assembling-the-chassis">Assembling the chassis</h1>
+
+<h2 id="quantity">Quantity</h2>
+
+<p>The following is a list of all things necessary to build the chassis for the line follower robot. All the below listed items are included in the kit.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Sl No.</th>
+      <th style="text-align: center">Name</th>
+      <th style="text-align: center">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">Chassis Base</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">Wheels</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">Caster Wheel</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">BO Motors</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">Encoded disks</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">Acrylic Tabs</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">Switch</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">Battery holder</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">Screws</td>
+      <td style="text-align: center">14</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">Nuts</td>
+      <td style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">Spacers</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">Screwdriver kit</td>
+      <td style="text-align: center">1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="video">Video</h2>
+
+<h1 id="wiring-and-connections">Wiring and Connections</h1>
+
+<h2 id="components">Components</h2>
+
+<p>The following components will be used to build the Line-follower robot.</p>
+
+<ol>
+  <li>Chassis</li>
+  <li>Arduino Uno</li>
+  <li>IR Sensors</li>
+  <li>BO Motors</li>
+  <li>L293D Motor Driver</li>
+  <li>Breadboard</li>
+  <li>4 AA Batteries</li>
+</ol>
+
+<p>In the previous section, you have seen how to assemble the chassis. We shall now move on to take a look at all the connections for the electronic components used in making the bot.</p>
+
+<p><strong>NOTE</strong> - It would be a good idea to follow the same connections as explained below in the pictures to avoid confusion, and to make troubleshooting easier :)</p>
+
+<h2 id="circuit-connections-for-ir-sensor">Circuit connections for IR Sensor</h2>
+
+<p>As discussed previously, the IR sensor has 3 pins which need to be connected to the Arduino Uno as follows:</p>
+
+<ul>
+  <li>VCC - Connected to 5V pin on Uno</li>
+  <li>GND - Connected to GND pin on Uno</li>
+  <li>OUT - Connected to any digital pin on Uno</li>
+</ul>
+
+<p>In the demonstration, we shall be connecting</p>
+
+<ul>
+  <li>The OUT pin of right IR sensor to digital pin 5 of the Arduino board.</li>
+  <li>The OUT pin of left IR sensor to digital pin 6 of the Arduino board.</li>
+</ul>
+
+<p>Take a look at the below image.</p>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/IR_circuit.png" alt="IR" width="auto" height="auto" /></p>
+
+<h3 id="explanation">Explanation</h3>
+
+<p>Right IR Sensor:</p>
+
+<ol>
+  <li>VCC pin connected to breadboard using Red jumper wire</li>
+  <li>GND pin connected to breadboard using Black jumper wire</li>
+  <li>OUT pin connected to digital pin 5 of Arduino Uno using Blue jumper wire</li>
+</ol>
+
+<p>Left IR Sensor:</p>
+
+<ol>
+  <li>VCC pin connected to breadboard using Orange jumper wire</li>
+  <li>GND pin connected to breadboard using Brown jumper wire</li>
+  <li>OUT pin connected to digital pin 6 of Arduino Uno using Magenta jumper wire</li>
+</ol>
+
+<p>Common connections:</p>
+
+<ol>
+  <li>5V pin on Arduino Uno is connected to breadboard using Red jumper wire (see left half of the breadboard)</li>
+  <li>GND pin on Arduino Uno is connected to breadboard using Black jumper wire (see right half of the breadboard)</li>
+</ol>
+
+<h3 id="connections-on-the-chassis">Connections on the chassis</h3>
+
+<ul>
+  <li>The two IR Sensors can be mounted on the chassis by screwing them on the lower side of the base such that the two LEDs face vertically downwards (you can bend the LEDs gently to achieve this).</li>
+  <li>The wires can be brought to the top by pushing them through the holes.</li>
+  <li>The same connections, as above, can then be made.</li>
+</ul>
+
+<p>It should look something like this.</p>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/IR_chassis.png" alt="IR" width="auto" height="auto" /></p>
+
+<h2 id="circuit-connections-for-l293d">Circuit connections for L293D</h2>
+
+<p>The Motor Driver included in the kit is a mini shield, with the following pinout</p>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/L293D_pinout.png" alt="L293D" width="auto" height="auto" /></p>
+
+<p>In the demonstration, we shall be connecting</p>
+
+<ul>
+  <li>The right motor to pins M1, M2 of the motor driver</li>
+  <li>The left motor to pins M3, M4 of the motor driver</li>
+  <li>A 9V power supply using 4 AA cells to the 12V pin and GND pin of the motor driver</li>
+  <li>The 5V pin on the motor driver to the 5V pin on the Arduino Uno board</li>
+  <li>The other GND pin on the motor driver to a GND pin on the Arduino Uno board</li>
+  <li>Input pin I2 on the motor driver to digital pin 9 on the Uno (right motor)</li>
+  <li>Input pin I4 on the motor driver to digital pin 10 on the Uno (left motor)</li>
+</ul>
+
+<p>The images attached below show all the necessary connections to be made on the chassis,</p>
+
+<p><em>Top view</em>
+<img src="/site/assets/images/resources/Day3_Session2/L293D_top.png" alt="L293D" width="auto" height="auto" /></p>
+
+<p><em>Right side view</em>
+<img src="/site/assets/images/resources/Day3_Session2/L293D_right.png" alt="L293D" width="auto" height="auto" /></p>
+
+<p><em>Left side view</em>
+<img src="/site/assets/images/resources/Day3_Session2/L293D_left.png" alt="L293D" width="auto" height="auto" /></p>
+
+<h3 id="explanation-1">Explanation</h3>
+
+<p>Right motor:</p>
+
+<ol>
+  <li>The bottom pin of the motor is connected to M1 pin on the L293D motor driver using a Red wire.</li>
+  <li>The upper pin of the motor is connected to M2 pin on the L293D motor driver using a Black wire.</li>
+</ol>
+
+<p>Left motor:</p>
+
+<ol>
+  <li>The bottom pin of the motor is connected to M3 pin on the L293D motor driver using a Red wire.</li>
+  <li>The upper pin of the motor is connected to M4 pin on the L293D motor driver using a Black wire.</li>
+</ol>
+
+<p>Power connections:</p>
+
+<ol>
+  <li>The 12V and GND pins on the L293D motor driver are connected to a power supply through a switch using Blue wires.</li>
+  <li>The 5V pin on the L293D is connected to the 5V pin on the Arduino Uno through the breadboard using Red jumper wire.</li>
+  <li>The GND pin on the L293D is connected to the GND pin on the Arduino Uno through the breadboard using Black jumper wire.</li>
+</ol>
+
+<p>Input pins:</p>
+
+<ol>
+  <li>Input pin I2 on the L293D motor driver is connected to digital pin 9 on the Arduino Uno using Green jumper wire.</li>
+  <li>Input pin I4 on the L293D motor driver is connected to digital pin 10 on the Arduino Uno using Yellow jumper wire.</li>
+</ol>
+
+<p><strong>NOTE</strong> - The connections between the two IR sensors, the Arduino Uno and the breadboard have been removed to avoid confusion. You may keep the connections shown previously as it is.</p>
+
+<h2 id="schematics">Schematics</h2>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/schematic.png" alt="Schematic" width="auto" height="auto" /></p>
+
+<p>The finished bot should look something like this!
+<em>Attach image of the finished bot with all connections (including battery)</em></p>
+
+<h1 id="logic">Logic</h1>
+
+<p>The Line follower, as the name suggests, is a robot that can detect and follow a line drawn on the ground, which is usually a predefined path and is visible as a high contrast black line. The working of the line follower is pretty simple and can be easily understood.</p>
+
+<ul>
+  <li>The two IR Sensors used in the bot, essentially act as “eyes” that help the robot sense the black line.</li>
+  <li>The left IR sensor or “the left eye” and the right IR sensor or “the right eye” send <em>digital signals</em> to the Arduino. </li>
+  <li>The bot is steered based on these signals coming from the two eyes which drives the two BO motors mounted in fixed positions on the left and right side of the robot chassis using a motor driver.</li>
+</ul>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/connection.png" alt="Logic" width="auto" height="auto" /></p>
+
+<h2 id="steering">Steering</h2>
+
+<ul>
+  <li>When both the eyes sense white, the robot moves forward. See fig.(a)</li>
+  <li>If the left eye senses a black line, then the robot is turned to the left until both eyes point at the white surface. See fig.(b)</li>
+  <li>If the right eye senses a black line, then the robot is turned to the right until both eyes point at the white surface. See fig.(c)</li>
+  <li>The robot stops if both eyes sense a black line. See fig.(d)</li>
+</ul>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/steering.png" alt="Steering" width="auto" height="auto" /></p>
+
+<h3 id="how-to-make-the-robot-turn">How to make the robot turn?</h3>
+
+<p>The robot is arched to the left or to the right whenever the eyes sense a black line by varying the rotation speeds of the motors.</p>
+
+<ul>
+  <li>By slowing the rotation speed of the right motor or by stopping it without changing the speed of the left motor, the robot can be turned to the right.</li>
+  <li>By slowing the rotation speed of the left motor or by stopping it without changing the speed of the right motor, the robot can be turned to the left.</li>
+  <li>The robot will move in a straight line of both motors rotate at the same speed.</li>
+</ul>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/turning.png" alt="Turning" width="auto" height="auto" /></p>
+
+<h1 id="program-your-bot">Program your Bot</h1>
+
+<p>Before we show you the code, we’d encourage you to program the bot yourself. The code is pretty simple and all the necessary concepts have been taught to you in the previous sessions.</p>
+
+<h2 id="suggestions">Suggestions:</h2>
+
+<ul>
+  <li>It’s just a matter of writing the correct if statements, since you now know the logic behind how your Line-follower should work.</li>
+  <li>Know that you have complete control of the Arduino Uno board.</li>
+  <li>Test your code without the wheels attached. Otherwise, it is disappointing to see your bot run away from you while you’re working on it.</li>
+</ul>
+
+<p>Nevertheless, here’s the code!</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre></td><td class="rouge-code"><pre><span class="kt">int</span> <span class="n">motorRight</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span> <span class="c1">// Right motor connected to PWM pin 9</span>
+<span class="kt">int</span> <span class="n">motorLeft</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// Left motor connected to PWM pin 10</span>
+
+<span class="kt">int</span> <span class="n">rightEye</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// Right IR sensor connected to digital pin 5</span>
+<span class="kt">int</span> <span class="n">leftEye</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// Left IR sensor connected to digital pin 6</span>
+
+<span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Initialize variable 'left'</span>
+<span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Initialize variable 'right'</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">motorRight</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span> <span class="c1">// setting the PWM pin 9 as output</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">motorLeft</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span> <span class="c1">// setting the PWM pin 10 as output</span>
+
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">rightEye</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span> <span class="c1">// setting the digital pin 5 as input</span>
+	<span class="n">pinMode</span><span class="p">(</span><span class="n">leftEye</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span> <span class="c1">// setting the digital pin 6 as input</span>
+
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">rightEye</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span> <span class="c1">// sets the right IR sensor to low (or 0)</span>
+	<span class="n">digitalWrite</span><span class="p">(</span><span class="n">leftEye</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span> <span class="c1">// sets the left IR sensor to low (or 0)</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorRight</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span> <span class="c1">// sets right motor to analog value 255 (max rpm)</span>
+  <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorLeft</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span> <span class="c1">// sets left motor to analog value 255 (max rpm)</span>
+
+  <span class="n">right</span> <span class="o">=</span> <span class="n">digitalRead</span><span class="p">(</span><span class="n">rightEye</span><span class="p">);</span> <span class="c1">// reads value from right IR sensor and assigns it to the variable 'right'</span>
+	<span class="n">left</span> <span class="o">=</span> <span class="n">digitalRead</span><span class="p">(</span><span class="n">leftEye</span><span class="p">);</span> <span class="c1">// reads value from left IR sensor and assigns it to the variable 'left'</span>
+	
+
+  <span class="k">if</span><span class="p">(</span><span class="n">right</span><span class="o">==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">left</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// When right PIR sensor detects the black line, right motor is stopped while left motor continues to rotate. </span>
+      <span class="c1">// This produces a turning effect and the bot turns to the right.</span>
+  <span class="p">{</span>    
+    <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorRight</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// right motor set to 0 (min rpm)</span>
+    <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorLeft</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span> <span class="c1">// left motor set to 255 (max rpm)</span>
+  <span class="p">}</span>
+	
+	
+	<span class="k">if</span><span class="p">(</span><span class="n">left</span><span class="o">==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">right</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">// When left PIR sensor detects the black line, left motor is stopped while right motor continues to rotate. </span>
+      <span class="c1">// This produces a turning effect and the bot turns to the left.</span>
+  <span class="p">{</span>
+      <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorLeft</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// left motor set to 0 (min rpm)</span>
+      <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorRight</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span> <span class="c1">// right motor set to 255 (max rpm)</span>
+  <span class="p">}</span>
+
+
+  <span class="k">if</span><span class="p">(</span><span class="n">left</span><span class="o">==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">right</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// When both PIR sensors detect the black line, both motors are stopped due to which the bot comes to rest.</span>
+  <span class="p">{</span>
+    <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorRight</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// right motor set to 0 (min rpm)</span>
+    <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorLeft</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// left motor set to 0 (min rpm)</span>
+  <span class="p">}</span>
+    
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>NOTE</strong> - The below code is written with reference to the frame of the bot. This means that ‘left PIR sensor’ refers to the sensor that is to the left of the bot when both IR sensors are facing away from you, and vice-versa.
+So BLACK = 1 and WHITE = 0.</p>
+
+<p>Now upload the code, draw a circle using black insulation tape, power up the bot and get it running!</p>
+
+<p>Did it work?</p>
+
+<ul>
+  <li>If yes, then GG!</li>
+  <li>If not, then review your code and check for any loose connections. 
+ Where there is a line, there is a way! So hope for it to work the next time :)</li>
+</ul>
+
+<hr />
+:ET

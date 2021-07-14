@@ -1,0 +1,635 @@
+I"��<p>Basics of ROS ecosystem have been covered
+<!--more-->
+<strong>Contents</strong>: Visulization of TF, Publishing, Broadcasting &amp; Listening to TF, Static Transform, Joint and Robot State Publishers.</p>
+
+<hr />
+<p>A transform specifies how data expressed in a frame can be transformed into a different frame. For instance, if you detect an obstacle with the laser at 3 cm in the front, this means that it is 3 cm from the laser, but not from the center of the robot (that is usually called the /base_link). To know the distance from the center of the robot, you need to transform the 3 cm from the /laser_frame to the /base_link frame (which is actually what the Path Planning system needs to know, what is the distance from the center of the robot to the obstacle).</p>
+
+<p>First, we’ll define two frames (coordinate frames), one at the center of the laser and another one at the center of the robot. Usually, the center of the robot is placed at the rotational center of the robot. We’ll name the laser frame as base_laser and the robot frame as base_link.</p>
+
+<p>Now, we need to define a relationship (in terms of position and orientation) between the base_laser and the base_link. For instance, we know that the base_laser frame is at a distance of 20 cm in the y axis and 10 cm in the x axis referring the base_link frame. Then we’ll have to provide this relationship to the robot. This relationship between the position of the laser and the base of the robot is known in ROS as the TRANSFORM between the laser and the robot.</p>
+
+<h2 id="visulization-of-tf">Visulization of TF</h2>
+<h3 id="view_frames">View_frames</h3>
+<p>The view_frames ROS node generates a diagram with the current TF tree of the system.</p>
+
+<p><code class="language-plaintext highlighter-rouge">rosrun tf view_frames</code></p>
+
+<h3 id="rqt_tf_tree">rqt_tf_tree</h3>
+<p>rqt_tf_tree gives the same functionality as the view_frames, with an interesting extra: you can refresh and see changes without having to generate another PDF file each time.</p>
+
+<p><code class="language-plaintext highlighter-rouge">rosrun rqt_tf_tree rqt_tf_tree</code></p>
+
+<h3 id="using-echo-tf">Using echo /tf</h3>
+<p>There is a topic named /tf where all the TFs are published. The only problem is that ALL of them are published. In simple systems like this one, that isn’t a problem; but in massive systems, the quantity of data can be overwhelming. Therefore, the tf package gives a handy tool that filters which transform you are interested in and just shows you that one.</p>
+
+<p><code class="language-plaintext highlighter-rouge">rostopic echo -n1 /tf</code></p>
+
+<h3 id="using-tf_echo">Using tf_echo</h3>
+<p>The /tf topic only publishes the direct TFs, not all the transforms between all the frames. tf_echo does return the transforms between any connected frames to you.</p>
+
+<p><code class="language-plaintext highlighter-rouge">rosrun tf tf_echo [reference_frame] [target_frame]</code></p>
+
+<h2 id="tf-publisher-broadcaster-listener-subscriber">TF Publisher, Broadcaster, Listener, Subscriber</h2>
+<h3 id="tf-publisher">TF Publisher</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre></td><td class="rouge-code"><pre><span class="c1">#!/usr/bin/env python  
+</span><span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">tf2_ros</span>
+<span class="kn">from</span> <span class="nn">tf2_msgs.msg</span> <span class="kn">import</span> <span class="n">TFMessage</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">TransformStamped</span>
+
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'fixed_tf2_broadcaster'</span><span class="p">)</span>
+
+<span class="n">pub_tf</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="s">"/tf"</span><span class="p">,</span><span class="n">TFMessage</span><span class="p">,</span> <span class="n">queue_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">message</span> <span class="o">=</span> <span class="n">TFMessage</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+     <span class="c1"># Run this loop at about 10Hz
+</span>    <span class="n">rospy</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">TransformStamped</span><span class="p">()</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">"turtle1"</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">child_frame_id</span> <span class="o">=</span> <span class="s">"carrot1"</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="n">t1</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">t1</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">TransformStamped</span><span class="p">()</span>
+    <span class="n">t2</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">"turtle1"</span>
+    <span class="n">t2</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">t2</span><span class="p">.</span><span class="n">child_frame_id</span> <span class="o">=</span> <span class="s">"carrot2"</span>
+    <span class="n">t2</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">t2</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">4.0</span>
+    <span class="n">t2</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="n">t2</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">t2</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">t2</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">t2</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="n">message</span> <span class="o">=</span> <span class="p">[</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">]</span>
+    <span class="n">pub_tf</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+<span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="tf-broadcaster-example---1">TF Broadcaster Example - 1</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">handle_turtle_pose</span><span class="p">(</span><span class="n">pose_msg</span><span class="p">,</span> <span class="n">robot_name</span><span class="p">):</span>
+    <span class="n">br</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">TransformBroadcaster</span><span class="p">()</span>
+
+    <span class="n">br</span><span class="p">.</span><span class="n">sendTransform</span><span class="p">((</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">z</span><span class="p">),</span>
+                     <span class="p">(</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="n">pose_msg</span><span class="p">.</span><span class="n">orientation</span><span class="p">.</span><span class="n">w</span><span class="p">),</span>
+                     <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">(),</span>
+                     <span class="n">robot_name</span><span class="p">,</span>
+                     <span class="s">"/world"</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>You have to publish each element of the position and orientation inside a parenthesis, otherwise it might not work.There is also a very important element, which is the rospy.Time.now(). This is because TF really depends on time to make everything work and be able to play with past messages. Then, state the name of the child-frame you want to assign that model (robot_name) and the parent-frame, which, in this case, is /world.</p>
+
+<h3 id="tf-broadcaster-example---2">TF Broadcaster Example - 2</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="c1">#!/usr/bin/env python  
+</span><span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'my_moving_carrot_tf_broadcaster'</span><span class="p">)</span>
+    <span class="n">br</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">TransformBroadcaster</span><span class="p">()</span>
+    <span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+    <span class="n">turning_speed_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">().</span><span class="n">to_sec</span><span class="p">()</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">turning_speed_rate</span>
+        <span class="c1"># Map to only one turn maximum [0,2*pi)
+</span>        <span class="n">rad_var</span> <span class="o">=</span> <span class="n">t</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="n">br</span><span class="p">.</span><span class="n">sendTransform</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">rad_var</span><span class="p">),</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">rad_var</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">),</span>
+                         <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+                         <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">(),</span>
+                         <span class="s">"moving_carrot"</span><span class="p">,</span>
+                         <span class="s">"turtle2"</span><span class="p">)</span>
+        <span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="tf-broadcaster-from-pose-for-turtlesim_node">TF Broadcaster from Pose for turtlesim_node</h3>
+<p><strong>NOTE: Requires setting of ROS params in launch file as shown below</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>
+    <span class="c">&lt;!--To get the Pose from turtle bot we have to launch turtlesim_node--&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"turtlesim"</span> <span class="na">type=</span><span class="s">"turtlesim_node"</span> <span class="na">name=</span><span class="s">"sim"</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"turtle1_tf2_broadcaster"</span> <span class="na">pkg=</span><span class="s">"learning_tf2"</span> <span class="na">type=</span><span class="s">"turtle_tf2_broadcaster.py"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"turtle"</span> <span class="na">type=</span><span class="s">"string"</span> <span class="na">value=</span><span class="s">"turtle1"</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;/node&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="rouge-code"><pre><span class="c1">#! /usr/bin/env python
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">TransformStamped</span>
+<span class="kn">from</span> <span class="nn">turtlesim.msg</span> <span class="kn">import</span> <span class="n">Pose</span>
+<span class="kn">import</span> <span class="nn">tf_conversions</span>
+<span class="kn">import</span> <span class="nn">tf2_ros</span>
+
+<span class="k">def</span> <span class="nf">callback_function</span><span class="p">(</span><span class="n">pose</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">turtlename</span>
+    <span class="n">br</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">TransformBroadcaster</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">TransformStamped</span><span class="p">()</span>
+
+    <span class="n">t</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="s">'world'</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">child_frame_id</span> <span class="o">=</span> <span class="n">turtlename</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">pose</span><span class="p">.</span><span class="n">x</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">pose</span><span class="p">.</span><span class="n">y</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">translation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">q</span> <span class="o">=</span> <span class="n">tf_conversions</span><span class="p">.</span><span class="n">transformations</span><span class="p">.</span><span class="n">quaternion_from_euler</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">pose</span><span class="p">.</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+    <span class="n">br</span><span class="p">.</span><span class="n">sendTransform</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'tf2_broadcaster'</span><span class="p">)</span>
+    <span class="n">turtlename</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">get_param</span><span class="p">(</span><span class="s">'~turtle'</span><span class="p">)</span>
+    <span class="n">rospy</span><span class="p">.</span><span class="n">Subscriber</span><span class="p">(</span><span class="s">'/%s/pose'</span><span class="o">%</span> <span class="n">turtlename</span><span class="p">,</span><span class="n">Pose</span><span class="p">,</span><span class="n">callback_function</span><span class="p">)</span>
+
+    <span class="n">rospy</span><span class="p">.</span><span class="n">spin</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="tf-listener">TF Listener</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="rouge-code"><pre><span class="c1">#!/usr/bin/env python  
+</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">tf2_ros</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="s">'tf2_turtle_listener'</span><span class="p">)</span>
+
+    <span class="n">tfBuffer</span> <span class="o">=</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">Buffer</span><span class="p">()</span>
+    <span class="n">tf2_ros</span><span class="p">.</span><span class="n">TransformListener</span><span class="p">(</span><span class="n">tfBuffer</span><span class="p">)</span>
+
+    <span class="n">turtle_name</span> <span class="o">=</span> <span class="s">"turtle2"</span>
+
+    <span class="n">rate</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Rate</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="p">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">trans</span> <span class="o">=</span> <span class="n">tfBuffer</span><span class="p">.</span><span class="n">lookup_transform</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">,</span> <span class="s">'turtle1'</span><span class="p">,</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">())</span>
+            <span class="c1">#print(trans)
+</span>        <span class="k">except</span> <span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
+            <span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+            <span class="k">continue</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
+        <span class="n">rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>NOTE: Using <code class="language-plaintext highlighter-rouge">rospy.Time.now()</code> in lookup_transform can cause errors. <code class="language-plaintext highlighter-rouge">rospy.Time.now()</code> &gt; will ask for the frame with the current time, which might always not be avaiable immdeaditly. <code class="language-plaintext highlighter-rouge">rospy.Time()</code> &gt; will ask for the latest frame that is available. To tackle this a time out argument can be given to the lookup_transform,</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">trans = tfBuffer.lookup_transform(turtle_name, 'turtle1', rospy.Time.now(),rospy.Duration(1.0))</code></p>
+
+<h2 id="time-travel">Time Travel</h2>
+<p>To get the tranform between two objects from the past the following can be used.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="n">past</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+    <span class="n">trans</span> <span class="o">=</span> <span class="n">tfBuffer</span><span class="p">.</span><span class="n">lookup_transform</span><span class="p">(</span><span class="n">turtle_name</span><span class="p">,</span> <span class="s">'carrot1'</span><span class="p">,</span> <span class="n">past</span><span class="p">,</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="k">except</span> <span class="p">(</span><span class="n">tf2_ros</span><span class="p">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>To get transforms between objects from different timelines the following can be used.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">try</span><span class="p">:</span>
+    <span class="n">past</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+    <span class="n">trans</span> <span class="o">=</span> <span class="n">tfBuffer</span><span class="p">.</span><span class="n">lookup_transform_full</span><span class="p">(</span><span class="n">target_frame</span><span class="o">=</span><span class="n">turtle_name</span><span class="p">,</span><span class="n">target_time</span><span class="o">=</span><span class="n">rospy</span><span class="p">.</span><span class="n">Time</span><span class="p">.</span><span class="n">now</span><span class="p">(),</span> <span class="n">source_frame</span><span class="o">=</span><span class="s">'carrot1'</span><span class="p">,</span><span class="n">source_time</span><span class="o">=</span><span class="n">past</span><span class="p">,</span><span class="n">fixed_frame</span><span class="o">=</span><span class="s">'world'</span><span class="p">,</span><span class="n">timeout</span><span class="o">=</span><span class="n">rospy</span><span class="p">.</span><span class="n">Duration</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+
+<span class="k">except</span><span class="p">(</span><span class="n">tf2_ros</span><span class="p">.</span><span class="n">LookupException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ConnectivityException</span><span class="p">,</span> <span class="n">tf2_ros</span><span class="p">.</span><span class="n">ExtrapolationException</span><span class="p">):</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h2 id="robot_state_publisher">robot_state_publisher</h2>
+<p>Publishing all the TF’s manually is very tedious and hence ROS provides nice tool called robot state publisher to automate the task for you. In essence, it takes a file describing the morphology of the robot (aka URDF file) as input and it automatically publishes the TF for you.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>
+
+  <span class="c">&lt;!-- Load the URDF file in the param server variable robot_description if it wasn't loaded before --&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"robot_description"</span> <span class="na">command=</span><span class="s">"cat $(find pi_robot_pkg)/urdf/pi_robot_v2.urdf"</span><span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Publish TF with robot_state_publisher --&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"robot_state_publisher"</span> <span class="na">pkg=</span><span class="s">"robot_state_publisher"</span> <span class="na">type=</span><span class="s">"robot_state_publisher"</span>
+    <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;remap</span> <span class="na">from=</span><span class="s">"/joint_states"</span> <span class="na">to=</span><span class="s">"/pi_robot/joint_states"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+
+<span class="nt">&lt;/launch&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h2 id="joint_state_publisher">joint_state_publisher</h2>
+<p>There are two ways to publish non-fixed joint frames</p>
+
+<h3 id="publish-them-directly">Publish them directly</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"robot_description"</span> <span class="na">command=</span><span class="s">"cat $(find pi_robot_pkg)/urdf/pi_robot_v2.urdf"</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- send fake joint values --&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"joint_state_publisher"</span> <span class="na">pkg=</span><span class="s">"joint_state_publisher"</span> <span class="na">type=</span><span class="s">"joint_state_publisher"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"use_gui"</span> <span class="na">value=</span><span class="s">"TRUE"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+
+  <span class="c">&lt;!-- Combine joint values --&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"robot_state_publisher"</span> <span class="na">pkg=</span><span class="s">"robot_state_publisher"</span> <span class="na">type=</span><span class="s">"state_publisher"</span><span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Show in RVIZ   --&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"rviz"</span> <span class="na">pkg=</span><span class="s">"rviz"</span> <span class="na">type=</span><span class="s">"rviz"</span> <span class="na">args=</span><span class="s">"-d $(find pi_robot_pkg)/launch/pi_robot.rviz"</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/launch&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>NOTE: This only works in RVIZ, meaning the robot in gazebo won’t be effected by the joint state values.</strong></p>
+
+<h3 id="publish-them-through-hardwaresimulation">Publish them through Hardware/Simulation</h3>
+<p><strong>Step 1: Define a joint that isn’t fixed in your URDF File</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"left_shoulder_forward_joint"</span> <span class="na">type=</span><span class="s">"revolute"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">"left_shoulder_link"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">"left_shoulder_forward_link"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">"0 0.025 0"</span> <span class="na">rpy=</span><span class="s">"0 0 0"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;limit</span> <span class="na">lower=</span><span class="s">"-1.57"</span> <span class="na">upper=</span><span class="s">"1.57"</span> <span class="na">effort=</span><span class="s">"10"</span> <span class="na">velocity=</span><span class="s">"3"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">"0 0 1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;dynamics</span> <span class="na">damping=</span><span class="s">"0.7"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>Step 2: Define a Transmission for your joint in your URDF File</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;transmission</span> <span class="na">name=</span><span class="s">"tran4"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;type&gt;</span>transmission_interface/SimpleTransmission<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">"left_shoulder_forward_joint"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;hardwareInterface&gt;</span>EffortJointInterface<span class="nt">&lt;/hardwareInterface&gt;</span>
+    <span class="nt">&lt;/joint&gt;</span>
+    <span class="nt">&lt;actuator</span> <span class="na">name=</span><span class="s">"motor4"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;hardwareInterface&gt;</span>EffortJointInterface<span class="nt">&lt;/hardwareInterface&gt;</span>
+        <span class="nt">&lt;mechanicalReduction&gt;</span>1<span class="nt">&lt;/mechanicalReduction&gt;</span>
+    <span class="nt">&lt;/actuator&gt;</span>
+<span class="nt">&lt;/transmission&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>Step 3: Define the new transmission controller with the name xxx_position_controller (left_shoulder_forward_joint_position_controller) in a configuration yaml file</strong></p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="na">pi_robot</span><span class="pi">:</span>
+  <span class="c1"># Publish all joint states -----------------------------------</span>
+  <span class="na">joint_state_controller</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">joint_state_controller/JointStateController</span>
+    <span class="na">publish_rate</span><span class="pi">:</span> <span class="m">50</span>
+
+  <span class="na">left_shoulder_forward_joint_position_controller</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">effort_controllers/JointPositionController</span>
+    <span class="na">joint</span><span class="pi">:</span> <span class="s">left_shoulder_forward_joint</span>
+    <span class="na">pid</span><span class="pi">:</span> <span class="pi">{</span><span class="nv">p</span><span class="pi">:</span> <span class="nv">100.0</span><span class="pi">,</span> <span class="nv">i</span><span class="pi">:</span> <span class="nv">0.01</span><span class="pi">,</span> <span class="nv">d</span><span class="pi">:</span> <span class="nv">10.0</span><span class="pi">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>Step 4: Start everything through a launch file.</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>
+
+  <span class="c">&lt;!-- Load the URDF file in the param server variable robot_description if it wasn't loaded before --&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"robot_description"</span> <span class="na">command=</span><span class="s">"cat $(find pi_robot_pkg)/urdf/pi_robot_v2.urdf"</span> <span class="nt">/&gt;</span>
+<span class="c">&lt;!-- Load joint controller configurations from YAML file to parameter server --&gt;</span>
+  <span class="nt">&lt;rosparam</span> <span class="na">file=</span><span class="s">"$(find pi_robot_pkg)/config/pirobot_control.yaml"</span> <span class="na">command=</span><span class="s">"load"</span><span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"controller_spawner"</span>
+        <span class="na">pkg=</span><span class="s">"controller_manager"</span>
+        <span class="na">type=</span><span class="s">"spawner"</span>
+        <span class="na">respawn=</span><span class="s">"false"</span>
+        <span class="na">output=</span><span class="s">"screen"</span>
+        <span class="na">ns=</span><span class="s">"/pi_robot"</span>
+        <span class="na">args=</span><span class="s">"head_pan_joint_position_controller
+              head_tilt_joint_position_controller
+              torso_joint_position_controller
+              left_shoulder_forward_joint_position_controller
+              right_shoulder_forward_joint_position_controller
+              left_shoulder_up_joint_position_controller
+              right_shoulder_up_joint_position_controller
+              left_elbow_joint_position_controller
+              right_elbow_joint_position_controller
+              left_wrist_joint_position_controller
+              right_wrist_joint_position_controller
+              joint_state_controller"</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"robot_state_publisher"</span> <span class="na">pkg=</span><span class="s">"robot_state_publisher"</span> <span class="na">type=</span><span class="s">"robot_state_publisher"</span>
+    <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;remap</span> <span class="na">from=</span><span class="s">"/joint_states"</span> <span class="na">to=</span><span class="s">"/pi_robot/joint_states"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span> 
+
+<span class="c">&lt;!-- &lt;node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/&gt;--&gt;</span>
+
+
+<span class="nt">&lt;/launch&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h2 id="static-transforms">Static Transforms</h2>
+<p>There are some cases where changing the URDF is not advisable or it simply makes no sense to add it to the robot model.urdf. These are the cases where publishing a static transform, especially through the launch file or commands, is more convenient.</p>
+
+<h3 id="through-command-line">Through Command Line</h3>
+<p>The following syntax can be used to publish a static transform via command line. <code class="language-plaintext highlighter-rouge">rosrun tf static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms</code></p>
+
+<h3 id="through-launch-files">Through Launch files</h3>
+<p>The following syntax can be used to publish a static transform via launch files.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nt">&lt;launch&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">"tf"</span> <span class="na">type=</span><span class="s">"static_transform_publisher"</span> <span class="na">name=</span><span class="s">"name_of_node"</span> 
+          <span class="na">args=</span><span class="s">"x y z yaw pitch roll frame_id child_frame_id period_in_ms"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/node&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h2 id="extra-content">Extra Content</h2>
+<h3 id="spawn-a-urdf-model-in-gazebo">Spawn a URDF Model in gazebo</h3>
+<p>This is an example of a launch file you could use to spawn URDF models into a Gazebo world:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="nt">&lt;launch&gt;</span>
+
+    <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">"x"</span> <span class="na">default=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">"y"</span> <span class="na">default=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">"z"</span> <span class="na">default=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">"urdf_robot_file"</span> <span class="na">default=</span><span class="s">"$(find your_pkg)/urdf/your_robot.urdf"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">"robot_name"</span> <span class="na">default=</span><span class="s">"your_robot_model_name"</span> <span class="nt">/&gt;</span>
+
+
+    <span class="c">&lt;!-- Load the URDF into the ROS Parameter Server --&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"robot_description"</span> <span class="na">command=</span><span class="s">"cat $(arg urdf_robot_file)"</span> <span class="nt">/&gt;</span>
+
+    <span class="c">&lt;!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot --&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"urdf_spawner"</span> <span class="na">pkg=</span><span class="s">"gazebo_ros"</span> <span class="na">type=</span><span class="s">"spawn_model"</span> <span class="na">respawn=</span><span class="s">"false"</span> <span class="na">output=</span><span class="s">"screen"</span>
+    <span class="na">args=</span><span class="s">"-urdf -x $(arg x) -y $(arg y) -z $(arg z)  -model $(arg robot_name) -param robot_description"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<h3 id="delete-a-model-from-gazebo">Delete a model from gazebo</h3>
+<p><strong>To get a list of all the current models in gazebo:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">osservice call /gazebo/get_world_properties "{}"</code></p>
+
+<p><strong>To delete a paticular model from the above list:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">rosservice call /gazebo/delete_model "model_name: 'your_robot_model_name'"</code></p>
+
+:ET
