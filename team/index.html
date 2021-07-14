@@ -1,0 +1,11 @@
+---
+layout: page
+title: Our Team
+show_title: false
+---
+
+
+{% assign thepost = site.team %}
+{% for post in thepost %}
+ {{ post.content }}
+{% endfor %}

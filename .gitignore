@@ -1,4 +1,3 @@
-.jekyll-cache
 *~
 ~*
 *.diff
@@ -8,7 +7,7 @@
 *.swp
 *.swo
 *.log
-.log.
+*.log.*
 
 /.vscode/
 
@@ -26,3 +25,5 @@ Gemfile.lock
 _site/
 .jekyll-metadata
 .jekyll-cache/
+.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/fe/a5ffb632e4016a010dec0bb49cbdb698938ff8532bfe1da0ddaf0f4372cba6
+.jekyll-cache/Jekyll/Cache/Jekyll--Converters--Markdown/fc/814da9c739bd6d106d6e506d181de495e6da127e708880d62e272276eac9ca
