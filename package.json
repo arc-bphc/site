@@ -57,5 +57,8 @@
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35"
   }
 }
