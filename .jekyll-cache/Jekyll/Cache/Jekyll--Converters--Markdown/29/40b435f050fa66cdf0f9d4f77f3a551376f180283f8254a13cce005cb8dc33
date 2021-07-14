@@ -1,0 +1,238 @@
+I"�'<h1 id="introduction">Introduction</h1>
+
+<p>Look at the code snippet given below:</p>
+
+<pre><code class="language-C++">int ledPin = 13;
+int time = 1000;
+
+void setup()
+{
+    pinMode(ledPin,OUTPUT);
+}
+
+void loop()
+{
+    digitalWrite(ledPin,HIGH);
+    delay(1000); // Wait for 1000 millisecond(s)
+    digitalWrite(ledPin,LOW);
+    delay(1000); // Wait for 1000 millisecond(s)
+}
+
+</code></pre>
+
+<p>Let us now break down the code and understand each element written in it</p>
+
+<h2 id="void-setup">void setup()</h2>
+
+<p>This is a pre existing function which will always be present whenever you open any arduino based IDE. As the name suggests, “setup” means to initialize the arduino, and tell it the necessary information required for it to connect with the peripheral devices connected to it (its pretty obvious why we need to do that).</p>
+
+<p><a href="https://www.arduino.cc/reference/en/language/structure/sketch/setup/">Here’s a link for the setup() function</a></p>
+
+<h2 id="void-loop">void loop()</h2>
+
+<p>Also a pre existing function in arduino, this is a basic loop function, any code written inside it will go on in loop until power is cut off to the arduino, keep in mind void setup just runs at the starting of arduino just to initialize things, after that the code inside the loop gets run over and over.</p>
+
+<p><a href="https://www.arduino.cc/reference/en/language/structure/sketch/loop/">A link for the loop() function</a></p>
+
+<h2 id="pinmode">pinMode()</h2>
+
+<p>Before you send/receive a signal to/from a particular pin of the arduino, you need to define it as an input, or an output pin.</p>
+
+<ul>
+  <li>Defining it as an input pin means that you want to receive a signal from it, as soon as it get triggered by say, a device connected to that pin.</li>
+  <li>Defining it as an output pin means that you want the pin to send out a signal to that particular device, and instruct it to initiate a task. For example, turning on/off an LED by sending out a HIGH/LOW signal respectively.</li>
+</ul>
+
+<p>Syntax : pinMode(pin, mode)</p>
+
+<p><a href="https://www.arduino.cc/reference/en/language/functions/digital-io/pinmode/">Here is the link for documentation of the pinmode function</a></p>
+
+<h2 id="digitalwrite">digitalWrite()</h2>
+
+<p>We all know signals are of two types digital and analog, analog signals are continuous within a given range of amplitude and digital signals are discrete namely (0 and 1), or in our case(LOW and HIGH).</p>
+
+<p>HIGH:- simply means the pin will have the voltage equal to the voltage “VCC”
+supplied to the board from an external power source.
+LOW:- Simply means the pin will have the voltage equal to zero.</p>
+
+<p>Note that there is a capital W in digitalWrite()
+Syntax : digitalWrite(digitalPin_number,value)</p>
+
+<p><a href="https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/">digitalWrite() function documentation</a></p>
+
+<h2 id="delay">delay()</h2>
+
+<p>Every processor runs on its “clock frequency”, and the instructions are executed in some fixed amount of “clock cycles”, obviously for good processing of complex codes you need a high clock frequency. A delay is a function that makes the processor run in a “wait state” meaning the processor just sits ideally until the time passes that the user has specified, in our case we gave input as 1000 milliseconds, (note that the unitof number passed on to delay() function is in milliseconds).</p>
+
+<ul>
+  <li>So suppose you didn’t give a delay ( go ahead scratch both delays off that code and run) you would see that the LED is glowing continuously but at a dim light than before(this will be visible if done on actual hardware)(on tinker cad it will show just glow).</li>
+  <li>To understand, think of it that you are switching on and off a fan really fast, before the fan stops you switch on the power the fan gets an impulse, u switch off it still is rotating and u do this loop at a very high speed, the result is, fan keeps on rotating.</li>
+</ul>
+
+<p>Syntax : delay(time in milliseconds) <em>Time has to be an integer</em></p>
+
+<p><a href="https://www.arduino.cc/reference/en/language/functions/time/delay/">delay() function documentation</a></p>
+
+<h2 id="digitalread">digitalRead()</h2>
+
+<p>This in-built arduino function reads a value from a GPIO digital pin, either HIGH or LOW. This value may be stored in an integer type variable.</p>
+
+<p>Note that there is a capital R in digitalRead(). Look for other such minute details :)</p>
+
+<p>Syntax : digitalRead(digitalPin_number)</p>
+
+<p><a href="https://www.arduino.cc/reference/en/language/functions/digital-io/digitalread/">digitalRead() function documentation</a></p>
+
+<h2 id="using-a-pushbutton-to-make-an-led-blink">Using a Pushbutton to make an LED Blink</h2>
+
+<pre><code class="language-C++">int ledPin = 13; // LED connected to digital pin 13
+int inputPin = 7; // Pushbutton connected to digital pin 7
+int value = 0; // integer type variable to store the read value
+
+void setup()
+{
+    pinMode(ledPin,OUTPUT); // setting the digital pin 13 as output
+    pinMode(inputPin,INPUT); // setting the digital pin 7 as input
+}
+
+void loop()
+{
+    value = digitalRead(inputPin); // read the input pin
+    digitalWrite(ledPin,value); // sets the LED to the button's value
+}
+
+</code></pre>
+
+<p><img src="/site/assets/images/resources/level3_pic1.png" alt="digitalRead" width="auto" height="auto" /></p>
+
+<p>In this <a href="https://www.youtube.com/watch?v=aMato4olzi8&amp;list=PLGs0VKk2DiYw-L-RibttcvK-WBZm8WLEP&amp;index=28">video</a>, Paul demonstrates how a push button can be used as a toggle switch.</p>
+
+<p>It’s considered good practice to use variables to store values ( like time and ledPin in this case) and use those variables instead of hard-coding all the values manually. If we ever want to change the values, ( which we will be doing a lot while trying out stuff ) we’ll only have to
+change the value of the variable at one place, and not at all the places the variable has been used in the program.</p>
+
+<p>Everything you’ve been taught till now, has been beautifully explained by Paul McWhorter here. We really recommend you go through <a href="https://www.youtube.com/watch?v=CfdaJ4z4u4w&amp;list=PLGs0VKk2DiYw-L-RibttcvK-WBZm8WLEP&amp;index=3">this</a>. He also demonstrates how you can get an external LED to blink in TinkerCAD.</p>
+
+<p>If you have any problems with the stuff taught here, or in any other videos, you’re more than welcome to put your doubts/suggestions in the #discussion channel of our discord server.</p>
+
+<h2 id="loops-in-c">Loops in C</h2>
+
+<p>Loops in any programming language help us in executing a group of statements repeatedly. C provides us with the following types of loops to complete such tasks:</p>
+
+<h3 id="for-loop">for loop</h3>
+
+<p>The syntax for setting up a for loop is :
+<code class="language-plaintext highlighter-rouge">for(initialisation; condition; updation_statement)</code></p>
+
+<pre><code class="language-C++">int i; // declaring an integer type variable
+
+for(i=1; i&lt;=4; i=i+1) // for loop
+{
+    Serial.println("Hello 2020 batch");
+}
+
+</code></pre>
+
+<p>OUTPUT</p>
+
+<pre><code class="language-C++">Hello 2020 Batch
+Hello 2020 Batch
+Hello 2020 Batch
+Hello 2020 Batch
+</code></pre>
+
+<p><a href="https://www.tutorialspoint.com/cprogramming/c_for_loop.htm">Here’s a link on how for loops work</a></p>
+
+<h3 id="while-loop">while loop</h3>
+
+<p>The syntax for setting up a while loop is :</p>
+
+<pre><code class="language-C++">initialisation_of_variable;
+while(condition)
+{
+    
+    // statements to be executed
+    updation_statement;
+}
+</code></pre>
+
+<p>Here’s a piece of code that does the same thing we did before, using the while loop</p>
+
+<pre><code class="language-C++">int i = 4; // initialising an integer type variable
+
+while(i!=0)	// while loop
+{
+    Serial.println("Hello 2020 batch");
+    i = i - 1; // or i--
+}
+</code></pre>
+
+<p>OUTPUT</p>
+
+<pre><code class="language-C++">Hello 2020 Batch
+Hello 2020 Batch
+Hello 2020 Batch
+Hello 2020 Batch
+</code></pre>
+
+<p><a href="https://www.tutorialspoint.com/cprogramming/c_while_loop.htm">A link on how while loops work</a></p>
+
+<h3 id="do-while-loop">do while loop</h3>
+
+<p>The syntax for setting up a do while loop is :</p>
+
+<pre><code class="language-C++">initialisation_of_variable;
+do
+{
+    
+    // statements to be executed
+    updation_statement;
+}while(condition);
+</code></pre>
+
+<p>A piece of code that does the same thing we did before, using the do while loop.</p>
+
+<pre><code class="language-C++">int i = 4; // initialising an integer type variable
+
+do	// while loop
+{
+    Serial.println("Hello 2020 batch");
+    i = i - 1; // or i--
+}while(i!=0);
+</code></pre>
+
+<p>OUTPUT</p>
+
+<pre><code class="language-C++">Hello 2020 Batch
+Hello 2020 Batch
+Hello 2020 Batch
+Hello 2020 Batch
+</code></pre>
+
+<p><a href="https://www.tutorialspoint.com/cprogramming/c_do_while_loop.htm">A link on how do while loops work</a></p>
+
+<p>Pay attention to the difference between flow of control in a do while loop and a while loop.</p>
+
+<h2 id="onshape">OnShape</h2>
+
+<p>We recommend you watch the videos first to get started with OnShape.
+Here’s a link to the youtube <a href="https://www.youtube.com/watch?v=2l8Do2Uk_JQ&amp;t=907s">video</a> we mentioned in our second OnShape Tutorial.</p>
+
+<hr />
+
+<h1 id="assignment">Assignment</h1>
+
+<h2 id="electronics">Electronics</h2>
+
+<p>Question:
+Make a count up timer from 0 to 7. Represent the numbers in 3-bit binary digits using 3 LEDs. On running your code the LEDs should light up to represent 1 and switch off to represent 0. You must also include a push-button to reset the counter whenever you want.</p>
+
+<p>To submit the assignment, you will need to make your project public in TinkerCAD and then share its link in the form. This <a href="https://www.youtube.com/watch?v=RLPs1PCvhck">video</a> will guide you how to generate a link for your project.</p>
+
+<h2 id="mechanical">Mechanical</h2>
+
+<p>Question 1:
+https://drive.google.com/file/d/1JsA025Tvg-wD47ZFH60i6kuRkRNTmiVP/view?usp=sharing</p>
+
+<p>Question 2:
+https://drive.google.com/file/d/1IrdCAFcY2g63ikytJaR6wgfz5AQl4NTV/view?usp=sharing</p>
+:ET

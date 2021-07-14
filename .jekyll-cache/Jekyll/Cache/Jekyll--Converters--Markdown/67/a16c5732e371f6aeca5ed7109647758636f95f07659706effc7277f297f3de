@@ -1,0 +1,32 @@
+I"\<h2 id="aim">Aim</h2>
+<p>The main idea of the project was to build a wireless Dicycle robot that could balance itself on two wheels using its orientation (angle) with the vertical as a feedback.</p>
+
+<!--more-->
+
+<h2 id="details">Details</h2>
+<p>The project was inspired by segways, and to build an autonomous segway. The concept of segway is based on the inverted pendulum problem. The advantage of such a segway would be that it would consume lesser power (only two motors) and would still be able to move around and complete the tasks of a 3 wheeled or 4 wheeled robot.  The robot built was rudimentary and only capable of balancing itself. The further idea was to incorporate this with the gesture controlled robot , to control the robot using gestures. However the robot was not improved upon, and left at the rudimentary stage.</p>
+
+<h2 id="hardware-involved">Hardware involved</h2>
+<ul>
+  <li>2 wheels</li>
+  <li>mechanics kit to build structure</li>
+  <li>2 DC motors</li>
+  <li>L298 motor driver (to drive motors)</li>
+  <li>6 V AA battery pack to power motors</li>
+  <li>Arduino (As the microcontroller)</li>
+  <li>MPU 6050 with accelerometer and gyroscope to measure angle of robot</li>
+  <li>6 V AA battery pack to power arduino.</li>
+</ul>
+
+<h2 id="software-involved">Software involved</h2>
+<p>Arduino programming to gather data from sensors apply filter on them and command the motors using a PI controller.</p>
+
+<h2 id="advice-from-the-makers">Advice from the Maker(s)</h2>
+<p>The robot can improved upon by incorporating the readings of gyroscope too (it’s readings were faulty in my case). The filter that was used was a mean value filter on the readings of only the accelerometer. However in improvement, complementary filter or kalman filter will have to be used to combine the readings of gyroscope and accelerometer. The combined readings would make the robot more controlled and will reduce the oscillations.</p>
+
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/XvHmo1aPvVg?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+:ET

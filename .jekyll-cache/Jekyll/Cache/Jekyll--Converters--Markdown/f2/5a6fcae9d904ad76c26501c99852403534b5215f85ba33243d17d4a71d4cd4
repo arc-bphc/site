@@ -1,0 +1,87 @@
+I"[<h2 id="aim">Aim</h2>
+<p>To filter the incoming audio signal and see how each coloured LED of RGB 3528 SMD strip reacts to different frequencies of the signal.
+<!--more--></p>
+
+<h2 id="hardware">Hardware</h2>
+<ul>
+  <li>Arduino Uno(1)</li>
+  <li>RGB 3528 LED Strip(1)</li>
+  <li>TIP31C NPN transistor(3)</li>
+  <li>Electret Microphone(1)</li>
+  <li>12V Battery(1)</li>
+  <li>470 Ω resistors(3)</li>
+  <li>10 µF capacitor(1)</li>
+  <li>100nF capacitor(1)</li>
+  <li>LM3528 op-amp(1)</li>
+  <li>1KΩ resistor(2)</li>
+  <li>10KΩ resistor(2)</li>
+  <li>100KΩ resistor(1)</li>
+</ul>
+
+<h2 id="working">Working</h2>
+<p>The project basically consists of 3 stages:-</p>
+
+<ol>
+  <li>
+    <p>Constructing a pre-amplifier mic circuit</p>
+  </li>
+  <li>
+    <p>Taking the mic signals as the input in the Arduino and filtering it into three frequency ranges using the FIR filter implemented in the code itself.</p>
+  </li>
+  <li>
+    <p>Building the LED circuit and using the filtered outputs to control the brightness of the  LEDs.</p>
+  </li>
+</ol>
+
+<h3 id="building-the-pre-amp-mic-circuit">Building The Pre-Amp Mic Circuit</h3>
+<p>To amplify the voltage signals of the electret mic, op-amp(LM 358) was used. Op-amps were preferred over NPN transistors because of the high voltage gain of the op-amps. Fundamentally, an op-amp is an equivalent of many transistors and so, has a higher performance .</p>
+
+<p>The inverting AC amplifier configuration was used which mean that there is inversion of the output signal with respect to the input as it is 180o out of phase. This is the circuit diagram for it :-
+<img src="/site/assets/images/blog/Music-Visualisation/1.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<p>The V_OUT_UC goes into the Arduino. The V_OUT is for connecting earphones directly.</p>
+
+<p>Voltage gain for an inverting amplifier is given by the inverting operational amplifier gain equation</p>
+
+<p>Here, the voltage gain is given by -R5/R4. Using R5 as 100K and R4 as 1K, a voltage gain of 100x was achieved.</p>
+
+<p>A graphical representation of the op-amp circuit is here
+<img src="/site/assets/images/blog/Music-Visualisation/2.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<p>Here, an electrolytic Microphone Coupling Capacitor has been used. A coupling capacitor is generally used in audio circuits to keep the DC and AC signals apart. DC is used give power to the parts of the circuit while the incoming audio signal will be AC. Since a capacitor blocks low frequencies and allows high frequencies, it can be used to block the DC signals and allowing only AC signals to pass through, effectively decreasing the noise.                                                                                                                                                   The next interesting component is the ceramic Power Supply Decoupling Capacitor which protects the ICs by suppressing the high frequency signals in the power supply signals.                                                                                                                                         The power supply is taken from the 5V  of the Arduino.</p>
+
+<p>The reading on the serial plotter look like this :-
+<img src="/site/assets/images/blog/Music-Visualisation/3.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<p><img src="/site/assets/images/blog/Music-Visualisation/4.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<h3 id="the-rgb-led-strip-circuit">The RGB LED Strip Circuit</h3>
+<p>This strip works on 12V. Since the Arduino cannot provide 12V, NPN transistors (TIP31Cs) have been used.</p>
+
+<p>The PWM voltage output pins of the Arduino, which control the brightness, are connected to the base, the LED strip to the collector and the emitter to the ground.</p>
+
+<p>This is the graphical representation of the circuit:-
+<img src="/site/assets/images/blog/Music-Visualisation/5.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<h3 id="the-code-for-sampling-and-filtering">The Code for Sampling and Filtering</h3>
+<p>The Arduino Uno clock is at 16MHz.
+The ADC clock is at (16/prescaler) where the prescalar can be 16,32,64 or 128.
+One ADC conversion takes 13 ADC clocks.
+According to the Atmega328p datasheet, the recommended ADC clock should be between 50KHz and 200KHz. So, by default, the prescaler is set to 128, which, would in turn give us a sampling rate of approximately 9600 Hz. But to get 8KHz analyzable spectrum one needs to sample at 16KHz according to Nyquist theorem. So, in the code, the prescaler is set to 64 so that  a sampling rate of 17800 Hz(almost 16KHz) is got.</p>
+
+<p>After sampling at 17800 Hz, filter the signal through digital <a href="https://en.wikipedia.org/wiki/Finite_impulse_response">FIR filters</a>.
+<a href="https://github.com/gaurabdg/FIR-Spectrum-Analyzer/blob/master/src/matlab/FIR_FilterDesign.m">This MATLAB code</a> was used to generate the FIR coefficients.</p>
+
+<p>The cut-off frequencies for the filters were calculated by playing tracks and observing the most active frequency ranges on <a href="https://trueaudio.com/rta_abt1.htm">trueRTA</a>.</p>
+
+<p><a href="https://github.com/gaurabdg/FIR-Spectrum-Analyzer/blob/master/src/arduino/BeatDet.ino">This is the link to the Arduino Code.</a></p>
+
+<p>Just a few snaps
+<img src="/site/assets/images/blog/Music-Visualisation/6.png" alt="Resistor" width="auto" height="auto" />
+<img src="/site/assets/images/blog/Music-Visualisation/7.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/zxZnOtWrG0c?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+:ET

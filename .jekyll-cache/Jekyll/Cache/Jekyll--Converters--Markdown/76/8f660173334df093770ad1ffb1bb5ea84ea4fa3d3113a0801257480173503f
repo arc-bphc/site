@@ -1,0 +1,37 @@
+I"?<h2 id="aim">Aim</h2>
+<p>To create a door lock which is based on Knock Pattern.
+<!--more--></p>
+<h2 id="hardware">Hardware</h2>
+<ul>
+  <li>Arduino</li>
+  <li>Piezosensor</li>
+  <li>Servo</li>
+  <li>LCD screen</li>
+  <li>Plastic case</li>
+  <li>Push button Switch</li>
+  <li>Wires and resistances</li>
+  <li>Batteries (9 V)</li>
+</ul>
+
+<h2 id="details">Details</h2>
+<p>A piezosensor is mounted on the door. This senses the knocks and using this information, the Arduino records the intervals between the knocks and stores a knock pattern password.
+The Arduino, servo (attached with the latch), LCD screen and circuit are enclosed in the plastic case.
+The LCD screen displays appropriate messages to enable interaction with the user.
+When a person knocks on the door, his/her knock pattern is compared with the preset knock password using Arduino.
+If the person’s knock password matches the preset, the servo rotates and the latch opens.
+<img src="/site/assets/images/blog/thumbnails/knock-door-lock.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<h2 id="special-features">Special features</h2>
+<ol>
+  <li>The Arduino is programmed such that the tempo of the knocks can be varied.</li>
+  <li>The password can be reset and another knock pattern can be recorded as the preset.</li>
+  <li>In case required, a push switch is present which can reset the system and the original set knock password is considered as the preset.</li>
+</ol>
+
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/gDD_UTZ6C_8?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+<p class="info">Multiple Authors: Ebin Phillip(2014 Batch), Swarali Patil(2015 Batch), Tejeshwar Reddy (2014 Batch),Abhilash Chivukula (2015 Batch), Abhijit Bajaj (2015 Batch) and Shivang Dixit (2015 Batch).</p>
+:ET

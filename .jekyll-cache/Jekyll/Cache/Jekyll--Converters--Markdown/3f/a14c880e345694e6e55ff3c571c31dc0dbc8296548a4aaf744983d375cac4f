@@ -1,0 +1,18 @@
+I"_<h2 id="aim">Aim</h2>
+<p>The aim is to mimic the walking of an animal and make a mechanical walking replica of it.
+<!--more--></p>
+
+<h2 id="materials-used">Materials Used</h2>
+<p>Parts from mechanix kit were used so that it could all fit together well.
+<img src="/site/assets/images/blog/thumbnails/Walking Bot.png" alt="Resistor" width="auto" height="auto" /></p>
+
+<h2 id="working">Working</h2>
+<p>There is a constant phase difference between the bot which is always maintained.This phase ensures that while one half of the legs are moving
+backwards it doesn’t touch the ground and is lifted in the air while the other set of legs push the bot forward.</p>
+
+<div><div class="extensions extensions--video">
+  <iframe src="https://www.youtube.com/embed/b8hWW9pEJ1g?rel=0&amp;showinfo=0" frameborder="0" scrolling="no" allowfullscreen=""></iframe>
+</div>
+</div>
+
+:ET

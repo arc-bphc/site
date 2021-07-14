@@ -1,0 +1,1862 @@
+<!DOCTYPE html><html lang="en">
+  <head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><title>Workshop Day 3 Session 2 - Automation & Robotics Club</title>
+
+<meta name="description" content="IntroductionHola people! Congratulations on making it to THE FINAL SAGA!In this section, you will be learning how to  Assemble the chassis that is included i...">
+<link rel="canonical" href="https://arc-bphc.github.io/site/resources/2021-07-06-Day3-2.html"><link rel="alternate" type="application/rss+xml" title="Automation & Robotics Club" href="/site/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/site/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/site/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/site/assets/favicon-16x16.png"><link rel="manifest" href="/site/assets/site.webmanifest"><link rel="mask-icon" href="/site/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/site/assets/favicon.ico">
+
+<meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/site/assets/browserconfig.xml">
+
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons snippet --><link rel="stylesheet" href="/site/assets/css/main.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" ><!-- start custom head snippets -->
+
+<!-- end custom head snippets -->
+<!-- Jekyll Ideal Image Slider Include -->
+<!-- https://github.com/jekylltools/jekyll-ideal-image-slider-include -->
+<!-- v1.8 -->
+<script>(function() {
+  window.isArray = function(val) {
+    return Object.prototype.toString.call(val) === '[object Array]';
+  };
+  window.isString = function(val) {
+    return typeof val === 'string';
+  };
+
+  window.hasEvent = function(event) {
+    return 'on'.concat(event) in window.document;
+  };
+
+  window.isOverallScroller = function(node) {
+    return node === document.documentElement || node === document.body || node === window;
+  };
+
+  window.isFormElement = function(node) {
+    var tagName = node.tagName;
+    return tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA';
+  };
+
+  window.pageLoad = (function () {
+    var loaded = false, cbs = [];
+    window.addEventListener('load', function () {
+      var i;
+      loaded = true;
+      if (cbs.length > 0) {
+        for (i = 0; i < cbs.length; i++) {
+          cbs[i]();
+        }
+      }
+    });
+    return {
+      then: function(cb) {
+        cb && (loaded ? cb() : (cbs.push(cb)));
+      }
+    };
+  })();
+})();
+(function() {
+  window.throttle = function(func, wait) {
+    var args, result, thisArg, timeoutId, lastCalled = 0;
+
+    function trailingCall() {
+      lastCalled = new Date;
+      timeoutId = null;
+      result = func.apply(thisArg, args);
+    }
+    return function() {
+      var now = new Date,
+        remaining = wait - (now - lastCalled);
+
+      args = arguments;
+      thisArg = this;
+
+      if (remaining <= 0) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+        lastCalled = now;
+        result = func.apply(thisArg, args);
+      } else if (!timeoutId) {
+        timeoutId = setTimeout(trailingCall, remaining);
+      }
+      return result;
+    };
+  };
+})();
+(function() {
+  var Set = (function() {
+    var add = function(item) {
+      var i, data = this._data;
+      for (i = 0; i < data.length; i++) {
+        if (data[i] === item) {
+          return;
+        }
+      }
+      this.size ++;
+      data.push(item);
+      return data;
+    };
+
+    var Set = function(data) {
+      this.size = 0;
+      this._data = [];
+      var i;
+      if (data.length > 0) {
+        for (i = 0; i < data.length; i++) {
+          add.call(this, data[i]);
+        }
+      }
+    };
+    Set.prototype.add = add;
+    Set.prototype.get = function(index) { return this._data[index]; };
+    Set.prototype.has = function(item) {
+      var i, data = this._data;
+      for (i = 0; i < data.length; i++) {
+        if (this.get(i) === item) {
+          return true;
+        }
+      }
+      return false;
+    };
+    Set.prototype.is = function(map) {
+      if (map._data.length !== this._data.length) { return false; }
+      var i, j, flag, tData = this._data, mData = map._data;
+      for (i = 0; i < tData.length; i++) {
+        for (flag = false, j = 0; j < mData.length; j++) {
+          if (tData[i] === mData[j]) {
+            flag = true;
+            break;
+          }
+        }
+        if (!flag) { return false; }
+      }
+      return true;
+    };
+    Set.prototype.values = function() {
+      return this._data;
+    };
+    return Set;
+  })();
+
+  window.Lazyload = (function(doc) {
+    var queue = {js: [], css: []}, sources = {js: {}, css: {}}, context = this;
+    var createNode = function(name, attrs) {
+      var node = doc.createElement(name), attr;
+      for (attr in attrs) {
+        if (attrs.hasOwnProperty(attr)) {
+          node.setAttribute(attr, attrs[attr]);
+        }
+      }
+      return node;
+    };
+    var end = function(type, url) {
+      var s, q, qi, cbs, i, j, cur, val, flag;
+      if (type === 'js' || type ==='css') {
+        s = sources[type], q = queue[type];
+        s[url] = true;
+        for (i = 0; i < q.length; i++) {
+          cur = q[i];
+          if (cur.urls.has(url)) {
+            qi = cur, val = qi.urls.values();
+            qi && (cbs = qi.callbacks);
+            for (flag = true, j = 0; j < val.length; j++) {
+              cur = val[j];
+              if (!s[cur]) {
+                flag = false;
+              }
+            }
+            if (flag && cbs && cbs.length > 0) {
+              for (j = 0; j < cbs.length; j++) {
+                cbs[j].call(context);
+              }
+              qi.load = true;
+            }
+          }
+        }
+      }
+    };
+    var load = function(type, urls, callback) {
+      var s, q, qi, node, i, cur,
+        _urls = typeof urls === 'string' ? new Set([urls]) : new Set(urls), val, url;
+      if (type === 'js' || type ==='css') {
+        s = sources[type], q = queue[type];
+        for (i = 0; i < q.length; i++) {
+          cur = q[i];
+          if (_urls.is(cur.urls)) {
+            qi = cur;
+            break;
+          }
+        }
+        val = _urls.values();
+        if (qi) {
+          callback && (qi.load || qi.callbacks.push(callback));
+          callback && (qi.load && callback());
+        } else {
+          q.push({
+            urls: _urls,
+            callbacks: callback ? [callback] : [],
+            load: false
+          });
+          for (i = 0; i < val.length; i++) {
+            node = null, url = val[i];
+            if (s[url] === undefined) {
+              (type === 'js' ) && (node = createNode('script', { src: url }));
+              (type === 'css') && (node = createNode('link', { rel: 'stylesheet', href: url }));
+              if (node) {
+                node.onload = (function(type, url) {
+                  return function() {
+                    end(type, url);
+                  };
+                })(type, url);
+                (doc.head || doc.body).appendChild(node);
+                s[url] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+    return {
+      js: function(url, callback) {
+        load('js', url, callback);
+      },
+      css: function(url, callback) {
+        load('css', url, callback);
+      }
+    };
+  })(this.document);
+})();
+<!-- Jekyll Ideal Image Slider Include -->
+<!-- https://github.com/jekylltools/jekyll-ideal-image-slider-include -->
+<!-- v1.8 --></script><script>
+  (function() {
+    var TEXT_VARIABLES = {
+      version: '2.2.6',
+      sources: {
+        font_awesome: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css',
+        jquery: 'https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js',
+        leancloud_js_sdk: '//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js',
+        chart: 'https://cdn.bootcss.com/Chart.js/2.7.2/Chart.bundle.min.js',
+        gitalk: {
+          js: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.js',
+          css: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.css'
+        },
+        valine: 'https://unpkg.com/valine/dist/Valine.min.js',
+        mathjax: 'https://cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML',
+        mermaid: 'https://cdn.bootcss.com/mermaid/8.0.0-rc.8/mermaid.min.js'
+      },
+      site: {
+        toc: {
+          selectors: 'h1,h2,h3'
+        }
+      },
+      paths: {
+        search_js: '/site/assets/search.js'
+      }
+    };
+    window.TEXT_VARIABLES = TEXT_VARIABLES;
+  })();
+</script>
+</head>
+  <body>
+    <div class="root" data-is-touch="false">
+      <div class="layout--page layout--page--sidebar clearfix js-page-root">
+  <div class="page__mask d-print-none js-page-mask js-sidebar-hide"></div>
+  <div class="page__viewport">
+    <div class="page__actions d-print-none">
+      <div class="button button--circle button--lg box-shadow-2 sidebar-button js-sidebar-show">
+        <i class="fas fa-bars icon--show"></i>
+      </div>
+    </div>
+
+    <div class="grid page__grid">
+
+      <div class="page__sidebar d-print-none"><div class="sidebar-toc"><ul class="toc toc--navigator"><li class="toc-h1">Day 0</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-1.html">Introduction</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-2.html">Getting Things Ready</a></li><li class="toc-h1">Day 1</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day1-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day1-2.html">CAD</a></li><li class="toc-h1">Day 2</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-2.html">CAD</a></li><li class="toc-h1">Day 3</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day3-1.html">Electronics</a></li><li class="toc-h2 active"><a href="/site/resources/2021-07-06-Day3-2.html">Electronics</a></li></ul></div></div><div class="page__main js-page-main has-aside cell cell--auto">
+
+      <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
+      <div class="header__title">
+        <div class="header__brand">
+          <div class="header__brand">
+            <img src="/site/assets/images/logo/logo.png"/><a
+              title="Automation & Robotics Club, BITS Pilani Hyderabad Campus
+"
+              href="/site/">
+            </a></div><a title="Automation & Robotics Club, BITS Pilani Hyderabad Campus
+" href="/site/">Automation & Robotics Club</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
+        <ul>
+          <!--<li class="navigation__item"><a href="/site/projects/">Projects</a></li><li class="navigation__item"><a href="/site/resources/">Resources</a></li><li class="navigation__item"><a href="/site/blog/">Blog</a></li><li class="navigation__item"><a href="/site/archive/">Archive</a></li><li class="navigation__item"><a href="https://arc-bphc.github.io#about">About</a></li>-->
+          <!-- <div class="navbar">
+            <a href="/site/projects/">Projects</a>
+            <a href="/site/resources">Resources</a>
+            <a href="/site/blog">Blog</a>
+            <a href="https://arc-bphc.github.io#about">About</a>
+            <div class="dropdown">
+              <button class="dropbtn">Others 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="/site/archive">Archive</a>
+                <a href="#">Our Team</a>
+                <a href="#">Publications</a>
+                <a href="#">Skill Tree</a>
+              </div>
+            </div> 
+          </div> -->
+          <div class="topnav" id="myTopnav">
+            <a href="/site/projects/" class="active">Projects</a>
+            <a href="/site/resources">Resources</a>
+            <a href="/site/blog">Blog</a>
+            <div class="dropdown">
+              <button class="dropbtn">Others 
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="/site/archive">Archive</a>
+                <a href="#">Our Team</a>
+                <a href="#">Publications</a>
+                <a href="#">Skill Tree</a>
+              </div>
+            </div> 
+            <a href="https://arc-bphc.github.io#about">About</a>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+          </div><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
+      </nav></div>
+  </header>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+
+<style>
+body {margin:0;font-family:Arial}
+
+.topnav {
+  overflow: hidden;
+  background-color: #202020;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #202020;
+  text-align: center;
+  padding: 3px 5px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.active {
+  color: #202020;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;    
+  border: none;
+  outline: none;
+  padding: 3px 5px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #202020;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: #202020;
+  padding: 3px px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #202020;
+  color: #ff9500;
+}
+
+.dropdown-content a:hover {
+  background-color: #202020;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+</style>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<!-- <style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #202020;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: #202020;
+  text-align: center;
+  padding: 3px 5px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  padding: 3px 5px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #202020;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #202020;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 3px 5px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #202020;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style> --></div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
+
+              <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
+</aside></div>
+
+              <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
+
+<!-- end custom main top snippet -->
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Workshop Day 3 Session 2</h1></header><span class="split-space">&nbsp;</span>
+          <a class="edit-on-github"
+            title="Edit on Github"
+            href="https://github.com/arc-bphc/site/tree/master/_resources/2021-07-06-Day3-2.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="Workshop Day 3 Session 2"><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/site/archive/# "archive/" (default)?tag=TeXt">TeXt</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Jai Krishna</span></li></ul></div><meta itemprop="author" content="Jai Krishna"/><meta itemprop="datePublished" content="2021-07-06T00:00:00+05:30">
+    <meta itemprop="keywords" content="TeXt"><div class="js-article-content"><!-- Jekyll Ideal Image Slider Include -->
+<!-- https://github.com/jekylltools/jekyll-ideal-image-slider-include -->
+<!-- v1.8 -->
+
+
+<!-- Jekyll Ideal Image Slider Include -->
+<!-- https://github.com/jekylltools/jekyll-ideal-image-slider-include -->
+<!-- v1.8 --><div class="layout--article"><!-- start custom article top snippet -->
+
+<!-- end custom article top snippet -->
+<div class="article__content" itemprop="articleBody"><style>
+  img {
+  border-radius: 8px;
+}
+</style>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Hola people! Congratulations on making it to THE FINAL SAGA!</p>
+
+<p>In this section, you will be learning how to</p>
+<ul>
+  <li>Assemble the chassis that is included in your kit</li>
+  <li>Make all necessary connections with the relevant electronic components</li>
+  <li>Program your bot!</li>
+</ul>
+
+<h1 id="assembling-the-chassis">Assembling the chassis</h1>
+
+<h2 id="quantity">Quantity</h2>
+
+<p>The following is a list of all things necessary to build the chassis for the line follower robot. All the below listed items are included in the kit.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Sl No.</th>
+      <th style="text-align: center">Name</th>
+      <th style="text-align: center">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">Chassis Base</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">Wheels</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">Caster Wheel</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">BO Motors</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">Encoded disks</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">Acrylic Tabs</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">Switch</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">Battery holder</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">Screws</td>
+      <td style="text-align: center">14</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">Nuts</td>
+      <td style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">Spacers</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">Screwdriver kit</td>
+      <td style="text-align: center">1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="video">Video</h2>
+
+<h1 id="wiring-and-connections">Wiring and Connections</h1>
+
+<h2 id="components">Components</h2>
+
+<p>The following components will be used to build the Line-follower robot.</p>
+
+<ol>
+  <li>Chassis</li>
+  <li>Arduino Uno</li>
+  <li>IR Sensors</li>
+  <li>BO Motors</li>
+  <li>L293D Motor Driver</li>
+  <li>Breadboard</li>
+  <li>4 AA Batteries</li>
+</ol>
+
+<p>In the previous section, you have seen how to assemble the chassis. We shall now move on to take a look at all the connections for the electronic components used in making the bot.</p>
+
+<p><strong>NOTE</strong> - It would be a good idea to follow the same connections as explained below in the pictures to avoid confusion, and to make troubleshooting easier :)</p>
+
+<h2 id="circuit-connections-for-ir-sensor">Circuit connections for IR Sensor</h2>
+
+<p>As discussed previously, the IR sensor has 3 pins which need to be connected to the Arduino Uno as follows:</p>
+
+<ul>
+  <li>VCC - Connected to 5V pin on Uno</li>
+  <li>GND - Connected to GND pin on Uno</li>
+  <li>OUT - Connected to any digital pin on Uno</li>
+</ul>
+
+<p>In the demonstration, we shall be connecting</p>
+
+<ul>
+  <li>The OUT pin of right IR sensor to digital pin 5 of the Arduino board.</li>
+  <li>The OUT pin of left IR sensor to digital pin 6 of the Arduino board.</li>
+</ul>
+
+<p>Take a look at the below image.</p>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/IR_circuit.png" alt="IR" width="auto" height="auto" /></p>
+
+<h3 id="explanation">Explanation</h3>
+
+<p>Right IR Sensor:</p>
+
+<ol>
+  <li>VCC pin connected to breadboard using Red jumper wire</li>
+  <li>GND pin connected to breadboard using Black jumper wire</li>
+  <li>OUT pin connected to digital pin 5 of Arduino Uno using Blue jumper wire</li>
+</ol>
+
+<p>Left IR Sensor:</p>
+
+<ol>
+  <li>VCC pin connected to breadboard using Orange jumper wire</li>
+  <li>GND pin connected to breadboard using Brown jumper wire</li>
+  <li>OUT pin connected to digital pin 6 of Arduino Uno using Magenta jumper wire</li>
+</ol>
+
+<p>Common connections:</p>
+
+<ol>
+  <li>5V pin on Arduino Uno is connected to breadboard using Red jumper wire (see left half of the breadboard)</li>
+  <li>GND pin on Arduino Uno is connected to breadboard using Black jumper wire (see right half of the breadboard)</li>
+</ol>
+
+<h3 id="connections-on-the-chassis">Connections on the chassis</h3>
+
+<ul>
+  <li>The two IR Sensors can be mounted on the chassis by screwing them on the lower side of the base such that the two LEDs face vertically downwards (you can bend the LEDs gently to achieve this).</li>
+  <li>The wires can be brought to the top by pushing them through the holes.</li>
+  <li>The same connections, as above, can then be made.</li>
+</ul>
+
+<p>It should look something like this.</p>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/IR_chassis.png" alt="IR" width="auto" height="auto" /></p>
+
+<h2 id="circuit-connections-for-l293d">Circuit connections for L293D</h2>
+
+<p>The Motor Driver included in the kit is a mini shield, with the following pinout</p>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/L293D_pinout.png" alt="L293D" width="auto" height="auto" /></p>
+
+<p>In the demonstration, we shall be connecting</p>
+
+<ul>
+  <li>The right motor to pins M1, M2 of the motor driver</li>
+  <li>The left motor to pins M3, M4 of the motor driver</li>
+  <li>A 9V power supply using 4 AA cells to the 12V pin and GND pin of the motor driver</li>
+  <li>The 5V pin on the motor driver to the 5V pin on the Arduino Uno board</li>
+  <li>The other GND pin on the motor driver to a GND pin on the Arduino Uno board</li>
+  <li>Input pin I2 on the motor driver to digital pin 9 on the Uno (right motor)</li>
+  <li>Input pin I4 on the motor driver to digital pin 10 on the Uno (left motor)</li>
+</ul>
+
+<p>The images attached below show all the necessary connections to be made on the chassis,</p>
+
+<p><em>Top view</em></p>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/L293D_top.png" alt="L293D" width="auto" height="auto" /></p>
+
+<p><em>Right side view</em></p>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/L293D_right.png" alt="L293D" width="auto" height="auto" /></p>
+
+<p><em>Left side view</em></p>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/L293D_left.png" alt="L293D" width="auto" height="auto" /></p>
+
+<h3 id="explanation-1">Explanation</h3>
+
+<p>Right motor:</p>
+
+<ol>
+  <li>The bottom pin of the motor is connected to M1 pin on the L293D motor driver using a Red wire.</li>
+  <li>The upper pin of the motor is connected to M2 pin on the L293D motor driver using a Black wire.</li>
+</ol>
+
+<p>Left motor:</p>
+
+<ol>
+  <li>The bottom pin of the motor is connected to M3 pin on the L293D motor driver using a Red wire.</li>
+  <li>The upper pin of the motor is connected to M4 pin on the L293D motor driver using a Black wire.</li>
+</ol>
+
+<p>Power connections:</p>
+
+<ol>
+  <li>The 12V and GND pins on the L293D motor driver are connected to a power supply through a switch using Blue wires.</li>
+  <li>The 5V pin on the L293D is connected to the 5V pin on the Arduino Uno through the breadboard using Red jumper wire.</li>
+  <li>The GND pin on the L293D is connected to the GND pin on the Arduino Uno through the breadboard using Black jumper wire.</li>
+</ol>
+
+<p>Input pins:</p>
+
+<ol>
+  <li>Input pin I2 on the L293D motor driver is connected to digital pin 9 on the Arduino Uno using Green jumper wire.</li>
+  <li>Input pin I4 on the L293D motor driver is connected to digital pin 10 on the Arduino Uno using Yellow jumper wire.</li>
+</ol>
+
+<p><strong>NOTE</strong> - The connections between the two IR sensors, the Arduino Uno and the breadboard have been removed to avoid confusion. You may keep the connections shown previously as it is.</p>
+
+<h2 id="schematics">Schematics</h2>
+
+<p>Here is an image of the entire schematic, showing all the necessary connections between the electronic components involved in making the bot.</p>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/schematic.png" alt="Schematic" width="auto" height="auto" /></p>
+
+<p>The finished bot should look something like this!
+<em>Attach image of the finished bot with all connections (including battery)</em></p>
+
+<h1 id="logic">Logic</h1>
+
+<p>The Line follower, as the name suggests, is a robot that can detect and follow a line drawn on the ground, which is usually a predefined path and is visible as a high contrast black line. The working of the line follower is pretty simple and can be easily understood.</p>
+
+<ul>
+  <li>The two IR Sensors used in the bot, essentially act as “eyes” that help the robot sense the black line.</li>
+  <li>The left IR sensor or “the left eye” and the right IR sensor or “the right eye” send <em>digital signals</em> to the Arduino. </li>
+  <li>The bot is steered based on these signals coming from the two eyes which drives the two BO motors mounted in fixed positions on the left and right side of the robot chassis using a motor driver.</li>
+</ul>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/connection.png" alt="Logic" width="auto" height="auto" /></p>
+
+<h2 id="steering">Steering</h2>
+
+<ul>
+  <li>When both the eyes sense white, the robot moves forward. See fig.(a)</li>
+  <li>If the left eye senses a black line, then the robot is turned to the left until both eyes point at the white surface. See fig.(b)</li>
+  <li>If the right eye senses a black line, then the robot is turned to the right until both eyes point at the white surface. See fig.(c)</li>
+  <li>The robot stops if both eyes sense a black line. See fig.(d)</li>
+</ul>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/steering.png" alt="Steering" width="auto" height="auto" /></p>
+
+<h3 id="how-to-make-the-robot-turn">How to make the robot turn?</h3>
+
+<p>The robot is arched to the left or to the right whenever the eyes sense a black line by varying the rotation speeds of the motors.</p>
+
+<ul>
+  <li>By slowing the rotation speed of the right motor or by stopping it without changing the speed of the left motor, the robot can be turned to the right.</li>
+  <li>By slowing the rotation speed of the left motor or by stopping it without changing the speed of the right motor, the robot can be turned to the left.</li>
+  <li>The robot will move in a straight line of both motors rotate at the same speed.</li>
+</ul>
+
+<p><img src="/site/assets/images/resources/Day3_Session2/turning.png" alt="Turning" width="auto" height="auto" /></p>
+
+<h1 id="program-your-bot">Program your Bot</h1>
+
+<p>Before we show you the code, we’d encourage you to program the bot yourself. The code is pretty simple and all the necessary concepts have been taught to you in the previous sessions.</p>
+
+<h2 id="suggestions">Suggestions:</h2>
+
+<ul>
+  <li>It’s just a matter of writing the correct if statements, since you now know the logic behind how your Line-follower should work.</li>
+  <li>Know that you have complete control of the Arduino Uno board.</li>
+  <li>Test your code without the wheels attached. Otherwise, it is disappointing to see your bot run away from you while you’re working on it.</li>
+</ul>
+
+<p>Nevertheless, here’s the code!</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre></td><td class="rouge-code"><pre><span class="kt">int</span> <span class="n">motorRight</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span> <span class="c1">// Right motor connected to PWM pin 9</span>
+<span class="kt">int</span> <span class="n">motorLeft</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// Left motor connected to PWM pin 10</span>
+
+<span class="kt">int</span> <span class="n">rightEye</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// Right IR sensor connected to digital pin 5</span>
+<span class="kt">int</span> <span class="n">leftEye</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// Left IR sensor connected to digital pin 6</span>
+
+<span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Initialize variable 'left'</span>
+<span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Initialize variable 'right'</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">motorRight</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span> <span class="c1">// setting the PWM pin 9 as output</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">motorLeft</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span> <span class="c1">// setting the PWM pin 10 as output</span>
+
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">rightEye</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span> <span class="c1">// setting the digital pin 5 as input</span>
+	<span class="n">pinMode</span><span class="p">(</span><span class="n">leftEye</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span> <span class="c1">// setting the digital pin 6 as input</span>
+
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">rightEye</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span> <span class="c1">// sets the right IR sensor to low (or 0)</span>
+	<span class="n">digitalWrite</span><span class="p">(</span><span class="n">leftEye</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span> <span class="c1">// sets the left IR sensor to low (or 0)</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorRight</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span> <span class="c1">// sets right motor to analog value 255 (max rpm)</span>
+  <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorLeft</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span> <span class="c1">// sets left motor to analog value 255 (max rpm)</span>
+
+  <span class="n">right</span> <span class="o">=</span> <span class="n">digitalRead</span><span class="p">(</span><span class="n">rightEye</span><span class="p">);</span> <span class="c1">// reads value from right IR sensor and assigns it to the variable 'right'</span>
+	<span class="n">left</span> <span class="o">=</span> <span class="n">digitalRead</span><span class="p">(</span><span class="n">leftEye</span><span class="p">);</span> <span class="c1">// reads value from left IR sensor and assigns it to the variable 'left'</span>
+	
+
+  <span class="k">if</span><span class="p">(</span><span class="n">right</span><span class="o">==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">left</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// When right PIR sensor detects the black line, right motor is stopped while left motor continues to rotate. </span>
+      <span class="c1">// This produces a turning effect and the bot turns to the right.</span>
+  <span class="p">{</span>    
+    <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorRight</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// right motor set to 0 (min rpm)</span>
+    <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorLeft</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span> <span class="c1">// left motor set to 255 (max rpm)</span>
+  <span class="p">}</span>
+	
+	
+	<span class="k">if</span><span class="p">(</span><span class="n">left</span><span class="o">==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">right</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">// When left PIR sensor detects the black line, left motor is stopped while right motor continues to rotate. </span>
+      <span class="c1">// This produces a turning effect and the bot turns to the left.</span>
+  <span class="p">{</span>
+      <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorLeft</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// left motor set to 0 (min rpm)</span>
+      <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorRight</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span> <span class="c1">// right motor set to 255 (max rpm)</span>
+  <span class="p">}</span>
+
+
+  <span class="k">if</span><span class="p">(</span><span class="n">left</span><span class="o">==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">right</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// When both PIR sensors detect the black line, both motors are stopped due to which the bot comes to rest.</span>
+  <span class="p">{</span>
+    <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorRight</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// right motor set to 0 (min rpm)</span>
+    <span class="n">analogWrite</span><span class="p">(</span><span class="n">motorLeft</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// left motor set to 0 (min rpm)</span>
+  <span class="p">}</span>
+    
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>NOTE</strong> - The below code is written with reference to the frame of the bot. This means that ‘left PIR sensor’ refers to the sensor that is to the left of the bot when both IR sensors are facing away from you, and vice-versa.
+So BLACK = 1 and WHITE = 0.</p>
+
+<p>Now upload the code, draw a circle using black insulation tape, power up the bot and get it running!</p>
+
+<p>Did it work?</p>
+
+<ul>
+  <li>If yes, then GG!</li>
+  <li>If not, then review your code and check for any loose connections. 
+ Where there is a line, there is a way! So hope for it to work the next time :)</li>
+</ul>
+
+<hr />
+</div><section class="article__sharing d-print-none"><!-- Addthis BEGIN --><script type="text/javascript"
+    src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60e523a6b5396709"></script>
+  <div class="addthis_inline_share_toolbox addthis_default_style"></div><!-- Addthis END -->
+</section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2021-07-06T00:00:00+05:30"><!-- start custom article footer snippet -->
+
+<!-- end custom article footer snippet -->
+<div itemscope itemtype="http://schema.org/Person" class="author-profile card card--flat item"><a href="https://textzip.github.io" class="item__image"><img class="author-profile__avatar" itemprop="image" src="https://avatars.githubusercontent.com/u/49020643?s=400&u=2aad25de82739f9c1de19136233281ff04aa3346&v=4" /></a><div class="item__content"><meta itemprop="name" content="Jai Krishna">
+        <p class="author-profile__name"><meta itemprop="url" content="https://textzip.github.io">
+            <a href="https://textzip.github.io">Jai Krishna</a></p><p itemprop="description">2018B5A20744H</p><div class="author-profile__links"><div class="author-links">
+  <ul class="menu menu--nowrap menu--inline"><link itemprop="url" href="https://textzip.github.io"><li title="Send me an Email.">
+      <a class="button button--circle mail-button" itemprop="email" href="mailto:textzip@gmail.com" target="_blank">
+        <i class="fas fa-envelope"></i>
+      </a><li title="Follow me on Facebook.">
+        <a class="button button--circle facebook-button" itemprop="sameAs" href="https://www.facebook.com/jai.krishna.7982" target="_blank">
+          <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M767.428571 6.857143l0 150.857143-89.714286 0q-49.142857 0-66.285714 20.571429t-17.142857 61.714286l0 108 167.428571 0-22.285714 169.142857-145.142857 0 0 433.714286-174.857143 0 0-433.714286-145.714286 0 0-169.142857 145.714286 0 0-124.571429q0-106.285714 59.428571-164.857143t158.285714-58.571429q84 0 130.285714 6.857143z" />
+</svg>
+</div>
+        </a>
+      </li><li title="Follow me on Linkedin.">
+        <a class="button button--circle linkedin-button" itemprop="sameAs" href="https://www.linkedin.com/in/jai-krishna-9b0663170" target="_blank">
+          <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M260.096 155.648c0 27.307008-9.899008 50.516992-29.696 69.632-19.796992 19.115008-45.396992 28.672-76.8 28.672-30.036992 0-54.612992-9.556992-73.728-28.672-19.115008-19.115008-28.672-42.324992-28.672-69.632 0-28.672 9.556992-52.224 28.672-70.656 19.115008-18.432 44.372992-27.648 75.776-27.648 31.403008 0 56.32 9.216 74.752 27.648 18.432 18.432 28.331008 41.984 29.696 70.656 0 0 0 0 0 0m-202.752 808.96c0 0 0-632.832 0-632.832 0 0 196.608 0 196.608 0 0 0 0 632.832 0 632.832 0 0-196.608 0-196.608 0 0 0 0 0 0 0m313.344-430.08c0-58.708992-1.364992-126.292992-4.096-202.752 0 0 169.984 0 169.984 0 0 0 10.24 88.064 10.24 88.064 0 0 4.096 0 4.096 0 40.96-68.267008 105.812992-102.4 194.56-102.4 68.267008 0 123.220992 22.868992 164.864 68.608 41.643008 45.739008 62.464 113.664 62.464 203.776 0 0 0 374.784 0 374.784 0 0-196.608 0-196.608 0 0 0 0-350.208 0-350.208 0-91.476992-33.451008-137.216-100.352-137.216-47.787008 0-81.236992 24.576-100.352 73.728-4.096 8.192-6.144 24.576-6.144 49.152 0 0 0 364.544 0 364.544 0 0-198.656 0-198.656 0 0 0 0-430.08 0-430.08 0 0 0 0 0 0" />
+</svg>
+</div>
+        </a>
+      </li><li title="Follow me on Github.">
+        <a class="button button--circle github-button" itemprop="sameAs" href="https://github.com/textzip" target="_blank">
+          <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path class="svgpath" data-index="path_0" fill="#272636" d="M0 525.2c0 223.6 143.3 413.7 343 483.5 26.9 6.8 22.8-12.4 22.8-25.4l0-88.7c-155.3 18.2-161.5-84.6-172-101.7-21.1-36-70.8-45.2-56-62.3 35.4-18.2 71.4 4.6 113.1 66.3 30.2 44.7 89.1 37.2 119 29.7 6.5-26.9 20.5-50.9 39.7-69.6C248.8 728.2 181.7 630 181.7 513.2c0-56.6 18.7-108.7 55.3-150.7-23.3-69.3 2.2-128.5 5.6-137.3 66.5-6 135.5 47.6 140.9 51.8 37.8-10.2 80.9-15.6 129.1-15.6 48.5 0 91.8 5.6 129.8 15.9 12.9-9.8 77-55.8 138.8-50.2 3.3 8.8 28.2 66.7 6.3 135 37.1 42.1 56 94.6 56 151.4 0 117-67.5 215.3-228.8 243.7 26.9 26.6 43.6 63.4 43.6 104.2l0 128.8c0.9 10.3 0 20.5 17.2 20.5C878.1 942.4 1024 750.9 1024 525.3c0-282.9-229.3-512-512-512C229.1 13.2 0 242.3 0 525.2L0 525.2z" />
+</svg>
+</div>
+        </a>
+      </li></ul>
+</div>
+</div>
+
+    </div>
+</div>
+<div class="article__license"><div class="license">
+    <p>This work is licensed under a <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> license.
+      <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
+        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+      </a>
+    </p>
+  </div></div></footer>
+<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/site/resources/2021-07-06-Day3-1.html">Electronics</a></div></div></div>
+
+</div>
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
+
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
+</script>
+
+<h4>Related Posts</h4>
+<!--Projects Related Posts-->
+
+
+<!-- Resources Related Posts
+
+<div class="row">
+<div class="relatedPosts">
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="column">
+      <div>
+      <h5><a href="/site/resources/2021-07-06-Day0-1.html">
+        <div class="card">
+            <div class="card__image">
+              <img class="image" src="/site/assets/images/resources/thumbnails/Workshop Day 0 Session 1."/>
+            </div>
+            <div class="card__content">
+              <div class="card__header">
+                <h4>Workshop Day 0 Session 1</h4>
+              </div>
+              <p>TeXt</p>
+            </div>
+          </div>
+      </a>
+      </h5>
+      </div>
+    </div>
+      
+      
+    
+ 
+    
+    
+    
+    
+    <div class="column">
+      <div>
+      <h5><a href="/site/resources/2021-07-06-Day0-2.html">
+        <div class="card">
+            <div class="card__image">
+              <img class="image" src="/site/assets/images/resources/thumbnails/Workshop Day 0 Session 2."/>
+            </div>
+            <div class="card__content">
+              <div class="card__header">
+                <h4>Workshop Day 0 Session 2</h4>
+              </div>
+              <p>TeXt</p>
+            </div>
+          </div>
+      </a>
+      </h5>
+      </div>
+    </div>
+      
+      
+    
+ 
+    
+    
+    
+    
+    <div class="column">
+      <div>
+      <h5><a href="/site/resources/2021-07-06-Day1-1.html">
+        <div class="card">
+            <div class="card__image">
+              <img class="image" src="/site/assets/images/resources/thumbnails/Workshop Day 1 Session 1."/>
+            </div>
+            <div class="card__content">
+              <div class="card__header">
+                <h4>Workshop Day 1 Session 1</h4>
+              </div>
+              <p>TeXt</p>
+            </div>
+          </div>
+      </a>
+      </h5>
+      </div>
+    </div>
+      
+      
+    
+ 
+    
+    
+    
+    
+    <div class="column">
+      <div>
+      <h5><a href="/site/resources/2021-07-06-Day1-2.html">
+        <div class="card">
+            <div class="card__image">
+              <img class="image" src="/site/assets/images/resources/thumbnails/Workshop Day 1 Session 2."/>
+            </div>
+            <div class="card__content">
+              <div class="card__header">
+                <h4>Workshop Day 1 Session 2</h4>
+              </div>
+              <p>TeXt</p>
+            </div>
+          </div>
+      </a>
+      </h5>
+      </div>
+    </div>
+      
+      
+        
+</div>
+</div>
+ -->
+
+<!--Blog Related Posts-->
+
+
+
+<style>
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #121212;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+</style>
+
+<script src="https://utteranc.es/client.js"
+        repo="arc-bphc/arc-bphc.github.io"
+        issue-term="title"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+</div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
+
+<!-- end custom main bottom snippet -->
+</div>
+            </div></div></div><div class="page__footer d-print-none">
+<footer class="footer py-4 js-page-footer">
+  <div class="main"><div itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Automation  & Robotics Club"><meta itemprop="url" content="https://arc-bphc.github.io"><meta itemprop="description" content="I am an amazing person."><div class="footer__author-links"><div class="author-links">
+  <ul class="menu menu--nowrap menu--inline"><link itemprop="url" href="https://arc-bphc.github.io"><li title="Send me an Email.">
+      <a class="button button--circle mail-button" itemprop="email" href="mailto:arc@hyderabad.bits-pilani.ac.in" target="_blank">
+        <i class="fas fa-envelope"></i>
+      </a><li title="Follow me on Facebook.">
+        <a class="button button--circle facebook-button" itemprop="sameAs" href="https://www.facebook.com/automationandroboticsclub" target="_blank">
+          <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M767.428571 6.857143l0 150.857143-89.714286 0q-49.142857 0-66.285714 20.571429t-17.142857 61.714286l0 108 167.428571 0-22.285714 169.142857-145.142857 0 0 433.714286-174.857143 0 0-433.714286-145.714286 0 0-169.142857 145.714286 0 0-124.571429q0-106.285714 59.428571-164.857143t158.285714-58.571429q84 0 130.285714 6.857143z" />
+</svg>
+</div>
+        </a>
+      </li><li title="Follow me on Github.">
+        <a class="button button--circle github-button" itemprop="sameAs" href="https://github.com/arc-bphc" target="_blank">
+          <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path class="svgpath" data-index="path_0" fill="#272636" d="M0 525.2c0 223.6 143.3 413.7 343 483.5 26.9 6.8 22.8-12.4 22.8-25.4l0-88.7c-155.3 18.2-161.5-84.6-172-101.7-21.1-36-70.8-45.2-56-62.3 35.4-18.2 71.4 4.6 113.1 66.3 30.2 44.7 89.1 37.2 119 29.7 6.5-26.9 20.5-50.9 39.7-69.6C248.8 728.2 181.7 630 181.7 513.2c0-56.6 18.7-108.7 55.3-150.7-23.3-69.3 2.2-128.5 5.6-137.3 66.5-6 135.5 47.6 140.9 51.8 37.8-10.2 80.9-15.6 129.1-15.6 48.5 0 91.8 5.6 129.8 15.9 12.9-9.8 77-55.8 138.8-50.2 3.3 8.8 28.2 66.7 6.3 135 37.1 42.1 56 94.6 56 151.4 0 117-67.5 215.3-228.8 243.7 26.9 26.6 43.6 63.4 43.6 104.2l0 128.8c0.9 10.3 0 20.5 17.2 20.5C878.1 942.4 1024 750.9 1024 525.3c0-282.9-229.3-512-512-512C229.1 13.2 0 242.3 0 525.2L0 525.2z" />
+</svg>
+</div>
+        </a>
+      </li></ul>
+</div>
+</div>
+    </div><div class="site-info mt-2">
+      <div>© Automation & Robotics Club 2021,
+        Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
+        title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
+      </div>
+    </div>
+  </div>
+</footer>
+</div></div>
+    </div></div></div><script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $body = $('body'), $window = $(window);
+    var $pageRoot = $('.js-page-root'), $pageMain = $('.js-page-main');
+    var activeCount = 0;
+    function modal(options) {
+      var $root = this, visible, onChange, hideWhenWindowScroll = false;
+      var scrollTop;
+      function setOptions(options) {
+        var _options = options || {};
+        visible = _options.initialVisible === undefined ? false : show;
+        onChange = _options.onChange;
+        hideWhenWindowScroll = _options.hideWhenWindowScroll;
+      }
+      function init() {
+        setState(visible);
+      }
+      function setState(isShow) {
+        if (isShow === visible) {
+          return;
+        }
+        visible = isShow;
+        if (visible) {
+          activeCount++;
+          scrollTop = $(window).scrollTop() || $pageMain.scrollTop();
+          $root.addClass('modal--show');
+          $pageMain.scrollTop(scrollTop);
+          activeCount === 1 && ($pageRoot.addClass('show-modal'), $body.addClass('of-hidden'));
+          hideWhenWindowScroll && window.hasEvent('touchstart') && $window.on('scroll', hide);
+          $window.on('keyup', handleKeyup);
+        } else {
+          activeCount > 0 && activeCount--;
+          $root.removeClass('modal--show');
+          $window.scrollTop(scrollTop);
+          activeCount === 0 && ($pageRoot.removeClass('show-modal'), $body.removeClass('of-hidden'));
+          hideWhenWindowScroll && window.hasEvent('touchstart') && $window.off('scroll', hide);
+          $window.off('keyup', handleKeyup);
+        }
+        onChange && onChange(visible);
+      }
+      function show() {
+        setState(true);
+      }
+      function hide() {
+        setState(false);
+      }
+      function handleKeyup(e) {
+        // Char Code: 27  ESC
+        if (e.which ===  27) {
+          hide();
+        }
+      }
+      setOptions(options);
+      init();
+      return {
+        show: show,
+        hide: hide,
+        $el: $root
+      };
+    }
+    $.fn.modal = modal;
+  });
+})();
+</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal"><script>
+(function () {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    // search panel
+    var search = (window.search || (window.search = {}));
+    var useDefaultSearchBox = window.useDefaultSearchBox === undefined ?
+      true : window.useDefaultSearchBox ;
+
+    var $searchModal = $('.js-page-search-modal');
+    var $searchToggle = $('.js-search-toggle');
+    var searchModal = $searchModal.modal({ onChange: handleModalChange, hideWhenWindowScroll: true });
+    var modalVisible = false;
+    search.searchModal = searchModal;
+
+    var $searchBox = null;
+    var $searchInput = null;
+    var $searchClear = null;
+
+    function getModalVisible() {
+      return modalVisible;
+    }
+    search.getModalVisible = getModalVisible;
+
+    function handleModalChange(visible) {
+      modalVisible = visible;
+      if (visible) {
+        search.onShow && search.onShow();
+        useDefaultSearchBox && $searchInput[0] && $searchInput[0].focus();
+      } else {
+        search.onShow && search.onHide();
+        useDefaultSearchBox && $searchInput[0] && $searchInput[0].blur();
+        setTimeout(function() {
+          useDefaultSearchBox && ($searchInput.val(''), $searchBox.removeClass('not-empty'));
+          search.clear && search.clear();
+          window.pageAsideAffix && window.pageAsideAffix.refresh();
+        }, 400);
+      }
+    }
+
+    $searchToggle.on('click', function() {
+      modalVisible ? searchModal.hide() : searchModal.show();
+    });
+    // Char Code: 83  S, 191 /
+    $(window).on('keyup', function(e) {
+      if (!modalVisible && !window.isFormElement(e.target || e.srcElement) && (e.which === 83 || e.which === 191)) {
+        modalVisible || searchModal.show();
+      }
+    });
+
+    if (useDefaultSearchBox) {
+      $searchBox = $('.js-search-box');
+      $searchInput = $searchBox.children('input');
+      $searchClear = $searchBox.children('.js-icon-clear');
+      search.getSearchInput = function() {
+        return $searchInput.get(0);
+      };
+      search.getVal = function() {
+        return $searchInput.val();
+      };
+      search.setVal = function(val) {
+        $searchInput.val(val);
+      };
+
+      $searchInput.on('focus', function() {
+        $(this).addClass('focus');
+      });
+      $searchInput.on('blur', function() {
+        $(this).removeClass('focus');
+      });
+      $searchInput.on('input', window.throttle(function() {
+        var val = $(this).val();
+        if (val === '' || typeof val !== 'string') {
+          search.clear && search.clear();
+        } else {
+          $searchBox.addClass('not-empty');
+          search.onInputNotEmpty && search.onInputNotEmpty(val);
+        }
+      }, 400));
+      $searchClear.on('click', function() {
+        $searchInput.val(''); $searchBox.removeClass('not-empty');
+        search.clear && search.clear();
+      });
+    }
+  });
+})();
+</script><div class="search search--dark">
+  <div class="main">
+    <div class="search__header">Search</div>
+    <div class="search-bar">
+      <div class="search-box js-search-box">
+        <div class="search-box__icon-search"><i class="fas fa-search"></i></div>
+        <input type="text" />
+        <div class="search-box__icon-clear js-icon-clear">
+          <a><i class="fas fa-times"></i></a>
+        </div>
+      </div>
+      <button class="button button--theme-dark button--pill search__cancel js-search-toggle">
+        Cancel</button>
+    </div>
+    <div class="search-result js-search-result"></div>
+  </div>
+</div>
+<script>var SOURCES = window.TEXT_VARIABLES.sources;
+var PAHTS = window.TEXT_VARIABLES.paths;
+window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
+  var search = (window.search || (window.search = {}));
+  var searchData = window.TEXT_SEARCH_DATA || {};
+
+  function memorize(f) {
+    var cache = {};
+    return function () {
+      var key = Array.prototype.join.call(arguments, ',');
+      if (key in cache) return cache[key];
+      else return cache[key] = f.apply(this, arguments);
+    };
+  }
+
+  /// search
+  function searchByQuery(query) {
+    var i, j, key, keys, cur, _title, result = {};
+    keys = Object.keys(searchData);
+    for (i = 0; i < keys.length; i++) {
+      key = keys[i];
+      for (j = 0; j < searchData[key].length; j++) {
+        cur = searchData[key][j], _title = cur.title;
+        if ((result[key] === undefined || result[key] && result[key].length < 4 )
+          && _title.toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+          if (result[key] === undefined) {
+            result[key] = [];
+          }
+          result[key].push(cur);
+        }
+      }
+    }
+    return result;
+  }
+
+  var renderHeader = memorize(function(header) {
+    return $('<p class="search-result__header">' + header + '</p>');
+  });
+
+  var renderItem = function(index, title, url) {
+    return $('<li class="search-result__item" data-index="' + index + '"><a class="button" href="' + url + '">' + title + '</a></li>');
+  };
+
+  function render(data) {
+    if (!data) { return null; }
+    var $root = $('<ul></ul>'), i, j, key, keys, cur, itemIndex = 0;
+    keys = Object.keys(data);
+    for (i = 0; i < keys.length; i++) {
+      key = keys[i];
+      $root.append(renderHeader(key));
+      for (j = 0; j < data[key].length; j++) {
+        cur = data[key][j];
+        $root.append(renderItem(itemIndex++, cur.title, cur.url));
+      }
+    }
+    return $root;
+  }
+
+  // search box
+  var $result = $('.js-search-result'), $resultItems;
+  var lastActiveIndex, activeIndex;
+
+  function clear() {
+    $result.html(null);
+    $resultItems = $('.search-result__item'); activeIndex = 0;
+  }
+  function onInputNotEmpty(val) {
+    $result.html(render(searchByQuery(val)));
+    $resultItems = $('.search-result__item'); activeIndex = 0;
+    $resultItems.eq(0).addClass('active');
+  }
+
+  search.clear = clear;
+  search.onInputNotEmpty = onInputNotEmpty;
+
+  function updateResultItems() {
+    lastActiveIndex >= 0 && $resultItems.eq(lastActiveIndex).removeClass('active');
+    activeIndex >= 0 && $resultItems.eq(activeIndex).addClass('active');
+  }
+
+  function moveActiveIndex(direction) {
+    var itemsCount = $resultItems ? $resultItems.length : 0;
+    if (itemsCount > 1) {
+      lastActiveIndex = activeIndex;
+      if (direction === 'up') {
+        activeIndex = (activeIndex - 1 + itemsCount) % itemsCount;
+      } else if (direction === 'down') {
+        activeIndex = (activeIndex + 1 + itemsCount) % itemsCount;
+      }
+      updateResultItems();
+    }
+  }
+
+  // Char Code: 13  Enter, 37  ⬅, 38  ⬆, 39  ➡, 40  ⬇
+  $(window).on('keyup', function(e) {
+    var modalVisible = search.getModalVisible && search.getModalVisible();
+    if (modalVisible) {
+      if (e.which === 38) {
+        modalVisible && moveActiveIndex('up');
+      } else if (e.which === 40) {
+        modalVisible && moveActiveIndex('down');
+      } else if (e.which === 13) {
+        modalVisible && $resultItems && activeIndex >= 0 && $resultItems.eq(activeIndex).children('a')[0].click();
+      }
+    }
+  });
+
+  $result.on('mouseover', '.search-result__item > a', function() {
+    var itemIndex = $(this).parent().data('index');
+    itemIndex >= 0 && (lastActiveIndex = activeIndex, activeIndex = itemIndex, updateResultItems());
+  });
+});
+</script>
+</div></div>
+
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function scrollToAnchor(anchor, duration, callback) {
+      var $root = this;
+      $root.animate({ scrollTop: $(anchor).position().top }, duration, function() {
+        window.history.replaceState(null, '', window.location.href.split('#')[0] + anchor);
+        callback && callback();
+      });
+    }
+    $.fn.scrollToAnchor = scrollToAnchor;
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function affix(options) {
+      var $root = this, $window = $(window), $scrollTarget, $scroll,
+        offsetBottom = 0, scrollTarget = window, scroll = window.document, disabled = false, isOverallScroller = true,
+        rootTop, rootLeft, rootHeight, scrollBottom, rootBottomTop,
+        hasInit = false, curState;
+
+      function setOptions(options) {
+        var _options = options || {};
+        _options.offsetBottom && (offsetBottom = _options.offsetBottom);
+        _options.scrollTarget && (scrollTarget = _options.scrollTarget);
+        _options.scroll && (scroll = _options.scroll);
+        _options.disabled !== undefined && (disabled = _options.disabled);
+        $scrollTarget = $(scrollTarget);
+        isOverallScroller = window.isOverallScroller($scrollTarget[0]);
+        $scroll = $(scroll);
+      }
+      function preCalc() {
+        top();
+        rootHeight = $root.outerHeight();
+        rootTop = $root.offset().top + (isOverallScroller ? 0 :  $scrollTarget.scrollTop());
+        rootLeft = $root.offset().left;
+      }
+      function calc(needPreCalc) {
+        needPreCalc && preCalc();
+        scrollBottom = $scroll.outerHeight() - offsetBottom - rootHeight;
+        rootBottomTop = scrollBottom - rootTop;
+      }
+      function top() {
+        if (curState !== 'top') {
+          $root.removeClass('fixed').css({
+            left: 0,
+            top: 0
+          });
+          curState = 'top';
+        }
+      }
+      function fixed() {
+        if (curState !== 'fixed') {
+          $root.addClass('fixed').css({
+            left: rootLeft + 'px',
+            top: 0
+          });
+          curState = 'fixed';
+        }
+      }
+      function bottom() {
+        if (curState !== 'bottom') {
+          $root.removeClass('fixed').css({
+            left: 0,
+            top: rootBottomTop + 'px'
+          });
+          curState = 'bottom';
+        }
+      }
+      function setState() {
+        var scrollTop = $scrollTarget.scrollTop();
+        if (scrollTop >= rootTop && scrollTop <= scrollBottom) {
+          fixed();
+        } else if (scrollTop < rootTop) {
+          top();
+        } else {
+          bottom();
+        }
+      }
+      function init() {
+        if(!hasInit) {
+          var interval, timeout;
+          calc(true); setState();
+          // run calc every 100 millisecond
+          interval = setInterval(function() {
+            calc();
+          }, 100);
+          timeout = setTimeout(function() {
+            clearInterval(interval);
+          }, 45000);
+          window.pageLoad.then(function() {
+            setTimeout(function() {
+              clearInterval(interval);
+              clearTimeout(timeout);
+            }, 3000);
+          });
+          $scrollTarget.on('scroll', function() {
+            disabled || setState();
+          });
+          $window.on('resize', function() {
+            disabled || (calc(true), setState());
+          });
+          hasInit = true;
+        }
+      }
+
+      setOptions(options);
+      if (!disabled) {
+        init();
+      }
+      $window.on('resize', window.throttle(function() {
+        init();
+      }, 200));
+      return {
+        setOptions: setOptions,
+        refresh: function() {
+          calc(true, { animation: false }); setState();
+        }
+      };
+    }
+    $.fn.affix = affix;
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function toc(options) {
+      var $root = this, $window = $(window), $scrollTarget, $scroller, $tocUl = $('<ul class="toc toc--ellipsis"></ul>'), $tocLi, $headings, $activeLast, $activeCur,
+        selectors = 'h1,h2,h3', container = 'body', scrollTarget = window, scroller = 'html, body', disabled = false,
+        headingsPos, scrolling = false, hasRendered = false, hasInit = false;
+
+      function setOptions(options) {
+        var _options = options || {};
+        _options.selectors && (selectors = _options.selectors);
+        _options.container && (container = _options.container);
+        _options.scrollTarget && (scrollTarget = _options.scrollTarget);
+        _options.scroller && (scroller = _options.scroller);
+        _options.disabled !== undefined && (disabled = _options.disabled);
+        $headings = $(container).find(selectors).filter('[id]');
+        $scrollTarget = $(scrollTarget);
+        $scroller = $(scroller);
+      }
+      function calc() {
+        headingsPos = [];
+        $headings.each(function() {
+          headingsPos.push(Math.floor($(this).position().top));
+        });
+      }
+      function setState(element, disabled) {
+        var scrollTop = $scrollTarget.scrollTop(), i;
+        if (disabled || !headingsPos || headingsPos.length < 1) { return; }
+        if (element) {
+          $activeCur = element;
+        } else {
+          for (i = 0; i < headingsPos.length; i++) {
+            if (scrollTop >= headingsPos[i]) {
+              $activeCur = $tocLi.eq(i);
+            } else {
+              $activeCur || ($activeCur = $tocLi.eq(i));
+              break;
+            }
+          }
+        }
+        $activeLast && $activeLast.removeClass('active');
+        ($activeLast = $activeCur).addClass('active');
+      }
+      function render() {
+        if(!hasRendered) {
+          $root.append($tocUl);
+          $headings.each(function() {
+            var $this = $(this);
+            $tocUl.append($('<li></li>').addClass('toc-' + $this.prop('tagName').toLowerCase())
+              .append($('<a></a>').text($this.text()).attr('href', '#' + $this.prop('id'))));
+          });
+          $tocLi = $tocUl.children('li');
+          $tocUl.on('click', 'a', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            scrolling = true;
+            setState($this.parent());
+            $scroller.scrollToAnchor($this.attr('href'), 400, function() {
+              scrolling = false;
+            });
+          });
+        }
+        hasRendered = true;
+      }
+      function init() {
+        var interval, timeout;
+        if(!hasInit) {
+          render(); calc(); setState(null, scrolling);
+          // run calc every 100 millisecond
+          interval = setInterval(function() {
+            calc();
+          }, 100);
+          timeout = setTimeout(function() {
+            clearInterval(interval);
+          }, 45000);
+          window.pageLoad.then(function() {
+            setTimeout(function() {
+              clearInterval(interval);
+              clearTimeout(timeout);
+            }, 3000);
+          });
+          $scrollTarget.on('scroll', function() {
+            disabled || setState(null, scrolling);
+          });
+          $window.on('resize', window.throttle(function() {
+            if (!disabled) {
+              render(); calc(); setState(null, scrolling);
+            }
+          }, 100));
+        }
+        hasInit = true;
+      }
+
+      setOptions(options);
+      if (!disabled) {
+        init();
+      }
+      $window.on('resize', window.throttle(function() {
+        init();
+      }, 200));
+      return {
+        setOptions: setOptions
+      };
+    }
+    $.fn.toc = toc;
+  });
+})();
+/*(function () {
+
+})();*/
+</script><script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $pageMask = $('.js-page-mask');
+    var $pageRoot = $('.js-page-root');
+    var $sidebarShow = $('.js-sidebar-show');
+    var $sidebarHide = $('.js-sidebar-hide');
+
+    function freeze(e) {
+      if (e.target === $pageMask[0]) {
+        e.preventDefault();
+      }
+    }
+    function stopBodyScrolling(bool) {
+      if (bool === true) {
+        window.addEventListener('touchmove', freeze, { passive: false });
+      } else {
+        window.removeEventListener('touchmove', freeze, { passive: false });
+      }
+    }
+
+    $sidebarShow.on('click', function() {
+      stopBodyScrolling(true); $pageRoot.addClass('show-sidebar');
+    });
+    $sidebarHide.on('click', function() {
+      stopBodyScrolling(false); $pageRoot.removeClass('show-sidebar');
+    });
+  });
+})();
+</script><script>
+  /* toc must before affix, since affix need to konw toc' height. */(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  var TOC_SELECTOR = window.TEXT_VARIABLES.site.toc.selectors;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window);
+    var $articleContent = $('.js-article-content');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var toc;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+    var hasToc = $articleContent.find(TOC_SELECTOR).length > 0;
+
+    function disabled() {
+      return $col2.css('display') === 'none' || !hasToc;
+    }
+
+    tocDisabled = disabled();
+
+    toc = $tocRoot.toc({
+      selectors: TOC_SELECTOR,
+      container: $articleContent,
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      tocDisabled = disabled();
+      toc && toc.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window), $pageFooter = $('.js-page-footer');
+    var $pageAside = $('.js-page-aside');
+    var affix;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+
+    affix = $pageAside.affix({
+      offsetBottom: $pageFooter.outerHeight(),
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      scroll: hasSidebar ? $('.js-page-main').children() : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      affix && affix.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+    window.pageAsideAffix = affix;
+  });
+})();
+</script>
+    </div>
+    <script>(function () {
+  var $root = document.getElementsByClassName('root')[0];
+  if (window.hasEvent('touchstart')) {
+    $root.dataset.isTouch = true;
+    document.addEventListener('touchstart', function(){}, false);
+  }
+})();
+</script>
+  </body>
+</html>
+
+
+
