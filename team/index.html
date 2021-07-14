@@ -1,0 +1,11 @@
+---
+layout: page
+title: Our Team
+show_title: false
+---
+{% assign thepost = site.posts | where:"slug","post_slug" %}
+{% for post in thepost %}
+ {% if post.title =="Our Team" %}
+ {{ post.content }}
+ {%endif%}
+{% endfor %}
