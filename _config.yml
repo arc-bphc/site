@@ -212,6 +212,8 @@ exclude:
   - .jekyll-cache
 
 collections:
+  team:
+    output: true
   projects:
     output: true
   resources:
