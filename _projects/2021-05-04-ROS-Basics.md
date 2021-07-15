@@ -4,11 +4,11 @@ date: 2021-05-04 16:17:25 +/-0530
 tags: [ros,topics,services,actions,packages,launch]     # TAG names should always be lowercase
 layout: article
 sharing: true
-article_header:
-  type: cover
-  image:
-    src: /screenshot.jpg
-cover: assets/images/fish.jpg
+# article_header:
+#   type: cover
+#   image:
+#     src: /screenshot.jpg
+cover: assets/images/resources/rosLarge.jpg
 ---
 Basics of ROS ecosystem have been covered
 <!--more-->
