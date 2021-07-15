@@ -9,13 +9,14 @@
       <div class="header__title">
         <div class="header__brand">
           <div class="header__brand">
-            <img src="{{site.baseurl}}/assets/images/logo/logo.png"/>
             {%- assign _paths_root = site.paths.root | default:
             site.data.variables.default.paths.root -%} {%- include
             snippets/get-nav-url.html path=_paths_root -%} {%- if site.title -%}
             <a
               title="{%- if site.description -%}{{ site.description }}{%- endif -%}"
               href="{{ __return }}">
+              <img src="{{site.baseurl}}/assets/images/logo/logo.png" style="zoom: 83%"/>
+
             </a>
             {%- endif -%}
         </div>
