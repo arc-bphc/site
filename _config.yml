@@ -218,6 +218,8 @@ collections:
     output: true
   resources:
     output: true
+  members:
+    output: true
 
 defaults:
   - scope:
