@@ -85,7 +85,7 @@ toc:
 ## => Markdown Enhancements
 ##############################
 ## Mathjax
-mathjax: # false (default), true
+mathjax: true
 mathjax_autoNumber: # false (default), true
 
 ## Mermaid
@@ -212,6 +212,8 @@ exclude:
   - .jekyll-cache
 
 collections:
+  team:
+    output: true
   projects:
     output: true
   resources:
@@ -262,6 +264,7 @@ defaults:
         toc: true
       show_edit_on_github: true
       show_date: false
+      mathjax: true
       # lightbox: true
 
 

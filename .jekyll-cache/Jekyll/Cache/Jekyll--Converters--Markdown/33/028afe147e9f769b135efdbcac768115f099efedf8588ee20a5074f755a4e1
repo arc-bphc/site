@@ -1,3 +1,0 @@
-I"6<h2 id="aim">Aim</h2>
-<p>The main aim is to count the number of threads using image processing as the camera keeps moving. It is to be noted that the processing of image is done till approximately half of the image actual width since the camera is moving, the number of thread count keeps getting updated.</p>
-:ET
