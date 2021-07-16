@@ -341,20 +341,22 @@ State here all of the packages that will be needed by someone that executes some
 	```
 - **Edit the package.xml**
 Just add these 3 lines to the package.xml file.
-	```
+	```xml
 	<build_depend>message_generation</build_depend> 
 	<build_export_depend>message_runtime</build_export_depend>
 	<exec_depend>message_runtime</exec_depend>
 	```
 - **Compile**
-	```
+	
+	```bash
 	roscd; cd ..
 	catkin_make
 	source devel/setup.bash
 	```
 - **Verification**
-`rossrv show package_name/MyCustomServiceMessage`        
-  ```
+`rossrv show package_name/MyCustomServiceMessage`
+
+  ```bash
   [package_name/MyCustomServiceMessage]:   
   int32 duration
   ---
