@@ -63,6 +63,13 @@
             </div> 
           </div> -->
           <div class="topnav" id="myTopnav">
+            <div class="new_button">
+            {% if site.text_skin2 %}
+            <button type="button" onclick="node1=document.getElementById('theme_source');node2=document.getElementById('theme_source_2');if(node1.getAttribute('rel')=='stylesheet'){node1.setAttribute('rel', 'stylesheet alternate'); node2.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'dark');}else{node2.setAttribute('rel', 'stylesheet alternate'); node1.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'light');} return false;">
+              Flip
+            </button>
+          {% endif %}
+        </div>
             <a href="{{site.baseurl}}/" class="active">Home</a>
             <a href="{{site.baseurl}}/resources">Resources</a>
             <a href="{{site.baseurl}}/blog">Blog</a>
@@ -106,13 +113,13 @@ body {margin:0;font-family:Arial}
 
 .topnav {
   overflow: hidden;
-  background-color: #202020;
+  --background-color: $main-color-3;
 }
 
 .topnav a {
   float: left;
   display: block;
-  color: #202020;
+  --color: $main-color-3;
   text-align: center;
   padding: 3px 5px;
   text-decoration: none;
@@ -120,7 +127,7 @@ body {margin:0;font-family:Arial}
 }
 
 .active {
-  color: #202020;
+  --color: $main-color-3;
 }
 
 .topnav .icon {
@@ -145,7 +152,7 @@ body {margin:0;font-family:Arial}
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #202020;
+  --background-color: $main-color-3!important;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -153,7 +160,8 @@ body {margin:0;font-family:Arial}
 
 .dropdown-content a {
   float: none;
-  color: #202020;
+  --color: $main-color-3;
+  --background-color: $main-color-3;
   padding: 3px px;
   text-decoration: none;
   display: block;
@@ -161,13 +169,13 @@ body {margin:0;font-family:Arial}
 }
 
 .topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #202020;
-  color: #ff9500;
+  --background-color: $main-color-3;
+  --color: $main-color-1;
 }
 
 .dropdown-content a:hover {
-  background-color: #202020;
-  color: black;
+  --background-color: $main-color-3;
+  --color: $main-color-3;
 }
 
 .dropdown:hover .dropdown-content {

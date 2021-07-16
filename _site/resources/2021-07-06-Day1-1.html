@@ -10,7 +10,24 @@
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/site/assets/browserconfig.xml">
 
 <meta name="theme-color" content="#ffffff">
-<!-- end favicons snippet --><link rel="stylesheet" href="/site/assets/css/main.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" ><!-- start custom head snippets -->
+<!-- end favicons snippet --><link rel="stylesheet" href="/site/assets/css/main.css" id="theme_source">
+<link rel="stylesheet alternate" href="/site/assets/css/theme2.css" id="theme_source_2">
+  <script>
+    let theme = sessionStorage.getItem('theme');
+    if(theme === "dark")
+    {
+      sessionStorage.setItem('theme', 'dark');
+      node1 = document.getElementById('theme_source');
+      node2 = document.getElementById('theme_source_2');
+      node1.setAttribute('rel', 'stylesheet alternate'); 
+      node2.setAttribute('rel', 'stylesheet');
+    }
+    else
+    {
+      sessionStorage.setItem('theme', 'light');
+    }
+  </script>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" ><!-- start custom head snippets -->
 
 <!-- end custom head snippets -->
 <!-- Jekyll Ideal Image Slider Include -->
@@ -304,6 +321,13 @@
             </div> 
           </div> -->
           <div class="topnav" id="myTopnav">
+            <div class="new_button">
+            
+            <button type="button" onclick="node1=document.getElementById('theme_source');node2=document.getElementById('theme_source_2');if(node1.getAttribute('rel')=='stylesheet'){node1.setAttribute('rel', 'stylesheet alternate'); node2.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'dark');}else{node2.setAttribute('rel', 'stylesheet alternate'); node1.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'light');} return false;">
+              Flip
+            </button>
+          
+        </div>
             <a href="/site/" class="active">Home</a>
             <a href="/site/resources">Resources</a>
             <a href="/site/blog">Blog</a>
@@ -340,13 +364,13 @@ body {margin:0;font-family:Arial}
 
 .topnav {
   overflow: hidden;
-  background-color: #202020;
+  --background-color: $main-color-3;
 }
 
 .topnav a {
   float: left;
   display: block;
-  color: #202020;
+  --color: $main-color-3;
   text-align: center;
   padding: 3px 5px;
   text-decoration: none;
@@ -354,7 +378,7 @@ body {margin:0;font-family:Arial}
 }
 
 .active {
-  color: #202020;
+  --color: $main-color-3;
 }
 
 .topnav .icon {
@@ -379,7 +403,7 @@ body {margin:0;font-family:Arial}
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #202020;
+  --background-color: $main-color-3!important;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -387,7 +411,8 @@ body {margin:0;font-family:Arial}
 
 .dropdown-content a {
   float: none;
-  color: #202020;
+  --color: $main-color-3;
+  --background-color: $main-color-3;
   padding: 3px px;
   text-decoration: none;
   display: block;
@@ -395,13 +420,13 @@ body {margin:0;font-family:Arial}
 }
 
 .topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #202020;
-  color: #ff9500;
+  --background-color: $main-color-3;
+  --color: $main-color-1;
 }
 
 .dropdown-content a:hover {
-  background-color: #202020;
-  color: black;
+  --background-color: $main-color-3;
+  --color: $main-color-3;
 }
 
 .dropdown:hover .dropdown-content {
@@ -1195,27 +1220,6 @@ For further clarity on PWM check out this [video](https://www.youtube.com/watch?
     
     
     
-    <div class="column">
-      <div>
-      <h5><a href="/site/resources/2021-07-06-Day0-1.html">
-        <div class="card">
-            <div class="card__image">
-              <img class="image" src="/site/assets/images/resources/thumbnails/About the workshop."/>
-            </div>
-            <div class="card__content">
-              <div class="card__header">
-                <h4>About the workshop</h4>
-              </div>
-              <p>TeXt</p>
-            </div>
-          </div>
-      </a>
-      </h5>
-      </div>
-    </div>
-      
-      
-    
  
     
     
@@ -1298,6 +1302,32 @@ For further clarity on PWM check out this [video](https://www.youtube.com/watch?
     </div>
       
       
+    
+ 
+    
+    
+    
+    
+    <div class="column">
+      <div>
+      <h5><a href="/site/resources/2021-07-06-Day2-2.html">
+        <div class="card">
+            <div class="card__image">
+              <img class="image" src="/site/assets/images/resources/thumbnails/Workshop Day 2 Session 2."/>
+            </div>
+            <div class="card__content">
+              <div class="card__header">
+                <h4>Workshop Day 2 Session 2</h4>
+              </div>
+              <p>TeXt</p>
+            </div>
+          </div>
+      </a>
+      </h5>
+      </div>
+    </div>
+      
+      
         
 </div>
 </div>
@@ -1338,7 +1368,7 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   padding: 16px;
   text-align: center;
-  background-color: #121212;
+  --background-color: #$main-color-3;
 }
 
 /* Responsive columns - one column layout (vertical) on small screens */
