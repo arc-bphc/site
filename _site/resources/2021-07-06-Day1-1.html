@@ -1,3 +1,45 @@
+
+<a href="#" class="float" onclick="return themeSwitcherFunction();">
+  <i class="fa fa-moon my-float"></i>
+  </a>
+
+  <script type="text/javascript">
+    function themeSwitcherFunction () {
+      node1=document.getElementById('theme_source');
+      node2=document.getElementById('theme_source_2');
+      if(node1.getAttribute('rel')=='stylesheet')
+      {node1.setAttribute('rel', 'stylesheet alternate'); 
+      node2.setAttribute('rel', 'stylesheet');
+      sessionStorage.setItem('theme', 'dark');}
+      else{node2.setAttribute('rel', 'stylesheet alternate'); 
+      node1.setAttribute('rel', 'stylesheet');
+      sessionStorage.setItem('theme', 'light');} 
+      return false;
+
+        // return true or false, depending on whether you want to allow the `href` property to follow through or not
+    }
+</script>
+
+  <style>
+    *{padding:0;margin:0;}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}
+  </style>
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -276,6 +318,7 @@
 </script>
 </head>
   <body>
+ 
     <div class="root" data-is-touch="false">
       <div class="layout--page layout--page--sidebar clearfix js-page-root">
   <div class="page__mask d-print-none js-page-mask js-sidebar-hide"></div>
@@ -322,11 +365,11 @@
           </div> -->
           <div class="topnav" id="myTopnav">
             <div class="new_button">
-            
+            <!-- 
             <button type="button" onclick="node1=document.getElementById('theme_source');node2=document.getElementById('theme_source_2');if(node1.getAttribute('rel')=='stylesheet'){node1.setAttribute('rel', 'stylesheet alternate'); node2.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'dark');}else{node2.setAttribute('rel', 'stylesheet alternate'); node1.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'light');} return false;">
               Flip
             </button>
-          
+           -->
         </div>
             <a href="/site/" class="active">Home</a>
             <a href="/site/resources">Resources</a>
@@ -336,7 +379,7 @@
               <button class="dropbtn">Others 
                 <i class="fa fa-caret-down"></i>
               </button>
-              <div class="dropdown-content">
+              <div class="dropdown-content" id="so_fucking_unique">
                 <a href="/site/archive">Archive</a>
                 <a href="/site/team/">Our Team</a>
                 <a href="https://arc-bphc.github.io">About</a>
@@ -403,7 +446,7 @@ body {margin:0;font-family:Arial}
 .dropdown-content {
   display: none;
   position: absolute;
-  --background-color: $main-color-3!important;
+  /* background-color: #202020; */
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -464,71 +507,25 @@ body {margin:0;font-family:Arial}
   }
 }
 </style>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-<!-- <style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
 
-.navbar {
-  overflow: hidden;
-  background-color: #202020;
-}
 
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: #202020;
-  text-align: center;
-  padding: 3px 5px;
-  text-decoration: none;
-}
 
-.dropdown {
-  float: left;
-  overflow: hidden;
+<!-- <script>
+  function menueSwitcher(){
+  node1=document.getElementById('theme_source');
+  node2=document.getElementById('theme_source_2');
+  if(node1.getAttribute('rel')=='stylesheet')
+  {document.getElementById("so_fucking_unique").style.backgroundColor = 'Gray';
+  //   node1.setAttribute('rel', 'stylesheet alternate'); 
+  // node2.setAttribute('rel', 'stylesheet');
+  // sessionStorage.setItem('theme', 'dark');
+  }
+  else{document.getElementById("so_fucking_unique").style.backgroundColor = 'Aqua';} 
 }
+  </script> -->
 
-.dropdown .dropbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  padding: 3px 5px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #202020;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #202020;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 3px 5px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #202020;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-</style> --></div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
+</div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
 
               <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
 </aside></div>
@@ -1388,7 +1385,49 @@ body {
         crossorigin="anonymous"
         async>
 </script>
-</div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
+
+
+<a href="#" class="float" onclick="return themeSwitcherFunction();">
+  <i class="fa fa-moon my-float"></i>
+  </a>
+
+  <script type="text/javascript">
+    function themeSwitcherFunction () {
+      node1=document.getElementById('theme_source');
+      node2=document.getElementById('theme_source_2');
+      if(node1.getAttribute('rel')=='stylesheet')
+      {node1.setAttribute('rel', 'stylesheet alternate'); 
+      node2.setAttribute('rel', 'stylesheet');
+      sessionStorage.setItem('theme', 'dark');}
+      else{node2.setAttribute('rel', 'stylesheet alternate'); 
+      node1.setAttribute('rel', 'stylesheet');
+      sessionStorage.setItem('theme', 'light');} 
+      return false;
+
+        // return true or false, depending on whether you want to allow the `href` property to follow through or not
+    }
+</script>
+
+  <style>
+    *{padding:0;margin:0;}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}
+  </style></div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
 </div>
