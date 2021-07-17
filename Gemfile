@@ -5,3 +5,4 @@ gemspec
 
 gem "webrick", "~> 1.7"
 gem "tzinfo-data"
+gem "kramdown-parser-gfm"
