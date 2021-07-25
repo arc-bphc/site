@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/site/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/site/" rel="alternate" type="text/html" /><updated>2021-07-18T13:28:16+05:30</updated><id>http://localhost:4000/site/feed.xml</id><title type="html">Automation &amp;amp; Robotics Club</title><subtitle>Automation &amp; Robotics Club, BITS Pilani Hyderabad Campus
-</subtitle><author><name>Automation  &amp; Robotics Club</name><email>arc@hyderabad.bits-pilani.ac.in</email></author><entry><title type="html">Servo Motors PWM</title><link href="http://localhost:4000/site/2018/04/05/blog-Servo-PWM.html" rel="alternate" type="text/html" title="Servo Motors PWM" /><published>2018-04-05T00:00:00+05:30</published><updated>2018-04-05T00:00:00+05:30</updated><id>http://localhost:4000/site/2018/04/05/blog-Servo-PWM</id><content type="html" xml:base="http://localhost:4000/site/2018/04/05/blog-Servo-PWM.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://arc-bphc.github.io/site/feed.xml" rel="self" type="application/atom+xml" /><link href="https://arc-bphc.github.io/site/" rel="alternate" type="text/html" /><updated>2021-07-25T18:53:46+05:30</updated><id>https://arc-bphc.github.io/site/feed.xml</id><title type="html">Automation &amp;amp; Robotics Club</title><subtitle>Automation &amp; Robotics Club, BITS Pilani Hyderabad Campus
+</subtitle><author><name>Automation  &amp; Robotics Club</name><email>arc@hyderabad.bits-pilani.ac.in</email></author><entry><title type="html">Servo Motors PWM</title><link href="https://arc-bphc.github.io/site/2018/04/05/blog-Servo-PWM.html" rel="alternate" type="text/html" title="Servo Motors PWM" /><published>2018-04-05T00:00:00+05:30</published><updated>2018-04-05T00:00:00+05:30</updated><id>https://arc-bphc.github.io/site/2018/04/05/blog-Servo-PWM</id><content type="html" xml:base="https://arc-bphc.github.io/site/2018/04/05/blog-Servo-PWM.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
 &lt;p&gt;Explore the working of the servo library.
 &lt;!--more--&gt;&lt;/p&gt;
 &lt;h2 id=&quot;story&quot;&gt;Story&lt;/h2&gt;
@@ -10,7 +10,7 @@ Servo library has to be called and an object has to be made in the Arduino IDE f
 
 &lt;p&gt;The key to this is the fact that the Servo library does not use PWM !! The servo pulses are 1ms long. Therefore they must be driven by the frequencies around 1 kHz which is very easy to generate by the software. When we call the write() function, it computes a pulse width in micro seconds and stores it in a global array. Then there is a single timer that regularly triggers an interrupt which changes the output signals according to each channel’s desired pulse width. Hence, the Servo library uses standard means to change the state of the pins just as we do Bit-Banging !&lt;/p&gt;
 
-&lt;p&gt;The Servo library supports up to 12 servos on most of the Arduino boards using only one timer. It can actually run servos on all pins simultaneously !&lt;/p&gt;</content><author><name>Yug Ajmera</name></author><category term="arduino" /><category term="Servo" /><category term="PWM" /><summary type="html">Aim Explore the working of the servo library.</summary></entry><entry><title type="html">Secret Clap Door Lock</title><link href="http://localhost:4000/site/2018/02/18/blog-Secret-Clap-door-lock.html" rel="alternate" type="text/html" title="Secret Clap Door Lock" /><published>2018-02-18T00:00:00+05:30</published><updated>2018-02-18T00:00:00+05:30</updated><id>http://localhost:4000/site/2018/02/18/blog-Secret-Clap-door-lock</id><content type="html" xml:base="http://localhost:4000/site/2018/02/18/blog-Secret-Clap-door-lock.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
+&lt;p&gt;The Servo library supports up to 12 servos on most of the Arduino boards using only one timer. It can actually run servos on all pins simultaneously !&lt;/p&gt;</content><author><name>Yug Ajmera</name></author><category term="arduino" /><category term="Servo" /><category term="PWM" /><summary type="html">Aim Explore the working of the servo library.</summary></entry><entry><title type="html">Secret Clap Door Lock</title><link href="https://arc-bphc.github.io/site/2018/02/18/blog-Secret-Clap-door-lock.html" rel="alternate" type="text/html" title="Secret Clap Door Lock" /><published>2018-02-18T00:00:00+05:30</published><updated>2018-02-18T00:00:00+05:30</updated><id>https://arc-bphc.github.io/site/2018/02/18/blog-Secret-Clap-door-lock</id><content type="html" xml:base="https://arc-bphc.github.io/site/2018/02/18/blog-Secret-Clap-door-lock.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
 &lt;p&gt;To build a secret door lock that can be unlocked via clap.
 &lt;!--more--&gt;&lt;/p&gt;
 
@@ -42,7 +42,7 @@ sent to a microcontroller then performs necessary processing.
 &lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
   &lt;iframe src=&quot;https://www.youtube.com/embed/toYhCtMNnYs?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
-&lt;/div&gt;</content><author><name>Yug Ajmera</name></author><category term="arduino" /><category term="LM7805" /><category term="l293d" /><category term="hc05" /><category term="bluetooth" /><summary type="html">Aim To build a secret door lock that can be unlocked via clap.</summary></entry><entry><title type="html">Voice Controlled Car</title><link href="http://localhost:4000/site/2018/02/18/blog-Voice-Controlled-Car.html" rel="alternate" type="text/html" title="Voice Controlled Car" /><published>2018-02-18T00:00:00+05:30</published><updated>2018-02-18T00:00:00+05:30</updated><id>http://localhost:4000/site/2018/02/18/blog-Voice-Controlled-Car</id><content type="html" xml:base="http://localhost:4000/site/2018/02/18/blog-Voice-Controlled-Car.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
+&lt;/div&gt;</content><author><name>Yug Ajmera</name></author><category term="arduino" /><category term="LM7805" /><category term="l293d" /><category term="hc05" /><category term="bluetooth" /><summary type="html">Aim To build a secret door lock that can be unlocked via clap.</summary></entry><entry><title type="html">Voice Controlled Car</title><link href="https://arc-bphc.github.io/site/2018/02/18/blog-Voice-Controlled-Car.html" rel="alternate" type="text/html" title="Voice Controlled Car" /><published>2018-02-18T00:00:00+05:30</published><updated>2018-02-18T00:00:00+05:30</updated><id>https://arc-bphc.github.io/site/2018/02/18/blog-Voice-Controlled-Car</id><content type="html" xml:base="https://arc-bphc.github.io/site/2018/02/18/blog-Voice-Controlled-Car.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
 &lt;p&gt;To build a bluetooth operated voice controlled car.&lt;/p&gt;
 
 &lt;!--more--&gt;
@@ -88,7 +88,7 @@ sent to a microcontroller then performs necessary processing.
 &lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
   &lt;iframe src=&quot;https://www.youtube.com/embed/q5I7UFtxVUY?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
-&lt;/div&gt;</content><author><name>Yug Ajmera</name></author><category term="arduino" /><category term="LM7805" /><category term="l293d" /><category term="hc05" /><category term="bluetooth" /><summary type="html">Aim To build a bluetooth operated voice controlled car.</summary></entry><entry><title type="html">EasyMouse</title><link href="http://localhost:4000/site/2018/01/30/blog-Easy-Mouse.html" rel="alternate" type="text/html" title="EasyMouse" /><published>2018-01-30T00:00:00+05:30</published><updated>2018-01-30T00:00:00+05:30</updated><id>http://localhost:4000/site/2018/01/30/blog-Easy-Mouse</id><content type="html" xml:base="http://localhost:4000/site/2018/01/30/blog-Easy-Mouse.html">&lt;h2 id=&quot;aim&quot;&gt;AIM&lt;/h2&gt;
+&lt;/div&gt;</content><author><name>Yug Ajmera</name></author><category term="arduino" /><category term="LM7805" /><category term="l293d" /><category term="hc05" /><category term="bluetooth" /><summary type="html">Aim To build a bluetooth operated voice controlled car.</summary></entry><entry><title type="html">EasyMouse</title><link href="https://arc-bphc.github.io/site/2018/01/30/blog-Easy-Mouse.html" rel="alternate" type="text/html" title="EasyMouse" /><published>2018-01-30T00:00:00+05:30</published><updated>2018-01-30T00:00:00+05:30</updated><id>https://arc-bphc.github.io/site/2018/01/30/blog-Easy-Mouse</id><content type="html" xml:base="https://arc-bphc.github.io/site/2018/01/30/blog-Easy-Mouse.html">&lt;h2 id=&quot;aim&quot;&gt;AIM&lt;/h2&gt;
 &lt;p&gt;Carpal Tunnel syndrome is a common problem with people who are involved in desk-work, working with a traditionally designed mouse, or a pointing device to be more specific. EasyMouse aims to make a pointing device optimised for gaming, based solely on gestures. As a result, Carpal Tunnel Syndrome is avoided in the long run.
 &lt;!--more--&gt;&lt;/p&gt;
 
@@ -116,7 +116,7 @@ programmable through a SPI interface. Current consumption is very low.&lt;/p&gt;
 &lt;p&gt;The ‘driver’  which is written in Python, receives instruction packets from the Arduino and uses pyautogui to perform GUI operations. Since this is a custom mouse, a gesture can be programmed to trigger, for example, 5 mouse-clicks in 250 milliseconds.
 Similarly, another gesture can be programmed to trigger a series of perfectly timed combination of keystrokes and mouse-clicks, which are useful in hitting combos in games like Mortal Kombat.General pointing and cursor movement will also have greater precision and sensitivity, all of which can be customised according to personal preference.&lt;/p&gt;
 
-&lt;p&gt;All files related to this project are &lt;a href=&quot;https://github.com/akhilrb/easymouse&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>Akhil Raj Baranwal</name></author><category term="arduino" /><category term="ADXL345" /><category term="IMU" /><category term="mpu6050" /><category term="nrf24l01" /><summary type="html">AIM Carpal Tunnel syndrome is a common problem with people who are involved in desk-work, working with a traditionally designed mouse, or a pointing device to be more specific. EasyMouse aims to make a pointing device optimised for gaming, based solely on gestures. As a result, Carpal Tunnel Syndrome is avoided in the long run.</summary></entry><entry><title type="html">Music Visualisation</title><link href="http://localhost:4000/site/2017/11/03/blog-Music-Visualisation.html" rel="alternate" type="text/html" title="Music Visualisation" /><published>2017-11-03T00:00:00+05:30</published><updated>2017-11-03T00:00:00+05:30</updated><id>http://localhost:4000/site/2017/11/03/blog-Music-Visualisation</id><content type="html" xml:base="http://localhost:4000/site/2017/11/03/blog-Music-Visualisation.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
+&lt;p&gt;All files related to this project are &lt;a href=&quot;https://github.com/akhilrb/easymouse&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>Akhil Raj Baranwal</name></author><category term="arduino" /><category term="ADXL345" /><category term="IMU" /><category term="mpu6050" /><category term="nrf24l01" /><summary type="html">AIM Carpal Tunnel syndrome is a common problem with people who are involved in desk-work, working with a traditionally designed mouse, or a pointing device to be more specific. EasyMouse aims to make a pointing device optimised for gaming, based solely on gestures. As a result, Carpal Tunnel Syndrome is avoided in the long run.</summary></entry><entry><title type="html">Music Visualisation</title><link href="https://arc-bphc.github.io/site/2017/11/03/blog-Music-Visualisation.html" rel="alternate" type="text/html" title="Music Visualisation" /><published>2017-11-03T00:00:00+05:30</published><updated>2017-11-03T00:00:00+05:30</updated><id>https://arc-bphc.github.io/site/2017/11/03/blog-Music-Visualisation</id><content type="html" xml:base="https://arc-bphc.github.io/site/2017/11/03/blog-Music-Visualisation.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
 &lt;p&gt;To filter the incoming audio signal and see how each coloured LED of RGB 3528 SMD strip reacts to different frequencies of the signal.
 &lt;!--more--&gt;&lt;/p&gt;
 
@@ -201,7 +201,7 @@ According to the Atmega328p datasheet, the recommended ADC clock should be betwe
 &lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
   &lt;iframe src=&quot;https://www.youtube.com/embed/zxZnOtWrG0c?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
-&lt;/div&gt;</content><author><name>Gaurab Dasgupta</name></author><category term="arduino" /><category term="3528 LED" /><category term="NPN" /><category term="op-amp" /><summary type="html">Aim To filter the incoming audio signal and see how each coloured LED of RGB 3528 SMD strip reacts to different frequencies of the signal.</summary></entry><entry><title type="html">ESP8266 based temperature logger</title><link href="http://localhost:4000/site/2017/01/25/blog-ESP8266-temp.html" rel="alternate" type="text/html" title="ESP8266 based temperature logger" /><published>2017-01-25T00:00:00+05:30</published><updated>2017-01-25T00:00:00+05:30</updated><id>http://localhost:4000/site/2017/01/25/blog-ESP8266-temp</id><content type="html" xml:base="http://localhost:4000/site/2017/01/25/blog-ESP8266-temp.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
+&lt;/div&gt;</content><author><name>Gaurab Dasgupta</name></author><category term="arduino" /><category term="3528 LED" /><category term="NPN" /><category term="op-amp" /><summary type="html">Aim To filter the incoming audio signal and see how each coloured LED of RGB 3528 SMD strip reacts to different frequencies of the signal.</summary></entry><entry><title type="html">ESP8266 based temperature logger</title><link href="https://arc-bphc.github.io/site/2017/01/25/blog-ESP8266-temp.html" rel="alternate" type="text/html" title="ESP8266 based temperature logger" /><published>2017-01-25T00:00:00+05:30</published><updated>2017-01-25T00:00:00+05:30</updated><id>https://arc-bphc.github.io/site/2017/01/25/blog-ESP8266-temp</id><content type="html" xml:base="https://arc-bphc.github.io/site/2017/01/25/blog-ESP8266-temp.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
 &lt;p&gt;To make an ESP8266 based temperature logger that can send temperature to an online website/database.
 &lt;!--more--&gt;&lt;/p&gt;
 &lt;h2 id=&quot;hardware&quot;&gt;Hardware&lt;/h2&gt;
@@ -249,20 +249,20 @@ According to the Atmega328p datasheet, the recommended ADC clock should be betwe
       }
 
       function init() {
-        $swiperWrapper = $root.find(&apos;.swiper__wrapper&apos;);
-        $swiperSlides = $root.find(&apos;.swiper__slide&apos;);
-        $swiperButtonPrev = $root.find(&apos;.swiper__button--prev&apos;);
-        $swiperButtonNext = $root.find(&apos;.swiper__button--next&apos;);
-        animation &amp;&amp; $swiperWrapper.addClass(&apos;swiper__wrapper--animation&apos;);
+        $swiperWrapper = $root.find('.swiper__wrapper');
+        $swiperSlides = $root.find('.swiper__slide');
+        $swiperButtonPrev = $root.find('.swiper__button--prev');
+        $swiperButtonNext = $root.find('.swiper__button--next');
+        animation &amp;&amp; $swiperWrapper.addClass('swiper__wrapper--animation');
         calc(true);
       }
 
       function preCalc() {
         rootWidth = $root.width();
-        count = $swiperWrapper.children(&apos;.swiper__slide&apos;).length;
+        count = $swiperWrapper.children('.swiper__slide').length;
         if (count &lt; 2) {
-          $swiperButtonPrev.addClass(&apos;d-none&apos;);
-          $swiperButtonNext.addClass(&apos;d-none&apos;);
+          $swiperButtonPrev.addClass('d-none');
+          $swiperButtonNext.addClass('d-none');
         }
         curIndex = initialSlide || 0;
         translateX = getTranslateXFromCurIndex();
@@ -274,12 +274,12 @@ According to the Atmega328p datasheet, the recommended ADC clock should be betwe
           needPreCalc &amp;&amp; preCalc();
           var _animation = (params &amp;&amp; params.animation !== undefined) ? params.animation : animation;
           if (preAnimation === undefined || preAnimation !== _animation) {
-            preAnimation = _animation ? $swiperWrapper.addClass(&apos;swiper__wrapper--animation&apos;) :
-              $swiperWrapper.removeClass(&apos;swiper__wrapper--animation&apos;);
+            preAnimation = _animation ? $swiperWrapper.addClass('swiper__wrapper--animation') :
+              $swiperWrapper.removeClass('swiper__wrapper--animation');
           }
           if (preIndex !== curIndex) {
-            ($preSwiperSlide = $swiperSlides.eq(preIndex)).removeClass(&apos;active&apos;);
-            ($swiperSlide = $swiperSlides.eq(curIndex)).addClass(&apos;active&apos;);
+            ($preSwiperSlide = $swiperSlides.eq(preIndex)).removeClass('active');
+            ($swiperSlide = $swiperSlides.eq(curIndex)).addClass('active');
             onChange &amp;&amp; onChange(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
             if (onChangeEnd) {
               if (_animation) {
@@ -292,17 +292,17 @@ According to the Atmega328p datasheet, the recommended ADC clock should be betwe
             }
             preIndex = curIndex;
           }
-          $swiperWrapper.css(&apos;transform&apos;, &apos;translate(&apos; + translateX + &apos;px, 0)&apos;);
+          $swiperWrapper.css('transform', 'translate(' + translateX + 'px, 0)');
           if (count &gt; 1) {
             if (curIndex &lt;= 0) {
-              $swiperButtonPrev.addClass(&apos;disabled&apos;);
+              $swiperButtonPrev.addClass('disabled');
             } else {
-              $swiperButtonPrev.removeClass(&apos;disabled&apos;);
+              $swiperButtonPrev.removeClass('disabled');
             }
             if (curIndex &gt;= count - 1) {
-              $swiperButtonNext.addClass(&apos;disabled&apos;);
+              $swiperButtonNext.addClass('disabled');
             } else {
-              $swiperButtonNext.removeClass(&apos;disabled&apos;);
+              $swiperButtonNext.removeClass('disabled');
             }
           }
         };
@@ -321,12 +321,12 @@ According to the Atmega328p datasheet, the recommended ADC clock should be betwe
 
       function move(type) {
         var nextIndex = curIndex, unstableTranslateX;
-        if (type === &apos;prev&apos;) {
+        if (type === 'prev') {
           nextIndex &gt; 0 &amp;&amp; nextIndex--;
-        } else if (type === &apos;next&apos;) {
+        } else if (type === 'next') {
           nextIndex &lt; count - 1 &amp;&amp; nextIndex++;
         }
-        if (type === &apos;cur&apos;) {
+        if (type === 'cur') {
           moveToIndex(curIndex, { animation: true });
           return;
         }
@@ -340,15 +340,15 @@ According to the Atmega328p datasheet, the recommended ADC clock should be betwe
       init();
       preIndex = curIndex;
 
-      $swiperButtonPrev.on(&apos;click&apos;, function(e) {
+      $swiperButtonPrev.on('click', function(e) {
         e.stopPropagation();
-        move(&apos;prev&apos;);
+        move('prev');
       });
-      $swiperButtonNext.on(&apos;click&apos;, function(e) {
+      $swiperButtonNext.on('click', function(e) {
         e.stopPropagation();
-        move(&apos;next&apos;);
+        move('next');
       });
-      $window.on(&apos;resize&apos;, function() {
+      $window.on('resize', function() {
         calc(true, { animation: false });
       });
 
@@ -383,36 +383,36 @@ According to the Atmega328p datasheet, the recommended ADC clock should be betwe
           var deltaX = translateX - preTranslateX;
           var distance = deltaX + velocityX * rootWidth;
           if (Math.abs(distance) &gt; rootWidth / 2) {
-            distance &gt; 0 ? move(&apos;prev&apos;) : move(&apos;next&apos;);
+            distance &gt; 0 ? move('prev') : move('next');
           } else {
-            move(&apos;cur&apos;);
+            move('cur');
           }
         }
-        $swiperWrapper.on(&apos;touchstart&apos;, handleTouchstart);
-        $swiperWrapper.on(&apos;touchmove&apos;, handleTouchmove);
-        $swiperWrapper.on(&apos;touchend&apos;, handleTouchend);
-        $swiperWrapper.on(&apos;touchcancel&apos;, handleTouchend);
+        $swiperWrapper.on('touchstart', handleTouchstart);
+        $swiperWrapper.on('touchmove', handleTouchmove);
+        $swiperWrapper.on('touchend', handleTouchend);
+        $swiperWrapper.on('touchcancel', handleTouchend);
 
         (function() {
           var pressing = false, moved = false;
-          $swiperWrapper.on(&apos;mousedown&apos;, function(e) {
+          $swiperWrapper.on('mousedown', function(e) {
             pressing = true; handleTouchstart(e);
           });
-          $swiperWrapper.on(&apos;mousemove&apos;, function(e) {
+          $swiperWrapper.on('mousemove', function(e) {
             pressing &amp;&amp; (e.preventDefault(), moved = true, handleTouchmove(e));
           });
-          $swiperWrapper.on(&apos;mouseup&apos;, function(e) {
+          $swiperWrapper.on('mouseup', function(e) {
             pressing &amp;&amp; (pressing = false, handleTouchend(e));
           });
-          $swiperWrapper.on(&apos;mouseleave&apos;, function(e) {
+          $swiperWrapper.on('mouseleave', function(e) {
             pressing &amp;&amp; (pressing = false, handleTouchend(e));
           });
-          $swiperWrapper.on(&apos;click&apos;, function(e) {
+          $swiperWrapper.on('click', function(e) {
             moved &amp;&amp; (e.stopPropagation(), moved = false);
           });
         })();
 
-        $root.on(&apos;touchmove&apos;, function(e) {
+        $root.on('touchmove', function(e) {
           if (e.cancelable &amp; touching) {
             e.preventDefault();
           }
@@ -422,10 +422,10 @@ According to the Atmega328p datasheet, the recommended ADC clock should be betwe
       return {
         setOptions: setOptions,
         previous: function(){
-          move(&apos;prev&apos;);
+          move('prev');
         },
         next: function(){
-          move(&apos;next&apos;);
+          move('next');
         },
         refresh: function() {
           calc(true, { animation: false });
@@ -437,9 +437,9 @@ According to the Atmega328p datasheet, the recommended ADC clock should be betwe
 })();
 var SOURCES = window.TEXT_VARIABLES.sources;
 window.Lazyload.js(SOURCES.jquery, function() {
-  $(&apos;.swiper-demo&apos;).swiper();
+  $('.swiper-demo').swiper();
 });
-&lt;/script&gt;</content><author><name>Parakh M. Gupta</name></author><category term="drawing" /><category term="arm" /><category term="arduino" /><category term="servo" /><summary type="html">Aim To make an ESP8266 based temperature logger that can send temperature to an online website/database.</summary></entry><entry><title type="html">Wall Follower</title><link href="http://localhost:4000/site/2016/12/31/blog-Wall-Follower.html" rel="alternate" type="text/html" title="Wall Follower" /><published>2016-12-31T00:00:00+05:30</published><updated>2016-12-31T00:00:00+05:30</updated><id>http://localhost:4000/site/2016/12/31/blog-Wall-Follower</id><content type="html" xml:base="http://localhost:4000/site/2016/12/31/blog-Wall-Follower.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
+&lt;/script&gt;</content><author><name>Parakh M. Gupta</name></author><category term="drawing" /><category term="arm" /><category term="arduino" /><category term="servo" /><summary type="html">Aim To make an ESP8266 based temperature logger that can send temperature to an online website/database.</summary></entry><entry><title type="html">Wall Follower</title><link href="https://arc-bphc.github.io/site/2016/12/31/blog-Wall-Follower.html" rel="alternate" type="text/html" title="Wall Follower" /><published>2016-12-31T00:00:00+05:30</published><updated>2016-12-31T00:00:00+05:30</updated><id>https://arc-bphc.github.io/site/2016/12/31/blog-Wall-Follower</id><content type="html" xml:base="https://arc-bphc.github.io/site/2016/12/31/blog-Wall-Follower.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
 &lt;p&gt;To follow a wall (The wall refers to a boundary line of any shape) .The robot has to simply follow the wall wherever the wall leads to, the robot must go there.
 &lt;!--more--&gt;&lt;/p&gt;
 
@@ -569,7 +569,7 @@ window.Lazyload.js(SOURCES.jquery, function() {
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p class=&quot;info&quot;&gt;Multiple Authors: Satcheel Reddy Chamakoora and C.Vineel&lt;/p&gt;</content><author><name>C.Vineel</name></author><category term="arduino" /><category term="hcsr04" /><category term="l298n" /><summary type="html">Aim To follow a wall (The wall refers to a boundary line of any shape) .The robot has to simply follow the wall wherever the wall leads to, the robot must go there.</summary></entry><entry><title type="html">Interfacing 62256 SRAM using ATmega32A</title><link href="http://localhost:4000/site/2016/12/30/blog-Interfacing-SRAM.html" rel="alternate" type="text/html" title="Interfacing 62256 SRAM using ATmega32A" /><published>2016-12-30T00:00:00+05:30</published><updated>2016-12-30T00:00:00+05:30</updated><id>http://localhost:4000/site/2016/12/30/blog-Interfacing-SRAM</id><content type="html" xml:base="http://localhost:4000/site/2016/12/30/blog-Interfacing-SRAM.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
+&lt;p class=&quot;info&quot;&gt;Multiple Authors: Satcheel Reddy Chamakoora and C.Vineel&lt;/p&gt;</content><author><name>C.Vineel</name></author><category term="arduino" /><category term="hcsr04" /><category term="l298n" /><summary type="html">Aim To follow a wall (The wall refers to a boundary line of any shape) .The robot has to simply follow the wall wherever the wall leads to, the robot must go there.</summary></entry><entry><title type="html">Interfacing 62256 SRAM using ATmega32A</title><link href="https://arc-bphc.github.io/site/2016/12/30/blog-Interfacing-SRAM.html" rel="alternate" type="text/html" title="Interfacing 62256 SRAM using ATmega32A" /><published>2016-12-30T00:00:00+05:30</published><updated>2016-12-30T00:00:00+05:30</updated><id>https://arc-bphc.github.io/site/2016/12/30/blog-Interfacing-SRAM</id><content type="html" xml:base="https://arc-bphc.github.io/site/2016/12/30/blog-Interfacing-SRAM.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
 &lt;p&gt;Interfacing of a 32k x 8 bit SRAM chip 62256 with ATmega32A microcontroller.
 &lt;!--more--&gt;&lt;/p&gt;
 
@@ -595,7 +595,7 @@ window.Lazyload.js(SOURCES.jquery, function() {
 &lt;div&gt;&lt;div class=&quot;extensions extensions--video&quot;&gt;
   &lt;iframe src=&quot;https://www.youtube.com/embed/psKOW52DNus?rel=0&amp;amp;showinfo=0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
-&lt;/div&gt;</content><author><name>Rohan Dvivedi</name></author><category term="62256 SRM" /><category term="ATmega32A" /><category term="AVR" /><summary type="html">Aim Interfacing of a 32k x 8 bit SRAM chip 62256 with ATmega32A microcontroller.</summary></entry><entry><title type="html">Ball Picker Robot</title><link href="http://localhost:4000/site/2016/10/05/blog-Ball-Picker-Robot.html" rel="alternate" type="text/html" title="Ball Picker Robot" /><published>2016-10-05T00:00:00+05:30</published><updated>2016-10-05T00:00:00+05:30</updated><id>http://localhost:4000/site/2016/10/05/blog-Ball-Picker-Robot</id><content type="html" xml:base="http://localhost:4000/site/2016/10/05/blog-Ball-Picker-Robot.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
+&lt;/div&gt;</content><author><name>Rohan Dvivedi</name></author><category term="62256 SRM" /><category term="ATmega32A" /><category term="AVR" /><summary type="html">Aim Interfacing of a 32k x 8 bit SRAM chip 62256 with ATmega32A microcontroller.</summary></entry><entry><title type="html">Ball Picker Robot</title><link href="https://arc-bphc.github.io/site/2016/10/05/blog-Ball-Picker-Robot.html" rel="alternate" type="text/html" title="Ball Picker Robot" /><published>2016-10-05T00:00:00+05:30</published><updated>2016-10-05T00:00:00+05:30</updated><id>https://arc-bphc.github.io/site/2016/10/05/blog-Ball-Picker-Robot</id><content type="html" xml:base="https://arc-bphc.github.io/site/2016/10/05/blog-Ball-Picker-Robot.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
 &lt;p&gt;To build a manually controlled Robot which can pick and drop (at desired location) Table Tennis balls.
 &lt;!--more--&gt;&lt;/p&gt;
 
@@ -655,20 +655,20 @@ window.Lazyload.js(SOURCES.jquery, function() {
       }
 
       function init() {
-        $swiperWrapper = $root.find(&apos;.swiper__wrapper&apos;);
-        $swiperSlides = $root.find(&apos;.swiper__slide&apos;);
-        $swiperButtonPrev = $root.find(&apos;.swiper__button--prev&apos;);
-        $swiperButtonNext = $root.find(&apos;.swiper__button--next&apos;);
-        animation &amp;&amp; $swiperWrapper.addClass(&apos;swiper__wrapper--animation&apos;);
+        $swiperWrapper = $root.find('.swiper__wrapper');
+        $swiperSlides = $root.find('.swiper__slide');
+        $swiperButtonPrev = $root.find('.swiper__button--prev');
+        $swiperButtonNext = $root.find('.swiper__button--next');
+        animation &amp;&amp; $swiperWrapper.addClass('swiper__wrapper--animation');
         calc(true);
       }
 
       function preCalc() {
         rootWidth = $root.width();
-        count = $swiperWrapper.children(&apos;.swiper__slide&apos;).length;
+        count = $swiperWrapper.children('.swiper__slide').length;
         if (count &lt; 2) {
-          $swiperButtonPrev.addClass(&apos;d-none&apos;);
-          $swiperButtonNext.addClass(&apos;d-none&apos;);
+          $swiperButtonPrev.addClass('d-none');
+          $swiperButtonNext.addClass('d-none');
         }
         curIndex = initialSlide || 0;
         translateX = getTranslateXFromCurIndex();
@@ -680,12 +680,12 @@ window.Lazyload.js(SOURCES.jquery, function() {
           needPreCalc &amp;&amp; preCalc();
           var _animation = (params &amp;&amp; params.animation !== undefined) ? params.animation : animation;
           if (preAnimation === undefined || preAnimation !== _animation) {
-            preAnimation = _animation ? $swiperWrapper.addClass(&apos;swiper__wrapper--animation&apos;) :
-              $swiperWrapper.removeClass(&apos;swiper__wrapper--animation&apos;);
+            preAnimation = _animation ? $swiperWrapper.addClass('swiper__wrapper--animation') :
+              $swiperWrapper.removeClass('swiper__wrapper--animation');
           }
           if (preIndex !== curIndex) {
-            ($preSwiperSlide = $swiperSlides.eq(preIndex)).removeClass(&apos;active&apos;);
-            ($swiperSlide = $swiperSlides.eq(curIndex)).addClass(&apos;active&apos;);
+            ($preSwiperSlide = $swiperSlides.eq(preIndex)).removeClass('active');
+            ($swiperSlide = $swiperSlides.eq(curIndex)).addClass('active');
             onChange &amp;&amp; onChange(curIndex, $swiperSlides.eq(curIndex), $swiperSlide, $preSwiperSlide);
             if (onChangeEnd) {
               if (_animation) {
@@ -698,17 +698,17 @@ window.Lazyload.js(SOURCES.jquery, function() {
             }
             preIndex = curIndex;
           }
-          $swiperWrapper.css(&apos;transform&apos;, &apos;translate(&apos; + translateX + &apos;px, 0)&apos;);
+          $swiperWrapper.css('transform', 'translate(' + translateX + 'px, 0)');
           if (count &gt; 1) {
             if (curIndex &lt;= 0) {
-              $swiperButtonPrev.addClass(&apos;disabled&apos;);
+              $swiperButtonPrev.addClass('disabled');
             } else {
-              $swiperButtonPrev.removeClass(&apos;disabled&apos;);
+              $swiperButtonPrev.removeClass('disabled');
             }
             if (curIndex &gt;= count - 1) {
-              $swiperButtonNext.addClass(&apos;disabled&apos;);
+              $swiperButtonNext.addClass('disabled');
             } else {
-              $swiperButtonNext.removeClass(&apos;disabled&apos;);
+              $swiperButtonNext.removeClass('disabled');
             }
           }
         };
@@ -727,12 +727,12 @@ window.Lazyload.js(SOURCES.jquery, function() {
 
       function move(type) {
         var nextIndex = curIndex, unstableTranslateX;
-        if (type === &apos;prev&apos;) {
+        if (type === 'prev') {
           nextIndex &gt; 0 &amp;&amp; nextIndex--;
-        } else if (type === &apos;next&apos;) {
+        } else if (type === 'next') {
           nextIndex &lt; count - 1 &amp;&amp; nextIndex++;
         }
-        if (type === &apos;cur&apos;) {
+        if (type === 'cur') {
           moveToIndex(curIndex, { animation: true });
           return;
         }
@@ -746,15 +746,15 @@ window.Lazyload.js(SOURCES.jquery, function() {
       init();
       preIndex = curIndex;
 
-      $swiperButtonPrev.on(&apos;click&apos;, function(e) {
+      $swiperButtonPrev.on('click', function(e) {
         e.stopPropagation();
-        move(&apos;prev&apos;);
+        move('prev');
       });
-      $swiperButtonNext.on(&apos;click&apos;, function(e) {
+      $swiperButtonNext.on('click', function(e) {
         e.stopPropagation();
-        move(&apos;next&apos;);
+        move('next');
       });
-      $window.on(&apos;resize&apos;, function() {
+      $window.on('resize', function() {
         calc(true, { animation: false });
       });
 
@@ -789,36 +789,36 @@ window.Lazyload.js(SOURCES.jquery, function() {
           var deltaX = translateX - preTranslateX;
           var distance = deltaX + velocityX * rootWidth;
           if (Math.abs(distance) &gt; rootWidth / 2) {
-            distance &gt; 0 ? move(&apos;prev&apos;) : move(&apos;next&apos;);
+            distance &gt; 0 ? move('prev') : move('next');
           } else {
-            move(&apos;cur&apos;);
+            move('cur');
           }
         }
-        $swiperWrapper.on(&apos;touchstart&apos;, handleTouchstart);
-        $swiperWrapper.on(&apos;touchmove&apos;, handleTouchmove);
-        $swiperWrapper.on(&apos;touchend&apos;, handleTouchend);
-        $swiperWrapper.on(&apos;touchcancel&apos;, handleTouchend);
+        $swiperWrapper.on('touchstart', handleTouchstart);
+        $swiperWrapper.on('touchmove', handleTouchmove);
+        $swiperWrapper.on('touchend', handleTouchend);
+        $swiperWrapper.on('touchcancel', handleTouchend);
 
         (function() {
           var pressing = false, moved = false;
-          $swiperWrapper.on(&apos;mousedown&apos;, function(e) {
+          $swiperWrapper.on('mousedown', function(e) {
             pressing = true; handleTouchstart(e);
           });
-          $swiperWrapper.on(&apos;mousemove&apos;, function(e) {
+          $swiperWrapper.on('mousemove', function(e) {
             pressing &amp;&amp; (e.preventDefault(), moved = true, handleTouchmove(e));
           });
-          $swiperWrapper.on(&apos;mouseup&apos;, function(e) {
+          $swiperWrapper.on('mouseup', function(e) {
             pressing &amp;&amp; (pressing = false, handleTouchend(e));
           });
-          $swiperWrapper.on(&apos;mouseleave&apos;, function(e) {
+          $swiperWrapper.on('mouseleave', function(e) {
             pressing &amp;&amp; (pressing = false, handleTouchend(e));
           });
-          $swiperWrapper.on(&apos;click&apos;, function(e) {
+          $swiperWrapper.on('click', function(e) {
             moved &amp;&amp; (e.stopPropagation(), moved = false);
           });
         })();
 
-        $root.on(&apos;touchmove&apos;, function(e) {
+        $root.on('touchmove', function(e) {
           if (e.cancelable &amp; touching) {
             e.preventDefault();
           }
@@ -828,10 +828,10 @@ window.Lazyload.js(SOURCES.jquery, function() {
       return {
         setOptions: setOptions,
         previous: function(){
-          move(&apos;prev&apos;);
+          move('prev');
         },
         next: function(){
-          move(&apos;next&apos;);
+          move('next');
         },
         refresh: function() {
           calc(true, { animation: false });
@@ -843,11 +843,11 @@ window.Lazyload.js(SOURCES.jquery, function() {
 })();
 var SOURCES = window.TEXT_VARIABLES.sources;
 window.Lazyload.js(SOURCES.jquery, function() {
-  $(&apos;.swiper-demo&apos;).swiper();
+  $('.swiper-demo').swiper();
 });
 &lt;/script&gt;
 
-&lt;p class=&quot;info&quot;&gt;Multiple Authors: Murtaza Bohra(2015 batch), Prerit Agarwal(2015 batch) &amp;amp; Ebin Philip(2014 batch)&lt;/p&gt;</content><author><name>Murtaza Bohra</name></author><category term="arduino" /><category term="hc05" /><category term="bluetooth" /><category term="servo" /><category term="l298n" /><category term="mechanix" /><summary type="html">Aim To build a manually controlled Robot which can pick and drop (at desired location) Table Tennis balls.</summary></entry><entry><title type="html">A kio slave and daemon to stash discontinuous file selections</title><link href="http://localhost:4000/site/2016/09/29/blog-kio-slave.html" rel="alternate" type="text/html" title="A kio slave and daemon to stash discontinuous file selections" /><published>2016-09-29T00:00:00+05:30</published><updated>2016-09-29T00:00:00+05:30</updated><id>http://localhost:4000/site/2016/09/29/blog-kio-slave</id><content type="html" xml:base="http://localhost:4000/site/2016/09/29/blog-kio-slave.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
+&lt;p class=&quot;info&quot;&gt;Multiple Authors: Murtaza Bohra(2015 batch), Prerit Agarwal(2015 batch) &amp;amp; Ebin Philip(2014 batch)&lt;/p&gt;</content><author><name>Murtaza Bohra</name></author><category term="arduino" /><category term="hc05" /><category term="bluetooth" /><category term="servo" /><category term="l298n" /><category term="mechanix" /><summary type="html">Aim To build a manually controlled Robot which can pick and drop (at desired location) Table Tennis balls.</summary></entry><entry><title type="html">A kio slave and daemon to stash discontinuous file selections</title><link href="https://arc-bphc.github.io/site/2016/09/29/blog-kio-slave.html" rel="alternate" type="text/html" title="A kio slave and daemon to stash discontinuous file selections" /><published>2016-09-29T00:00:00+05:30</published><updated>2016-09-29T00:00:00+05:30</updated><id>https://arc-bphc.github.io/site/2016/09/29/blog-kio-slave</id><content type="html" xml:base="https://arc-bphc.github.io/site/2016/09/29/blog-kio-slave.html">&lt;h2 id=&quot;aim&quot;&gt;Aim&lt;/h2&gt;
 &lt;p&gt;To create a kio slave and daemon to stash discontinuous file selections.
 &lt;!--more--&gt;&lt;/p&gt;
 
