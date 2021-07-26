@@ -9,20 +9,21 @@
       <div class="header__title">
         <div class="header__brand">
           <div class="header__brand">
-            <img src="{{site.baseurl}}/assets/images/logo/logo.png"/>
             {%- assign _paths_root = site.paths.root | default:
             site.data.variables.default.paths.root -%} {%- include
             snippets/get-nav-url.html path=_paths_root -%} {%- if site.title -%}
             <a
               title="{%- if site.description -%}{{ site.description }}{%- endif -%}"
-              href="{{ __return }}">
+              href="https://arc-bphc.github.io">
+              <img src="{{site.baseurl}}/assets/images/logo/logo.png" style="zoom: 83%"/>
+
             </a>
             {%- endif -%}
         </div>
           {%- assign _paths_root = site.paths.root | default: site.data.variables.default.paths.root  -%}
           {%- include snippets/get-nav-url.html path=_paths_root -%}
           {%- if site.title -%}
-            <a title="{%- if site.description -%}{{ site.description }}{%- endif -%}" href="{{ __return }}">{{ site.title }}</a>
+            <a title="{%- if site.description -%}{{ site.description }}{%- endif -%}" href="https://arc-bphc.github.io">{{ site.title }}</a>
           {%- endif -%}
         </div>
         {%- if site.search.provider -%}
@@ -62,21 +63,28 @@
             </div> 
           </div> -->
           <div class="topnav" id="myTopnav">
-            <a href="{{site.baseurl}}/projects/" class="active">Projects</a>
+            <div class="new_button">
+            <!-- {% if site.text_skin2 %}
+            <button type="button" onclick="node1=document.getElementById('theme_source');node2=document.getElementById('theme_source_2');if(node1.getAttribute('rel')=='stylesheet'){node1.setAttribute('rel', 'stylesheet alternate'); node2.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'dark');}else{node2.setAttribute('rel', 'stylesheet alternate'); node1.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'light');} return false;">
+              Flip
+            </button>
+          {% endif %} -->
+        </div>
+            <a href="{{site.baseurl}}/" class="active">Home</a>
             <a href="{{site.baseurl}}/resources">Resources</a>
             <a href="{{site.baseurl}}/blog">Blog</a>
+            <a href="{{site.baseurl}}/projects/">Projects</a>
             <div class="dropdown">
               <button class="dropbtn">Others 
                 <i class="fa fa-caret-down"></i>
               </button>
-              <div class="dropdown-content">
+              <div class="dropdown-content" id="so_fucking_unique">
                 <a href="{{site.baseurl}}/archive">Archive</a>
                 <a href="{{site.base_url}}/site/team/">Our Team</a>
-                <a href="#">Publications</a>
-                <a href="#">Skill Tree</a>
+                <a href="https://arc-bphc.github.io">About</a>
+                <a href="#">Skill Tree</a> 
               </div>
             </div> 
-            <a href="https://arc-bphc.github.io#about">About</a>
             <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
           </div>
           
@@ -105,13 +113,13 @@ body {margin:0;font-family:Arial}
 
 .topnav {
   overflow: hidden;
-  background-color: #202020;
+  --background-color: $main-color-3;
 }
 
 .topnav a {
   float: left;
   display: block;
-  color: #202020;
+  --color: $main-color-3;
   text-align: center;
   padding: 3px 5px;
   text-decoration: none;
@@ -119,7 +127,7 @@ body {margin:0;font-family:Arial}
 }
 
 .active {
-  color: #202020;
+  --color: $main-color-3;
 }
 
 .topnav .icon {
@@ -144,7 +152,7 @@ body {margin:0;font-family:Arial}
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #202020;
+  /* background-color: #202020; */
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -152,7 +160,8 @@ body {margin:0;font-family:Arial}
 
 .dropdown-content a {
   float: none;
-  color: #202020;
+  --color: $main-color-3;
+  --background-color: $main-color-3;
   padding: 3px px;
   text-decoration: none;
   display: block;
@@ -160,13 +169,13 @@ body {margin:0;font-family:Arial}
 }
 
 .topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #202020;
-  color: #ff9500;
+  --background-color: $main-color-3;
+  --color: $main-color-1;
 }
 
 .dropdown-content a:hover {
-  background-color: #202020;
-  color: black;
+  --background-color: $main-color-3;
+  --color: $main-color-3;
 }
 
 .dropdown:hover .dropdown-content {
@@ -204,68 +213,21 @@ body {margin:0;font-family:Arial}
   }
 }
 </style>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-<!-- <style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
 
-.navbar {
-  overflow: hidden;
-  background-color: #202020;
-}
 
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: #202020;
-  text-align: center;
-  padding: 3px 5px;
-  text-decoration: none;
-}
 
-.dropdown {
-  float: left;
-  overflow: hidden;
+<!-- <script>
+  function menueSwitcher(){
+  node1=document.getElementById('theme_source');
+  node2=document.getElementById('theme_source_2');
+  if(node1.getAttribute('rel')=='stylesheet')
+  {document.getElementById("so_fucking_unique").style.backgroundColor = 'Gray';
+  //   node1.setAttribute('rel', 'stylesheet alternate'); 
+  // node2.setAttribute('rel', 'stylesheet');
+  // sessionStorage.setItem('theme', 'dark');
+  }
+  else{document.getElementById("so_fucking_unique").style.backgroundColor = 'Aqua';} 
 }
+  </script> -->
 
-.dropdown .dropbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  padding: 3px 5px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #202020;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #202020;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 3px 5px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #202020;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-</style> -->

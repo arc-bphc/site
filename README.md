@@ -4,8 +4,11 @@
 - Semantic HTML
 - Highlight Theme + Rouge 
 - Search
+- Recent Posts 
+- Recommended Posts
+- Archive 
 - Table of contents
-- 
+- Aside bar
 - Authors
 - Additional styles (alert, tag, image, icon, button, grid, etc)
 - Extensions (audios, videos, slides, demos)

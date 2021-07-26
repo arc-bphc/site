@@ -208,7 +208,7 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   padding: 16px;
   text-align: center;
-  background-color: #121212;
+  --background-color: #$main-color-3;
 }
 
 /* Responsive columns - one column layout (vertical) on small screens */
@@ -228,3 +228,46 @@ body {
         crossorigin="anonymous"
         async>
 </script>
+
+{% if site.text_skin2 %}
+<a href="#" class="float" onclick="return themeSwitcherFunction();">
+  <i class="fa fa-moon my-float"></i>
+  </a>
+{% endif %}
+  <script type="text/javascript">
+    function themeSwitcherFunction () {
+      node1=document.getElementById('theme_source');
+      node2=document.getElementById('theme_source_2');
+      if(node1.getAttribute('rel')=='stylesheet')
+      {node1.setAttribute('rel', 'stylesheet alternate'); 
+      node2.setAttribute('rel', 'stylesheet');
+      sessionStorage.setItem('theme', 'dark');}
+      else{node2.setAttribute('rel', 'stylesheet alternate'); 
+      node1.setAttribute('rel', 'stylesheet');
+      sessionStorage.setItem('theme', 'light');} 
+      return false;
+
+        // return true or false, depending on whether you want to allow the `href` property to follow through or not
+    }
+</script>
+
+  <style>
+    *{padding:0;margin:0;}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}
+  </style>
