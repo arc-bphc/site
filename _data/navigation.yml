@@ -65,6 +65,8 @@ workshop-bar:
         url:    /resources/2021-07-06-Day0-1.html
       - title:  Getting Things Ready
         url:    /resources/2021-07-06-Day0-2.html
+      - title:  Programming
+        url:    /resources/2021-07-06-Day0-3.html
   - title:      Day 1
     children:
       - title:  Electronics
