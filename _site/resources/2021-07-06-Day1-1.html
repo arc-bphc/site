@@ -290,7 +290,7 @@
 
     <div class="grid page__grid">
 
-      <div class="page__sidebar d-print-none"><div class="sidebar-toc"><ul class="toc toc--navigator"><li class="toc-h1">Day 0</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-1.html">Introduction</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-2.html">Getting Things Ready</a></li><li class="toc-h1">Day 1</li><li class="toc-h2 active"><a href="/site/resources/2021-07-06-Day1-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day1-2.html">CAD</a></li><li class="toc-h1">Day 2</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-2.html">CAD</a></li><li class="toc-h1">Day 3</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day3-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day3-2.html">Electronics</a></li></ul></div></div><div class="page__main js-page-main has-aside cell cell--auto">
+      <div class="page__sidebar d-print-none"><div class="sidebar-toc"><ul class="toc toc--navigator"><li class="toc-h1">Day 0</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-1.html">Introduction</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-2.html">Getting Things Ready</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-3.html">Programming</a></li><li class="toc-h1">Day 1</li><li class="toc-h2 active"><a href="/site/resources/2021-07-06-Day1-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day1-2.html">CAD</a></li><li class="toc-h1">Day 2</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-2.html">CAD</a></li><li class="toc-h1">Day 3</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day3-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day3-2.html">Electronics</a></li></ul></div></div><div class="page__main js-page-main has-aside cell cell--auto">
 
       <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
@@ -341,10 +341,8 @@
               <div class="dropdown-content" id="so_fucking_unique">
                 <a href="/site/archive">Archive</a>
                 <a href="/site/team/">Our Team</a>
-
-                <a href="#">Publications</a>
-                <a href="#">Skill Tree</a>
-
+                <a href="https://arc-bphc.github.io">About</a>
+                <a href="#">Skill Tree</a> 
               </div>
             </div> 
             <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
@@ -520,8 +518,7 @@ body {margin:0;font-family:Arial}
 
 <p class="error">Content will be live after the registeration deadline</p>
 
-<!-- 
-# Basic Components
+<!-- # Basic Components
 
 This text will aim to give a basic introduction of the components that will be used in the workshop and to familiarise with their general uses.
 
@@ -673,9 +670,6 @@ A microcontroller is a compact integrated circuit designed to govern a specific 
 
 Also known as *embedded controllers or microcontroller units (MCUs)*, they are found in a variety of devices, including automobiles, robotics, office equipment, medical devices, mobile wireless transceivers, vending machines, and home appliances. They are essentially simple miniature personal computers (PCs) with no complex front-end operating system, designed to operate small features of a bigger component (OS).
 
-<img src="/site/assets/images/resources/Day1_Session1/microcontroller_block.png" alt="IR" width=auto height=auto>
-
-Fig 1.1: Block Diagram of a Microcontroller
 
 ## How do microcontrollers work?
 
@@ -698,41 +692,6 @@ The processor's input and output devices serve as its interface to the outside w
 
 While the processor, memory, and I/O peripherals are the most important components of a microprocessor, other components are typically incorporated as well. Supporting components that interface with the memory and CPU are referred to as I/O peripherals. Peripherals are a broad category that includes a wide range of supporting components. Because they are the method via which the processor is applied, having some form of an I/O peripheral is essential to a microprocessor.
 
-## Supporting Elements of a Microcontroller
-
-**Analog to Digital Converter (ADC)**
-An ADC is a circuit that converts analog signals to digital signals. It allows the processor at the center of the microcontroller to interface with external analog devices, such as sensors.
-
-**Digital to Analog Converter (DAC)**
-A DAC performs the inverse function of an ADC and allows the processor at the center of the microcontroller to communicate its outgoing signals to external analog components.
-
-**System bus**
-The system bus is the connective wire that links all components of the microcontroller together.
-
-**Serial port**
-The serial port is one example of an I/O port that allows the microcontroller to connect to external components. It has a similar function to a USB or a parallel port but differs in the way it exchanges bits.
-
-## Features of a microcontroller
-
-- *The processor of a microcontroller varies depending on the application.* Simple 4-bit, 8-bit, or 16-bit processors to more complicated 32-bit or 64-bit processors are available. Volatile memory types such as random access memory (RAM) and non-volatile memory types such as flash memory, erasable programmable read-only memory (EPROM), and electrically erasable programmable read-only memory (EEPROM) can be used by microcontrollers.
-    
-- Microcontrollers are designed to be easily useable without the use of extra computational components since they have enough onboard memory and pins for typical I/O activities, allowing them to directly communicate with sensors and other components.
-    
-- Microcontrollers used assembly language exclusively when they initially became available. The C programming language is a common choice nowadays. Python and JavaScript are two other popular languages.
-    
-- Input and output pins on MCUs are used to implement peripheral functionality. Analog-to-digital converters, LCD controllers, real-time clocks (RTC), universal synchronous/asynchronous receiver transmitters (USART), timers, universal asynchronous receiver transmitter (UART), and USB connectivity are examples of such functions. Sensors that collect data on humidity and temperature, among other things, are frequently connected to microcontrollers.
-    
-
-## Some Applications of a Microcontroller
-
-Microcontrollers are utilised in a wide range of sectors and applications, including home and office automation, manufacturing, robotics, automotive, lighting, smart energy, industrial automation, communications, and IoT deployments.
-
-- **A car**, for example, may contain numerous microcontrollers that operate various internal systems such as *anti-lock braking, traction control, fuel injection, and suspension control*. To inform the correct actions, all the microcontrollers communicate with one another. Some microcontrollers may connect with the car's more complex central computer, while others may only communicate with other microcontrollers. They use their I/O peripherals to send and receive data, which they then process to complete their tasks.
-    
-- Microcontrollers, even the simplest ones, make **electromechanical systems like ovens, refrigerators, toasters, mobile devices, key fobs, video game systems, televisions, and lawn-watering systems** easier to operate. They're also found in **photocopiers, scanners, fax machines, and printers** in the office, as well as **smart metres, ATMs, and security systems**.
-    
-- Microcontrollers with higher levels of sophistication are used in **aeroplanes, spacecraft, ocean-going vessels, vehicles, medical and life-support systems, and robotics**. Microcontrollers can control the functioning of an **artificial heart, kidney, or other organ in medical applications**. They can also play an important role in the operation of **prosthetic devices**.
-    
 
 ## Examples of Microcontrollers
 
@@ -743,149 +702,7 @@ Microcontrollers are utilised in a wide range of sectors and applications, inclu
 
 Fig 1.2: Arduino with ATmega328 Microcontroller
 
-# Microprocessors
-
-## What is a microprocessor?
-
-A microprocessor is an integrated circuit (IC) that houses the central processing unit (CPU) of a computer . It is a clock-driven, register-based programmable multipurpose silicon device that accepts binary data as input and processes it according to instructions stored in the memory.
-
-<img src="/site/assets/images/resources/Day1_Session1/microprocessor_1.png" alt="IR" width=auto height=auto>
-
-Fig 2.1:Microprocessor Block Diagram
-
-## Why we need a Microprocessor?
-
-A microprocessor, like our brain, can be trained to perform any task. Based on its instruction set and capabilities, it can be programmed to perform anything we desire. When we try to solve a problem without programming, the solution can be exceedingly complex.
-
-When we try to solve a problem without programming, the solution can be exceedingly complex.
-
-Assume you wish to construct a large structure. The use of BRICKS will simplify and reduce the cost of building. It will also allow you to design the building in whatever shape or size you like. The bricks that you can employ to solve your problem are instructions stored in a microprocessor. You can quickly solve difficult programmes by following those guidelines.
-
-## How does a Microprocessor work ?
-
-A processor is the brain of a computer which basically consists of *Arithmetical and Logical Unit (ALU), Control Unit and Register Array*.
-
-- **ALU** performs all arithmetic and logical operations on the data received from input devices or memory.
-- **Register array** consists of a series of registers like accumulator (A), B, C, D etc. which acts as temporary fast access memory locations for processing data.
-- **Control Unit** controls the flow of instructions and data throughout the system.
-
-So basically a microprocessor takes input from input devices, process it as per instructions given in the memory and produces output.
-
-## Common terms used in a Microprocessor
-
-**Bus**
-A bus is a collection of conductors that transfer data, address, or control information to various CPU units. A microprocessor typically has three types of buses: data, control, and address. An 8-bit wide bus will be used by an 8-bit processor.
-
-**Instruction Set**
-A microprocessor's instruction set is a collection of commands that it can understand. As a result, an instruction set serves as a link between hardware and software (program). An instruction instructs the processor to switch relevant transistors in order to perform data processing. ADD A, B, for example, is used to add two numbers in the registers A and B.
-
-**Word Length**
-The number of bits in a processor's internal data bus, or the number of bits a processor can handle at one time, is referred to as word length. As an example, An 8-bit processor has an 8-bit data bus, 8-bit registers, and only processes 8 bits at a time. It will divide higher-bit operations (32-bit and 16-bit) into a sequence of 8-bit operations.
-
-**Cache Memory**
-Cache memory is a type of random access memory built into the CPU. As a result, the processor can retrieve data from the cache memory faster than from conventional RAM. CPU Memory is another name for it. Cache memory is used to store data or instructions that the software or programme refers to frequently during execution. As a result, the total pace of the process will improve.
-
-**Clock Speed**
-A clock signal is used by microprocessors to govern the rate at which instructions are executed, as well as to synchronise other internal components and control data transfer. The speed at which a microprocessor executes instructions is referred to as clock speed. It is commonly stated in megahertz (MHz), gigahertz (GHz), and so on, and is measured in Hertz.
-
-## RISC – Reduced Instruction Set Computer
-
-RISC is a microprocessor architecture that employs a minimal, general-purpose, and highly optimised instruction set rather than a more specialised one seen in other architectures. RISC outperforms the CISC architecture in terms of performance Each instruction in a processor necessitates the use of a separate circuit to load and process the data. As a result, by lowering the number of instructions, the processor will be able to use simpler circuits and operate more quickly.
-
-- Simple instruction set
-- Larger program
-- Consists of large number of registers
-- Simple processor circuitry (small number of transistors)
-- More RAM usage
-- Fixed length instructions
-- Simple addressing modes
-- Usually fixed number of clock cycles for executing one instruction
-
-## CISC – Complex Instruction Set Computer
-
-The CISC microprocessor architecture is the opposite of RISC. It's designed to cut the amount of instructions per programme in half while ignoring the number of cycles per instruction. As a result, complicated instructions are directly implemented in hardware, resulting in a processor that is both complex and slow to operate.This architecture is actually designed to reduce the cost of memory by reducing the program length.
-
-- Complex instruction set
-- Smaller program
-- Less number of registers
-- Complex processor circuitry (more number of transistors)
-- Little RAM usage
-- Variable length instructions
-- Variety of addressing modes
-- Variable number of clock cycles for each instructions
-- Special Purpose Processors
-
-## Advantages of Microprocessors
-
-**Low Cost**
-Microprocessors are available at low cost due to integrated circuit technology which reduces the cost of a computer system.
-
-**High Speed**
-Microprocessor chips can work at very high speed due to the technology involved in it. It is capable of executing millions of instructions per second.
-
-**Small Size**
-Due to very large scale and ultra large scale integration technology, a microprocessor is fabricated in a very less footprint. This will reduce the size of the entire computer system.
-
-**Versatile**
-Microprocessors are very versatile, the same chip can be used for a number of applications by simply changing the program (instructions stored in the memory).
-
-**Low Power Consumption**
-Microprocessors are usually manufactured using metal oxide semiconductor technology, in which MOSFETs (Metal Oxide Semiconductor Field Effect Transistors) are working in saturation and cut off modes. So the power consumption is very low compared to others.
-
-**Less Heat Generation**
-Compared to vacuum tube devices, semiconductor devices won’t emit that much heat.
-
-**Reliable**
-Microprocessors are very reliable, failure rate is very less as semiconductor technology is used.
-
-**Portable**
-Devices or computer system made with microprocessors can be made portable due to the small size and low power consumption.
-
-## Special Purpose Processors
-
-There are some processors which are designed to handle some specific functions.
-
-- DSP – Digital Signal Processors
-- Coprocessors – processors used along with a main processor (8087 math-coprocessor used with 8086)
-- Input/Output processors
-- Transputer – Transistor Computer : Microprocessor with its own local memory
-
-## Examples of Microprocessors
-
-- Intel 4004 – The First Microprocessor
-- Intel 8085
-- Intel 8086
-- Intel Pentium 4
-- Intel Core i7
-- AMD Athlon
-
-<img src="/site/assets/images/resources/Day1_Session1/intel.png" alt="IR" width=auto height=auto>
-
-Fig 2.2: Intel 4004 Microprocessor
-
-* * *
-
-## Key differences between Microcontrollers & Microprocessors:
-
-|     | MicroConrollers | MicroProcessors |
-| --- | --- | --- |
-| Structure | CPU, Memory, I/O port and all other devices are connected on the single chip. The structure is fixed. Once it is designed the user cannot change the peripheral devices. | It has only the CPU in the chip. Other devices like I/O port, memory & timer are connected externally. The structure of the microprocessor is flexible. Users can decide the amount of memory, the number of I/O ports and other peripheral devices |
-| Application | It is used where the task is fixed & predefined. It is used in the washing machine, alarm, microwave oven etc. | It is used where intensive processing is required. It is used in personal computers, laptops, mobiles, video games, etc. |
-| Programming | The program for the microcontroller is fixed once it is designed. | The program for the microprocessor can be changed for different applications. The programming of the microprocessor is difficult compared to the microcontroller. |
-| Clock Speed | The clock speed of the microcontroller is less. It is in terms of the MHz. it ranges between 1 MHz to 300 MHz. | The clock speed of the microprocessor is high. It is in terms of the GHz. It ranges between 1 GHz to 4 GHz. |
-| Power Consumption | The power consumption for the microcontroller is less. | The power consumption for the microprocessor is more. |
-| Peripheral Interface | The common peripheral interface for the microcontroller is I2C, SPI, and UART. | The common peripheral interface for the microprocessor is USB, UART, and high-speed Ethernet. |
-| RAM | The volatile memory (RAM) for the microcontroller is in the range of 2 KB to 256 KB. | The volatile memory (RAM) for the microprocessor is in the range of 512 MB to 32 GB. |
-| ROM | The hard drive or flash memory (ROM) is in the range of 32 KB to 2 MB. | The hard disk (ROM) for the microprocessor is in the range of 128 GB to 2 TB. |
-| Bit Size | It is available in 8-bit, 16-bit, and 36-bit. | It is available in 32-Bit and 64-bit. |
-| Size | The overall size of the system is small. | The overall size of the system is large. |
-| Example | Arduino UNO | Raspberry Pi |
-| Cost | The cost of the microcontroller is low compared to the microprocessor. | Comparatively expensive. |
-
-Here is a YouTube video you might refer to:
-[Difference Between MicroController & Microprocessor](https://youtu.be/U2vBsZbgw8M). (use subtitles)
-
-* * *
+***
 
 # Introduction to Arduino
 
@@ -1093,6 +910,91 @@ For usage purposes, the PWM pins are of $8-bit$ resolution is used. In this, vol
 
 For further clarity on PWM check out this [video](https://www.youtube.com/watch?v=yhpk4V9w-ZM).
 
+* * *
+
+# Microprocessors
+
+## What is a microprocessor?
+
+A microprocessor is an integrated circuit (IC) that houses the central processing unit (CPU) of a computer . It is a clock-driven, register-based programmable multipurpose silicon device that accepts binary data as input and processes it according to instructions stored in the memory.
+
+
+## Why we need a Microprocessor?
+
+A microprocessor, like our brain, can be trained to perform any task. Based on its instruction set and capabilities, it can be programmed to perform anything we desire. When we try to solve a problem without programming, the solution can be exceedingly complex.
+
+When we try to solve a problem without programming, the solution can be exceedingly complex.
+
+Assume you wish to construct a large structure. The use of BRICKS will simplify and reduce the cost of building. It will also allow you to design the building in whatever shape or size you like. The bricks that you can employ to solve your problem are instructions stored in a microprocessor. You can quickly solve difficult programmes by following those guidelines.
+
+## How does a Microprocessor work ?
+
+A processor is the brain of a computer which basically consists of *Arithmetical and Logical Unit (ALU), Control Unit and Register Array*.
+
+- **ALU** performs all arithmetic and logical operations on the data received from input devices or memory.
+- **Register array** consists of a series of registers like accumulator (A), B, C, D etc. which acts as temporary fast access memory locations for processing data.
+- **Control Unit** controls the flow of instructions and data throughout the system.
+
+So basically a microprocessor takes input from input devices, process it as per instructions given in the memory and produces output.
+
+## Advantages of Microprocessors
+
+**Low Cost**
+Microprocessors are available at low cost due to integrated circuit technology which reduces the cost of a computer system.
+
+**High Speed**
+Microprocessor chips can work at very high speed due to the technology involved in it. It is capable of executing millions of instructions per second.
+
+**Small Size**
+Due to very large scale and ultra large scale integration technology, a microprocessor is fabricated in a very less footprint. This will reduce the size of the entire computer system.
+
+**Versatile**
+Microprocessors are very versatile, the same chip can be used for a number of applications by simply changing the program (instructions stored in the memory).
+
+**Low Power Consumption**
+Microprocessors are usually manufactured using metal oxide semiconductor technology, in which MOSFETs (Metal Oxide Semiconductor Field Effect Transistors) are working in saturation and cut off modes. So the power consumption is very low compared to others.
+
+**Less Heat Generation**
+Compared to vacuum tube devices, semiconductor devices won’t emit that much heat.
+
+**Reliable**
+Microprocessors are very reliable, failure rate is very less as semiconductor technology is used.
+
+**Portable**
+Devices or computer system made with microprocessors can be made portable due to the small size and low power consumption.
+
+
+## Examples of Microprocessors
+
+- Intel 4004 – The First Microprocessor
+- Intel 8085
+- Intel 8086
+- Intel Pentium 4
+- Intel Core i7
+- AMD Athlon
+
+* * *
+
+## Key differences between Microcontrollers & Microprocessors:
+
+|     | MicroConrollers | MicroProcessors |
+| --- | --- | --- |
+| Structure | CPU, Memory, I/O port and all other devices are connected on the single chip. The structure is fixed. Once it is designed the user cannot change the peripheral devices. | It has only the CPU in the chip. Other devices like I/O port, memory & timer are connected externally. The structure of the microprocessor is flexible. Users can decide the amount of memory, the number of I/O ports and other peripheral devices |
+| Application | It is used where the task is fixed & predefined. It is used in the washing machine, alarm, microwave oven etc. | It is used where intensive processing is required. It is used in personal computers, laptops, mobiles, video games, etc. |
+| Programming | The program for the microcontroller is fixed once it is designed. | The program for the microprocessor can be changed for different applications. The programming of the microprocessor is difficult compared to the microcontroller. |
+| Clock Speed | The clock speed of the microcontroller is less. It is in terms of the MHz. it ranges between 1 MHz to 300 MHz. | The clock speed of the microprocessor is high. It is in terms of the GHz. It ranges between 1 GHz to 4 GHz. |
+| Power Consumption | The power consumption for the microcontroller is less. | The power consumption for the microprocessor is more. |
+| Peripheral Interface | The common peripheral interface for the microcontroller is I2C, SPI, and UART. | The common peripheral interface for the microprocessor is USB, UART, and high-speed Ethernet. |
+| RAM | The volatile memory (RAM) for the microcontroller is in the range of 2 KB to 256 KB. | The volatile memory (RAM) for the microprocessor is in the range of 512 MB to 32 GB. |
+| ROM | The hard drive or flash memory (ROM) is in the range of 32 KB to 2 MB. | The hard disk (ROM) for the microprocessor is in the range of 128 GB to 2 TB. |
+| Bit Size | It is available in 8-bit, 16-bit, and 36-bit. | It is available in 32-Bit and 64-bit. |
+| Size | The overall size of the system is small. | The overall size of the system is large. |
+| Example | Arduino UNO | Raspberry Pi |
+| Cost | The cost of the microcontroller is low compared to the microprocessor. | Comparatively expensive. |
+
+Here is a YouTube video you might refer to:
+[Difference Between MicroController & Microprocessor](https://youtu.be/U2vBsZbgw8M). (use subtitles)
+
 * * * -->
 </div><section class="article__sharing d-print-none"><!-- Addthis BEGIN --><script type="text/javascript"
     src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60e523a6b5396709"></script>
@@ -1100,12 +1002,10 @@ For further clarity on PWM check out this [video](https://www.youtube.com/watch?
 </section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2021-07-06T00:00:00+05:30"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
-
-<div itemscope itemtype="http://schema.org/Person" class="author-profile card card--flat item"><a href="https://textzip.github.io" class="item__image"><img class="author-profile__avatar" itemprop="image" src="https://avatars.githubusercontent.com/u/49020643?s=400&u=2aad25de82739f9c1de19136233281ff04aa3346&v=4" /></a><div class="item__content"><meta itemprop="name" content="Jai Krishna">
-        <p class="author-profile__name"><meta itemprop="url" content="https://textzip.github.io">
-            <a href="https://textzip.github.io">Jai Krishna</a></p><p itemprop="description">2018B5A20744H</p><div class="author-profile__links"><div class="author-links">
-  <ul class="menu menu--nowrap menu--inline"><link itemprop="url" href="https://textzip.github.io"><li title="Send me an Email.">
-
+<div itemscope itemtype="http://schema.org/Person" class="author-profile card card--flat item"><a href="https://arc-bphc.github.io" class="item__image"><img class="author-profile__avatar" itemprop="image" src="https://avatars.githubusercontent.com/u/30314930?v=4" /></a><div class="item__content"><meta itemprop="name" content="Automation and Robotics Club">
+        <p class="author-profile__name"><meta itemprop="url" content="https://arc-bphc.github.io">
+            <a href="https://arc-bphc.github.io">Automation and Robotics Club</a></p><div class="author-profile__links"><div class="author-links">
+  <ul class="menu menu--nowrap menu--inline"><link itemprop="url" href="https://arc-bphc.github.io"><li title="Send me an Email.">
       <a class="button button--circle mail-button" itemprop="email" href="https://mail.google.com/mail/?view=cm&fs=1&to=arc@hyderabad.bits-pilani.ac.in" target="_blank">
         <i class="fas fa-envelope"></i>
       </a><li title="Follow me on Facebook.">
@@ -1135,7 +1035,7 @@ For further clarity on PWM check out this [video](https://www.youtube.com/watch?
       </a>
     </p>
   </div> --></div></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/site/resources/2021-07-06-Day0-2.html">Getting Things Ready</a></div><div class="next"><span>NEXT</span><a href="/site/resources/2021-07-06-Day1-2.html">CAD</a></div></div></div>
+<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/site/resources/2021-07-06-Day0-3.html">Programming</a></div><div class="next"><span>NEXT</span><a href="/site/resources/2021-07-06-Day1-2.html">CAD</a></div></div></div>
 
 </div>
 <script>(function() {
@@ -1211,6 +1111,32 @@ For further clarity on PWM check out this [video](https://www.youtube.com/watch?
     
     
     
+    <div class="column">
+      <div>
+      <h5><a href="/site/resources/2021-07-06-Day0-3.html">
+        <div class="card">
+            <div class="card__image">
+              <img class="image" src="/site/assets/images/resources/thumbnails/Workshop Day 0 Session 3."/>
+            </div>
+            <div class="card__content">
+              <div class="card__header">
+                <h4>Workshop Day 0 Session 3</h4>
+              </div>
+              <p>TeXt</p>
+            </div>
+          </div>
+      </a>
+      </h5>
+      </div>
+    </div>
+      
+      
+    
+ 
+    
+    
+    
+    
  
     
     
@@ -1252,32 +1178,6 @@ For further clarity on PWM check out this [video](https://www.youtube.com/watch?
             <div class="card__content">
               <div class="card__header">
                 <h4>Workshop Day 2 Session 1</h4>
-              </div>
-              <p>TeXt</p>
-            </div>
-          </div>
-      </a>
-      </h5>
-      </div>
-    </div>
-      
-      
-    
- 
-    
-    
-    
-    
-    <div class="column">
-      <div>
-      <h5><a href="/site/resources/2021-07-06-Day2-2.html">
-        <div class="card">
-            <div class="card__image">
-              <img class="image" src="/site/assets/images/resources/thumbnails/Workshop Day 2 Session 2."/>
-            </div>
-            <div class="card__content">
-              <div class="card__header">
-                <h4>Workshop Day 2 Session 2</h4>
               </div>
               <p>TeXt</p>
             </div>
