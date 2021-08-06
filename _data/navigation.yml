@@ -73,6 +73,8 @@ workshop-bar:
         url:    /resources/2021-07-06-Day1-1.html
       - title:  CAD
         url:    /resources/2021-07-06-Day1-2.html
+      - title:  Assignment
+        url:    /resources/2021-07-06-Day1-3.html
   - title:      Day 2 
     children:
       - title:  Electronics
