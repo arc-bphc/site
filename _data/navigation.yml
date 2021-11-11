@@ -109,47 +109,47 @@ levelup-bar:
     children:
       - title:   Introduction
         url:    /resources/2021-07-06-Level-0-1.html
-  - title:      Level 1
-    children:
-      - title:  Level 1 Resources
-        url:    /resources/2021-07-06-Level-1-1.html
-      - title:  Level 1 Solutions
-        url:    /resources/2021-07-06-Level-1-2.html
-  - title:      Level 2 
-    children:
-      - title:  Level 2 Resources
-        url:    /resources/2021-07-06-Level-2-1.html
-      - title:  Level 2 Solutions
-        url:    /resources/2021-07-06-Level-2-2.html
-  - title:      Level 3
-    children:
-      - title:  Level 3 Resources
-        url:    /resources/2021-07-06-Level-3-1.html
-      - title:  Level 3 Solutions
-        url:    /resources/2021-07-06-Level-3-2.html
-  - title:      Level 4
-    children:
-      - title:  Level 4 Resources
-        url:    /resources/2021-07-06-Level-4-1.html
-      - title:  Level 4 Solutions
-        url:    /resources/2021-07-06-Level-4-2.html
-  - title:      Level 5
-    children:
-      - title:  Level 5 Resources
-        url:    /resources/2021-07-06-Level-5-1.html
-      - title:  Level 5 Solutions
-        url:    /resources/2021-07-06-Level-5-2.html
-  - title:      Level 6
-    children:
-      - title:  Level 6 Resources
-        url:    /resources/2021-07-06-Level-6-1.html
-      - title:  Level 6 Solutions
-        url:    /resources/2021-07-06-Level-6-2.html
-  - title:      Level 7
-    children:
-      - title:  Level 7 Resources
-        url:    /resources/2021-07-06-Level-7-1.html
-      - title:  Level 7 Solutions
-        url:    /resources/2021-07-06-Level-7-2.html
+  # - title:      Level 1
+  #   children:
+  #     - title:  Level 1 Resources
+  #       url:    /resources/2021-07-06-Level-1-1.html
+  #     - title:  Level 1 Solutions
+  #       url:    /resources/2021-07-06-Level-1-2.html
+  # - title:      Level 2 
+  #   children:
+  #     - title:  Level 2 Resources
+  #       url:    /resources/2021-07-06-Level-2-1.html
+  #     - title:  Level 2 Solutions
+  #       url:    /resources/2021-07-06-Level-2-2.html
+  # - title:      Level 3
+  #   children:
+  #     - title:  Level 3 Resources
+  #       url:    /resources/2021-07-06-Level-3-1.html
+  #     - title:  Level 3 Solutions
+  #       url:    /resources/2021-07-06-Level-3-2.html
+  # - title:      Level 4
+  #   children:
+  #     - title:  Level 4 Resources
+  #       url:    /resources/2021-07-06-Level-4-1.html
+  #     - title:  Level 4 Solutions
+  #       url:    /resources/2021-07-06-Level-4-2.html
+  # - title:      Level 5
+  #   children:
+  #     - title:  Level 5 Resources
+  #       url:    /resources/2021-07-06-Level-5-1.html
+  #     - title:  Level 5 Solutions
+  #       url:    /resources/2021-07-06-Level-5-2.html
+  # - title:      Level 6
+  #   children:
+  #     - title:  Level 6 Resources
+  #       url:    /resources/2021-07-06-Level-6-1.html
+  #     - title:  Level 6 Solutions
+  #       url:    /resources/2021-07-06-Level-6-2.html
+  # - title:      Level 7
+  #   children:
+  #     - title:  Level 7 Resources
+  #       url:    /resources/2021-07-06-Level-7-1.html
+  #     - title:  Level 7 Solutions
+  #       url:    /resources/2021-07-06-Level-7-2.html
 
 
