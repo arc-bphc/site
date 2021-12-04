@@ -166,3 +166,7 @@ Given above is the code used for the project. As we can see the 3 degrees of fre
 ### Demonstration
 This is a demonstration of the working of the arm, done at the expo.
 
+<div>{%- include extensions/youtube.html id='hvCeoiGeYC4' -%}</div>
+
+<div>{%- include extensions/youtube.html id='hvCeoiGeYC4' -%}</div>
+
