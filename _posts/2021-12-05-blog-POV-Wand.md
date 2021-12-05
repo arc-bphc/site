@@ -47,8 +47,6 @@ window.Lazyload.js(SOURCES.jquery, function() {
 </script>
 
 
-[Project Demo](:/1749e4b3b4a440cabf5579980213465c)
-
 ## Components and tools
 
 1.  (1x) Arduino Uno
