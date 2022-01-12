@@ -55,3 +55,6 @@
 TeXt Theme is [MIT licensed](https://github.com/kitian616/jekyll-TeXt-theme/blob/master/LICENSE).
 
 ### [TeXt Theme](https://github.com/kitian616/jekyll-TeXt-theme)
+
+
+Last Edited: 11th Jan 2022
