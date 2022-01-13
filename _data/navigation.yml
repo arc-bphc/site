@@ -109,6 +109,8 @@ levelup-bar:
     children:
       - title:   Introduction
         url:    /resources/2021-07-06-Level-0-1.html
+      - title:   Getting Started
+        url:    /resources/2021-07-06-Level-0-2.html
   - title:      Level 1
     children:
       - title:  Level 1 Resources
