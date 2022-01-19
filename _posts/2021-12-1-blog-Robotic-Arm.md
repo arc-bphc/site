@@ -10,7 +10,7 @@ show_author_profile: false
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/thumbnails/Servo Motors PWM.png
+cover: /assets/images/blog/thumbnails/robotic_arm.jpeg
 ---
 
 # Robotic Arm
