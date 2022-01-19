@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/thumbnails/Servo Motors PWM.png
+cover: /assets/images/blog/thumbnails/servo_pwm.jpg
 ---
 ## Aim
 Explore the working of the servo library.

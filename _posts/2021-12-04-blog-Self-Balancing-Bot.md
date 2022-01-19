@@ -10,7 +10,7 @@ show_author_profile: true
 show_title: true
 full_width: false
 header: true
-cover: /assets/images/blog/thumbnails/Self Balancing Bot.png
+cover: /assets/images/blog/thumbnails/Self_balancing_bot.jpeg
 ---
 
 ## Aim
