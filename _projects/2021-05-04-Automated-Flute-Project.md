@@ -13,7 +13,7 @@ cover: assets/images/resources/247-2474702_flute-clip-art.png
 ---
 Automating the Flute playing process
 <!--more-->
-* * *
+
 
 # Automated Flute Project
 
