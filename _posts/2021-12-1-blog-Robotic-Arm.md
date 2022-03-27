@@ -16,11 +16,11 @@ cover: /assets/images/blog/thumbnails/robotic_arm.jpeg
 # Robotic Arm
 ## A Brief Overview.
 We worked on building a **Mechanical Manipulator[M.M.]**, i.e. a Robotic Arm, with 3 Degrees of Freedom. We tried to control the arm with a Bluetooth module. To achieve our goal we used 3 servos.
-***
+
 ### Degrees of Freedom.
 In **Mechanical Manipulators[M.M.]**, **Degrees of Freedom** typically refers to the joints in the arm. They represent the axes of rotation in the arm. These **joints** allow us to control the arm. These joints usually have some kind of **actuators** which enable the  **M.M.** to move. We used **servos** to achieve this task.
 
-***
+
 ### MG995s
 **MG995s** is the servo model which we have utilized. 
 Its specifications are as follows :
@@ -38,14 +38,14 @@ Its specifications are as follows :
 
 <img src="{{site.baseurl}}/assets/images/blog/Robotic-Arm/2.png" alt="Resistor" width=auto height=auto>
 
-***
+
 ### Connecting Linkers
 **Linkers** are the connecting rods - which are typically rectangular - that are placed between two joints. These linkers constitute a major part of the **" M.M."**. We 3D printed the linkers and we connected them together at the joints in the following way:
 
 <img src="{{site.baseurl}}/assets/images/blog/Robotic-Arm/3.png" alt="Resistor" width=auto height=auto>
 
 
-***
+
 
 ### Power Supply and the Final Circuit
 The 3 servos were powered using a SMPS. A Switch Mode Power Supply (SMPS) is a power supply which can provide a fixed voltage and current upto a maximum value pertaining to that voltage.

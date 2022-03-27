@@ -34,7 +34,7 @@ The components used for the RC bot are-
 * OLED Display
 
 The car is fitted with a pro mini and an NRFacting as a receiver. The remote consists of a pro mini, an NRF acting as a transmitter and an MPU 6050. The remote consists of a switch which enables the user to toggle between joystick mode and motion control mode. The NRF transmitter sends the joystick/ MPU reading to the receiving NRF which sends the appropriate signal to the pro mini on the bot and finally to the actuators
-***
+
 ## MPU 6050
 <img src="{{site.baseurl}}/assets/images/blog/RC-Bot/2.png" alt="2" width=auto height=auto>
 The MPU-6050 is the world’s first and only 6-axis motion tracking devices designed for the low power, low cost, and high performance requirements of smartphones, tablets and wearable sensors.
@@ -382,13 +382,13 @@ void loop() {
     }
 }
 ```
-***
+
 ## NRF 24
 <img src="{{site.baseurl}}/assets/images/blog/RC-Bot/3.png" alt="3" width=auto height=auto>
 The nRF24L01+ transceiver module is designed to operate in 2.4 GHz worldwide ISM frequency band and uses GFSK modulation for data transmission. The data transfer rate can be one of 250kbps, 1Mbps and 2Mbps. The nRF24L01+ transceiver module communicates over a 4-pin Serial Peripheral Interface (SPI) with a maximum data rate of 10Mbps. All the parameters such as frequency channel (125 selectable channels), output power (0 dBm, -6 dBm, -12 dBm or -18 dBm), and data rate (250kbps, 1Mbps, or 2Mbps) can be configured through SPI interface. The SPI bus uses a concept of a Master and Slave, in most common applications our Arduino is the Master and the nRF24L01+ transceiver module is the Slave.
 Following is a link for a more practical understanding
 https://electronoobs.com/eng_arduino_tut95.php
-***
+
 
 
 
@@ -684,7 +684,7 @@ void read_IMU() {
 
 }
 ```
-***
+
 ## Receiver Code
 ```
 
