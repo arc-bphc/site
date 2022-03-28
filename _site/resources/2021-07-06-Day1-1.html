@@ -290,7 +290,7 @@
 
     <div class="grid page__grid">
 
-      <div class="page__sidebar d-print-none"><div class="sidebar-toc"><ul class="toc toc--navigator"><li class="toc-h1">Day 0</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-1.html">Introduction</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-2.html">Getting Things Ready</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-3.html">Programming</a></li><li class="toc-h1">Day 1</li><li class="toc-h2 active"><a href="/site/resources/2021-07-06-Day1-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day1-2.html">CAD</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day1-3.html">Assignment</a></li><li class="toc-h1">Day 2</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-2.html">CAD</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-3.html">Assignment</a></li><li class="toc-h1">Day 3</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day3-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day3-3.html">Assignment</a></li><li class="toc-h1">Post Workshop</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day4-1.html">Line Follower Robot</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day4-2.html">Obstacle Avoidance Robot</a></li></ul></div></div><div class="page__main js-page-main has-aside cell cell--auto">
+      <div class="page__sidebar d-print-none"><div class="sidebar-toc"><ul class="toc toc--navigator"><li class="toc-h1">Day 0</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-1.html">Introduction</a></li><li class="toc-h1">Day 1</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-2.html">Getting Things Ready</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day0-3.html">Programming</a></li><li class="toc-h1">Day 2</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-2.html">CAD</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day2-3.html">Assignment</a></li><li class="toc-h1">Day 3</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day3-1.html">Electronics</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day3-3.html">Assignment</a></li><li class="toc-h1">Post Workshop</li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day4-1.html">Line Follower Robot</a></li><li class="toc-h2"><a href="/site/resources/2021-07-06-Day4-2.html">Obstacle Avoidance Robot</a></li></ul></div></div><div class="page__main js-page-main has-aside cell cell--auto">
 
       <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
@@ -514,6 +514,9 @@ body {margin:0;font-family:Arial}
   img {
   border-radius: 8px;
 }
+code {
+  font-size: 15px;
+}
 </style>
 
 <h1 id="basic-components">Basic Components</h1>
@@ -622,13 +625,6 @@ body {margin:0;font-family:Arial}
     <p><img src="/site/assets/images/resources/Day1_Session1/bluetooth_1.jpg" alt="IR" width="auto" height="auto" /></p>
 
     <p>HC-05 is a bluetooth module that gives bluetooth properties to your robot. It enables you to wirelessly control your robot using your phone. This would be a key component in building the Bluetooth Controlled Bot.</p>
-  </li>
-  <li>
-    <p><strong>LM7805</strong></p>
-
-    <p><img src="/site/assets/images/resources/Day1_Session1/7805.png" alt="IR" width="auto" height="auto" /></p>
-
-    <p>LM7805 is a Voltage Regulator and is used in electronic circuits requiring a regulated power supply. It outputs a steady 5V even when a higher voltage is applied across it.</p>
   </li>
   <li>
     <p><strong>Jumper Wires</strong></p>
@@ -781,26 +777,26 @@ If you select 2000μ, then the readings will be displayed in μA. If you have se
 
 <p>Also known as <em>embedded controllers or microcontroller units (MCUs)</em>, they are found in a variety of devices, including automobiles, robotics, office equipment, medical devices, mobile wireless transceivers, vending machines, and home appliances. They are essentially simple miniature personal computers (PCs) with no complex front-end operating system, designed to operate small features of a bigger component (OS).</p>
 
-<h2 id="how-do-microcontrollers-work">How do microcontrollers work?</h2>
+<!-- ## How do microcontrollers work?
 
-<p>A microcontroller is embedded inside a system and controls a single function. It accomplishes this by employing its core Processor to evaluate data received from its I/O peripherals. The microcontroller’s temporary information is stored in its data memory, where the processor accesses it and decodes and applies the incoming data using instructions stored in its programme memory. It then communicates with its I/O peripherals and takes the required action.</p>
+A microcontroller is embedded inside a system and controls a single function. It accomplishes this by employing its core Processor to evaluate data received from its I/O peripherals. The microcontroller's temporary information is stored in its data memory, where the processor accesses it and decodes and applies the incoming data using instructions stored in its programme memory. It then communicates with its I/O peripherals and takes the required action.
 
-<h2 id="core-elements-of-a-microcontroller">Core Elements of a Microcontroller</h2>
+## Core Elements of a Microcontroller
 
-<p><strong>The processor (CPU)</strong>
-A processor might be compared to the device’s brain. It interprets and responds to a variety of commands that control the microcontroller’s operation. This includes basic arithmetic, logic, and input/output (I/O) operations. It also performs data transfer operations that send commands to other embedded system components.</p>
+**The processor (CPU)**
+A processor might be compared to the device's brain. It interprets and responds to a variety of commands that control the microcontroller's operation. This includes basic arithmetic, logic, and input/output (I/O) operations. It also performs data transfer operations that send commands to other embedded system components.
 
-<p><strong>Memory</strong>
-The memory of a microcontroller is used to retain the data that the processor receives and to respond to commands that it has been programmed to carry out. There are two types of memory in a microcontroller:</p>
+**Memory**
+The memory of a microcontroller is used to retain the data that the processor receives and to respond to commands that it has been programmed to carry out. There are two types of memory in a microcontroller:
 
-<p><em>Program memory</em> is where the CPU keeps long-term information about the instructions it executes. Program memory is non-volatile memory, which means it may store data indefinitely without the need for a power source.</p>
+*Program memory* is where the CPU keeps long-term information about the instructions it executes. Program memory is non-volatile memory, which means it may store data indefinitely without the need for a power source.
 
-<p><em>Data memory</em> is needed to store temporary data while the instructions are being executed. Data memory is volatile, which means that the data it stores is only transient and is only kept if the device is powered up.</p>
+*Data memory* is needed to store temporary data while the instructions are being executed. Data memory is volatile, which means that the data it stores is only transient and is only kept if the device is powered up.
 
-<p><strong>I/O peripherals</strong>
-The processor’s input and output devices serve as its interface to the outside world. The input ports take in information and transfer it to the processor as binary data. The processor receives that data and sends the necessary instructions to output devices that execute tasks external to the microcontroller.</p>
+**I/O peripherals**
+The processor's input and output devices serve as its interface to the outside world. The input ports take in information and transfer it to the processor as binary data. The processor receives that data and sends the necessary instructions to output devices that execute tasks external to the microcontroller.
 
-<p>While the processor, memory, and I/O peripherals are the most important components of a microprocessor, other components are typically incorporated as well. Supporting components that interface with the memory and CPU are referred to as I/O peripherals. Peripherals are a broad category that includes a wide range of supporting components. Because they are the method via which the processor is applied, having some form of an I/O peripheral is essential to a microprocessor.</p>
+While the processor, memory, and I/O peripherals are the most important components of a microprocessor, other components are typically incorporated as well. Supporting components that interface with the memory and CPU are referred to as I/O peripherals. Peripherals are a broad category that includes a wide range of supporting components. Because they are the method via which the processor is applied, having some form of an I/O peripheral is essential to a microprocessor. -->
 
 <h2 id="examples-of-microcontrollers">Examples of Microcontrollers</h2>
 
@@ -1187,51 +1183,50 @@ Examples include LED, Motors, LDR these devices have a continuous set of states 
 
 <p>A microprocessor is an integrated circuit (IC) that houses the central processing unit (CPU) of a computer . It is a clock-driven, register-based programmable multipurpose silicon device that accepts binary data as input and processes it according to instructions stored in the memory.</p>
 
-<h2 id="why-we-need-a-microprocessor">Why we need a Microprocessor?</h2>
+<!-- ## Why we need a Microprocessor?
 
-<p>A microprocessor, like our brain, can be trained to perform any task. Based on its instruction set and capabilities, it can be programmed to perform anything we desire. When we try to solve a problem without programming, the solution can be exceedingly complex.</p>
+A microprocessor, like our brain, can be trained to perform any task. Based on its instruction set and capabilities, it can be programmed to perform anything we desire. When we try to solve a problem without programming, the solution can be exceedingly complex.
 
-<p>When we try to solve a problem without programming, the solution can be exceedingly complex.</p>
+When we try to solve a problem without programming, the solution can be exceedingly complex.
 
-<p>Assume you wish to construct a large structure. The use of BRICKS will simplify and reduce the cost of building. It will also allow you to design the building in whatever shape or size you like. The bricks that you can employ to solve your problem are instructions stored in a microprocessor. You can quickly solve difficult programmes by following those guidelines.</p>
+Assume you wish to construct a large structure. The use of BRICKS will simplify and reduce the cost of building. It will also allow you to design the building in whatever shape or size you like. The bricks that you can employ to solve your problem are instructions stored in a microprocessor. You can quickly solve difficult programmes by following those guidelines.
 
-<h2 id="how-does-a-microprocessor-work-">How does a Microprocessor work ?</h2>
+## How does a Microprocessor work ?
 
-<p>A processor is the brain of a computer which basically consists of <em>Arithmetical and Logical Unit (ALU), Control Unit and Register Array</em>.</p>
+A processor is the brain of a computer which basically consists of *Arithmetical and Logical Unit (ALU), Control Unit and Register Array*.
 
-<ul>
-  <li><strong>ALU</strong> performs all arithmetic and logical operations on the data received from input devices or memory.</li>
-  <li><strong>Register array</strong> consists of a series of registers like accumulator (A), B, C, D etc. which acts as temporary fast access memory locations for processing data.</li>
-  <li><strong>Control Unit</strong> controls the flow of instructions and data throughout the system.</li>
-</ul>
+- **ALU** performs all arithmetic and logical operations on the data received from input devices or memory.
+- **Register array** consists of a series of registers like accumulator (A), B, C, D etc. which acts as temporary fast access memory locations for processing data.
+- **Control Unit** controls the flow of instructions and data throughout the system.
 
-<p>So basically a microprocessor takes input from input devices, process it as per instructions given in the memory and produces output.</p>
+So basically a microprocessor takes input from input devices, process it as per instructions given in the memory and produces output.
 
-<h2 id="advantages-of-microprocessors">Advantages of Microprocessors</h2>
+## Advantages of Microprocessors
 
-<p><strong>Low Cost</strong>
-Microprocessors are available at low cost due to integrated circuit technology which reduces the cost of a computer system.</p>
+**Low Cost**
+Microprocessors are available at low cost due to integrated circuit technology which reduces the cost of a computer system.
 
-<p><strong>High Speed</strong>
-Microprocessor chips can work at very high speed due to the technology involved in it. It is capable of executing millions of instructions per second.</p>
+**High Speed**
+Microprocessor chips can work at very high speed due to the technology involved in it. It is capable of executing millions of instructions per second.
 
-<p><strong>Small Size</strong>
-Due to very large scale and ultra large scale integration technology, a microprocessor is fabricated in a very less footprint. This will reduce the size of the entire computer system.</p>
+**Small Size**
+Due to very large scale and ultra large scale integration technology, a microprocessor is fabricated in a very less footprint. This will reduce the size of the entire computer system.
 
-<p><strong>Versatile</strong>
-Microprocessors are very versatile, the same chip can be used for a number of applications by simply changing the program (instructions stored in the memory).</p>
+**Versatile**
+Microprocessors are very versatile, the same chip can be used for a number of applications by simply changing the program (instructions stored in the memory).
 
-<p><strong>Low Power Consumption</strong>
-Microprocessors are usually manufactured using metal oxide semiconductor technology, in which MOSFETs (Metal Oxide Semiconductor Field Effect Transistors) are working in saturation and cut off modes. So the power consumption is very low compared to others.</p>
+**Low Power Consumption**
+Microprocessors are usually manufactured using metal oxide semiconductor technology, in which MOSFETs (Metal Oxide Semiconductor Field Effect Transistors) are working in saturation and cut off modes. So the power consumption is very low compared to others.
 
-<p><strong>Less Heat Generation</strong>
-Compared to vacuum tube devices, semiconductor devices won’t emit that much heat.</p>
+**Less Heat Generation**
+Compared to vacuum tube devices, semiconductor devices won’t emit that much heat.
 
-<p><strong>Reliable</strong>
-Microprocessors are very reliable, failure rate is very less as semiconductor technology is used.</p>
+**Reliable**
+Microprocessors are very reliable, failure rate is very less as semiconductor technology is used.
 
-<p><strong>Portable</strong>
-Devices or computer system made with microprocessors can be made portable due to the small size and low power consumption.</p>
+**Portable**
+Devices or computer system made with microprocessors can be made portable due to the small size and low power consumption.
+ -->
 
 <h2 id="examples-of-microprocessors">Examples of Microprocessors</h2>
 
@@ -1244,79 +1239,22 @@ Devices or computer system made with microprocessors can be made portable due to
   <li>AMD Athlon</li>
 </ul>
 
-<h2 id="key-differences-between-microcontrollers--microprocessors">Key differences between Microcontrollers &amp; Microprocessors:</h2>
+<!-- ## Key differences between Microcontrollers & Microprocessors:
 
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>MicroConrollers</th>
-      <th>MicroProcessors</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Structure</td>
-      <td>CPU, Memory, I/O port and all other devices are connected on the single chip. The structure is fixed. Once it is designed the user cannot change the peripheral devices.</td>
-      <td>It has only the CPU in the chip. Other devices like I/O port, memory &amp; timer are connected externally. The structure of the microprocessor is flexible. Users can decide the amount of memory, the number of I/O ports and other peripheral devices</td>
-    </tr>
-    <tr>
-      <td>Application</td>
-      <td>It is used where the task is fixed &amp; predefined. It is used in the washing machine, alarm, microwave oven etc.</td>
-      <td>It is used where intensive processing is required. It is used in personal computers, laptops, mobiles, video games, etc.</td>
-    </tr>
-    <tr>
-      <td>Programming</td>
-      <td>The program for the microcontroller is fixed once it is designed.</td>
-      <td>The program for the microprocessor can be changed for different applications. The programming of the microprocessor is difficult compared to the microcontroller.</td>
-    </tr>
-    <tr>
-      <td>Clock Speed</td>
-      <td>The clock speed of the microcontroller is less. It is in terms of the MHz. it ranges between 1 MHz to 300 MHz.</td>
-      <td>The clock speed of the microprocessor is high. It is in terms of the GHz. It ranges between 1 GHz to 4 GHz.</td>
-    </tr>
-    <tr>
-      <td>Power Consumption</td>
-      <td>The power consumption for the microcontroller is less.</td>
-      <td>The power consumption for the microprocessor is more.</td>
-    </tr>
-    <tr>
-      <td>Peripheral Interface</td>
-      <td>The common peripheral interface for the microcontroller is I2C, SPI, and UART.</td>
-      <td>The common peripheral interface for the microprocessor is USB, UART, and high-speed Ethernet.</td>
-    </tr>
-    <tr>
-      <td>RAM</td>
-      <td>The volatile memory (RAM) for the microcontroller is in the range of 2 KB to 256 KB.</td>
-      <td>The volatile memory (RAM) for the microprocessor is in the range of 512 MB to 32 GB.</td>
-    </tr>
-    <tr>
-      <td>ROM</td>
-      <td>The hard drive or flash memory (ROM) is in the range of 32 KB to 2 MB.</td>
-      <td>The hard disk (ROM) for the microprocessor is in the range of 128 GB to 2 TB.</td>
-    </tr>
-    <tr>
-      <td>Bit Size</td>
-      <td>It is available in 8-bit, 16-bit, and 36-bit.</td>
-      <td>It is available in 32-Bit and 64-bit.</td>
-    </tr>
-    <tr>
-      <td>Size</td>
-      <td>The overall size of the system is small.</td>
-      <td>The overall size of the system is large.</td>
-    </tr>
-    <tr>
-      <td>Example</td>
-      <td>Arduino UNO</td>
-      <td>Raspberry Pi</td>
-    </tr>
-    <tr>
-      <td>Cost</td>
-      <td>The cost of the microcontroller is low compared to the microprocessor.</td>
-      <td>Comparatively expensive.</td>
-    </tr>
-  </tbody>
-</table>
+|     | MicroConrollers | MicroProcessors |
+| --- | --- | --- |
+| Structure | CPU, Memory, I/O port and all other devices are connected on the single chip. The structure is fixed. Once it is designed the user cannot change the peripheral devices. | It has only the CPU in the chip. Other devices like I/O port, memory & timer are connected externally. The structure of the microprocessor is flexible. Users can decide the amount of memory, the number of I/O ports and other peripheral devices |
+| Application | It is used where the task is fixed & predefined. It is used in the washing machine, alarm, microwave oven etc. | It is used where intensive processing is required. It is used in personal computers, laptops, mobiles, video games, etc. |
+| Programming | The program for the microcontroller is fixed once it is designed. | The program for the microprocessor can be changed for different applications. The programming of the microprocessor is difficult compared to the microcontroller. |
+| Clock Speed | The clock speed of the microcontroller is less. It is in terms of the MHz. it ranges between 1 MHz to 300 MHz. | The clock speed of the microprocessor is high. It is in terms of the GHz. It ranges between 1 GHz to 4 GHz. |
+| Power Consumption | The power consumption for the microcontroller is less. | The power consumption for the microprocessor is more. |
+| Peripheral Interface | The common peripheral interface for the microcontroller is I2C, SPI, and UART. | The common peripheral interface for the microprocessor is USB, UART, and high-speed Ethernet. |
+| RAM | The volatile memory (RAM) for the microcontroller is in the range of 2 KB to 256 KB. | The volatile memory (RAM) for the microprocessor is in the range of 512 MB to 32 GB. |
+| ROM | The hard drive or flash memory (ROM) is in the range of 32 KB to 2 MB. | The hard disk (ROM) for the microprocessor is in the range of 128 GB to 2 TB. |
+| Bit Size | It is available in 8-bit, 16-bit, and 36-bit. | It is available in 32-Bit and 64-bit. |
+| Size | The overall size of the system is small. | The overall size of the system is large. |
+| Example | Arduino UNO | Raspberry Pi |
+| Cost | The cost of the microcontroller is low compared to the microprocessor. | Comparatively expensive. | -->
 
 <p>Here is a YouTube video you might refer to:
 <a href="https://youtu.be/U2vBsZbgw8M">Difference Between MicroController &amp; Microprocessor</a>. (use subtitles)</p>
@@ -1360,7 +1298,7 @@ Devices or computer system made with microprocessors can be made portable due to
       </a>
     </p>
   </div> --></div></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/site/resources/2021-07-06-Day0-3.html">Programming</a></div><div class="next"><span>NEXT</span><a href="/site/resources/2021-07-06-Day1-2.html">CAD</a></div></div></div>
+<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/site/resources/2021-07-06-Day4-2.html">Obstacle Avoidance Robot</a></div></div></div>
 
 </div>
 <script>(function() {
