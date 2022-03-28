@@ -63,18 +63,22 @@ workshop-bar:
     children:
       - title:   Introduction
         url:    /resources/2021-07-06-Day0-1.html
+      # - title:  Getting Things Ready
+      #   url:    /resources/2021-07-06-Day0-2.html
+      # - title:  Programming
+      #   url:    /resources/2021-07-06-Day0-3.html
+  - title:      Day 1
+    children:
+      # - title:  Electronics
+      #   url:    /resources/2021-07-06-Day1-1.html
+      # - title:  CAD
+      #   url:    /resources/2021-07-06-Day1-2.html
+      # - title:  Assignment
+      #   url:    /resources/2021-07-06-Day1-3.html
       - title:  Getting Things Ready
         url:    /resources/2021-07-06-Day0-2.html
       - title:  Programming
         url:    /resources/2021-07-06-Day0-3.html
-  - title:      Day 1
-    children:
-      - title:  Electronics
-        url:    /resources/2021-07-06-Day1-1.html
-      - title:  CAD
-        url:    /resources/2021-07-06-Day1-2.html
-      - title:  Assignment
-        url:    /resources/2021-07-06-Day1-3.html
   - title:      Day 2
     children:
       - title:  Electronics
