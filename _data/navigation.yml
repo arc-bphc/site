@@ -93,12 +93,12 @@ workshop-bar:
         url:    /resources/2021-07-06-Day3-1.html
       - title:  Assignment
         url:    /resources/2021-07-06-Day3-3.html
-  - title:      Post Workshop
-    children:
-      - title:  Line Follower Robot
-        url:    /resources/2021-07-06-Day4-1.html
-      - title:  Obstacle Avoidance Robot
-        url:    /resources/2021-07-06-Day4-2.html
+  # - title:      Post Workshop
+  #   children:
+  #     - title:  Line Follower Robot
+  #       url:    /resources/2021-07-06-Day4-1.html
+  #     - title:  Obstacle Avoidance Robot
+  #       url:    /resources/2021-07-06-Day4-2.html
 
 
 
