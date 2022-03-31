@@ -91,7 +91,7 @@ workshop-bar:
     children:
       - title:  Electronics
         url:    /resources/2021-07-06-Day3-1.html
-      - title:  Assignment
+      - title:  Bluetooth Controlled Bot
         url:    /resources/2021-07-06-Day3-3.html
   # - title:      Post Workshop
   #   children:
